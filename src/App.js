@@ -353,7 +353,6 @@ function LiveFeedComponent() {
   const [lines, setLines] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [signalStrength, setSignalStrength] = useState(87)
-  const feedRef = useRef(null)
 
   useEffect(() => {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
