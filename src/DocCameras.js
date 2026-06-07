@@ -150,12 +150,12 @@ function Camera({ label, coords, type, docId }) {
         skyG.addColorStop(1, "#080e1a")
         ctx.fillStyle = skyG
         ctx.fillRect(0, 0, w, h*0.5)
-        // Lake Michigan — subtle blue tint on right sky only
-        const lakeG = ctx.createLinearGradient(w*0.6, 0, w, 0)
+        // Lake Michigan — very subtle cold tint in sky only
+        const lakeG = ctx.createLinearGradient(w*0.65, 0, w, 0)
         lakeG.addColorStop(0, "rgba(0,20,60,0)")
-        lakeG.addColorStop(1, "rgba(0,40,100,0.15)")
+        lakeG.addColorStop(1, "rgba(0,30,80,0.08)")
         ctx.fillStyle = lakeG
-        ctx.fillRect(w*0.6, 0, w*0.4, h*0.45)
+        ctx.fillRect(w*0.65, 0, w*0.35, h*0.38)
         // Chicago buildings — tall, dense, left 70%
         const bldgs = [[0,0.35,0.05,0.65],[0.04,0.25,0.04,0.75],[0.07,0.3,0.05,0.7],[0.11,0.15,0.04,0.85],[0.14,0.22,0.05,0.78],[0.18,0.1,0.04,0.9],[0.21,0.28,0.06,0.72],[0.26,0.18,0.04,0.82],[0.29,0.12,0.05,0.88],[0.33,0.3,0.05,0.7],[0.37,0.2,0.07,0.8],[0.43,0.08,0.04,0.92],[0.46,0.22,0.05,0.78],[0.5,0.28,0.06,0.72],[0.55,0.18,0.04,0.82],[0.58,0.32,0.05,0.68],[0.62,0.24,0.06,0.76],[0.67,0.3,0.04,0.7]]
         bldgs.forEach(([x,y,bw,bh]) => {
@@ -267,8 +267,8 @@ function Camera({ label, coords, type, docId }) {
         ]
         metrics.forEach((m, i) => {
           const y = 22 + i * 22
-          const cycle = (frame + i * 40) % 120
-          const anim = cycle < 60 ? cycle / 60 : 1 - (cycle - 60) / 60
+          const cycle = (frame + i * 80) % 300
+          const anim = cycle < 150 ? cycle / 150 : 1 - (cycle - 150) / 150
           ctx.fillStyle = "rgba(255,160,0,0.8)"
           ctx.font = "6px monospace"
           ctx.fillText(m.label, 4, y)
@@ -788,17 +788,7 @@ const DOC_CAMERAS = {
     { label: "CAM-01 / NANOBOTS", coords: "4.7B UNITS/DOSE", type: "pr_lab" },
     { label: "CAM-02 / DISTRIBUTION", coords: "42 COUNTRIES", type: "pr_map" },
     { label: "CAM-03 / LEVELS", coords: "340M INTEGRATED", type: "pr_levels" },
-  ],
-  "IS-312": [
-    { label: "CAM-01 / SKYLINE", coords: "CHICAGO IL — 2162", type: "is_skyline" },
-    { label: "CAM-02 / HYBRID", coords: "SECTOR INNER-02", type: "is_hybrid" },
-    { label: "CAM-03 / SIGNAL", coords: "847.3 MHz SCAN", type: "is_signal" },
-  ],
-  "ST-001": [
-    { label: "CAM-01 / SKYLINE", coords: "CHICAGO IL — 2162", type: "is_skyline" },
-    { label: "CAM-02 / HYBRID", coords: "SECTOR INNER-02", type: "is_hybrid" },
-    { label: "CAM-03 / SIGNAL", coords: "847.3 MHz SCAN", type: "is_signal" },
-  ],
+  ]
 }
 
 export default function DocCameras({ docId }) {
