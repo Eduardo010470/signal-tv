@@ -172,15 +172,17 @@ function Camera({ label, coords, type, docId }) {
         bldgs.forEach(([x,y,bw,bh], bi) => {
           ctx.fillStyle = "#0b1220"
           ctx.fillRect(x*w, y*h, bw*w, bh*h)
-          // Windows — stable seed per building
+          // Windows — flicker independently
           for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 3; c++) {
               const seed = Math.sin(bi*31 + r*7 + c*13) * 0.5 + 0.5
-              const on = seed > 0.45
+              const on = seed > 0.42
               if (on) {
-                const flicker = 0.25 + Math.sin(frame*0.008 + bi*2.3 + r*1.1) * 0.15
-                ctx.fillStyle = `rgba(220,190,100,${flicker})`
-                ctx.fillRect(x*w + c*(bw*w/3) + 2, y*h + r*7 + 4, 2, 3)
+                const flicker = 0.15 + Math.sin(frame*0.05 + bi*3.7 + r*2.3 + c*1.9) * 0.35
+                if (flicker > 0.05) {
+                  ctx.fillStyle = `rgba(220,190,100,${Math.max(0, flicker)})`
+                  ctx.fillRect(x*w + c*(bw*w/3) + 2, y*h + r*7 + 4, 2, 3)
+                }
               }
             }
           }
