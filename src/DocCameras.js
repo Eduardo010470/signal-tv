@@ -655,6 +655,99 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillText("REC", w-28, 12)
       }
       frame++
+
+      // IS-312 — Chicago skyline 2162
+      if (type === "is_skyline") {
+        ctx.fillStyle = "#020408"
+        ctx.fillRect(0, 0, w, h)
+        for (let i = 0; i < 30; i++) {
+          const sx = (i * 47 + 13) % w
+          const sy = (i * 31 + 7) % (h * 0.5)
+          const pulse = 0.3 + Math.sin(frame * 0.02 + i) * 0.2
+          ctx.fillStyle = `rgba(150,180,220,${pulse})`
+          ctx.fillRect(sx, sy, 1, 1)
+        }
+        const bldgs = [[0,0.3,0.05,0.7],[0.04,0.2,0.04,0.8],[0.07,0.25,0.05,0.75],[0.11,0.15,0.04,0.85],[0.14,0.22,0.06,0.78],[0.19,0.1,0.05,0.9],[0.23,0.18,0.04,0.82],[0.26,0.28,0.07,0.72],[0.32,0.12,0.04,0.88],[0.35,0.2,0.05,0.8],[0.39,0.3,0.06,0.7],[0.44,0.15,0.04,0.85],[0.47,0.22,0.05,0.78],[0.51,0.08,0.05,0.92],[0.55,0.18,0.06,0.82],[0.6,0.25,0.05,0.75],[0.64,0.35,0.07,0.65],[0.7,0.2,0.04,0.8],[0.73,0.28,0.06,0.72],[0.78,0.15,0.05,0.85],[0.82,0.22,0.06,0.78],[0.87,0.3,0.05,0.7],[0.91,0.18,0.04,0.82],[0.94,0.25,0.06,0.75]]
+        bldgs.forEach(([x,y,bw,bh]) => {
+          ctx.fillStyle = "#080d16"
+          ctx.fillRect(x*w, y*h, bw*w, bh*h)
+          for (let r = 0; r < 6; r++) {
+            for (let c = 0; c < 3; c++) {
+              const wx = x*w + c*(bw*w/3) + 2
+              const wy = y*h + r*8 + 4
+              const on = Math.sin(frame*0.01 + x*10 + r*3 + c*7) > 0.6
+              if (on) { ctx.fillStyle = "rgba(255,220,120,0.5)"; ctx.fillRect(wx, wy, 2, 2) }
+            }
+          }
+        })
+        const groundG = ctx.createLinearGradient(0, h*0.7, 0, h)
+        groundG.addColorStop(0, "rgba(0,10,30,0)")
+        groundG.addColorStop(1, "rgba(0,20,60,0.4)")
+        ctx.fillStyle = groundG
+        ctx.fillRect(0, h*0.7, w, h*0.3)
+        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(0,245,255,0.7)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("CHICAGO IL — 2162", 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // IS-312 — Level 4 Hybrid movement
+      if (type === "is_hybrid") {
+        ctx.fillStyle = "#030508"
+        ctx.fillRect(0, 0, w, h)
+        ctx.strokeStyle = "rgba(0,245,255,0.04)"; ctx.lineWidth = 0.5
+        for (let x = 0; x < w; x += 20) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke() }
+        for (let y = 0; y < h; y += 20) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke() }
+        const hybrids = [
+          { x: 0.15, speed: 0.0008, y: 0.55 },
+          { x: 0.42, speed: 0.0005, y: 0.6 },
+          { x: 0.7,  speed: 0.0011, y: 0.52 },
+          { x: 0.85, speed: 0.0006, y: 0.58 },
+        ]
+        hybrids.forEach((h2, i) => {
+          const px = ((h2.x + frame * h2.speed) % 1.0) * w
+          const py = h2.y * h
+          ctx.fillStyle = "rgba(180,200,255,0.15)"
+          ctx.fillRect(px - 3, py - 14, 6, 14)
+          ctx.beginPath(); ctx.arc(px, py - 18, 4, 0, Math.PI*2); ctx.fill()
+          const gpulse = 0.3 + Math.sin(frame * 0.04 + i * 1.5) * 0.3
+          ctx.strokeStyle = `rgba(255,200,0,${gpulse})`; ctx.lineWidth = 1
+          ctx.beginPath(); ctx.arc(px, py - 18, 6, 0, Math.PI*2); ctx.stroke()
+        })
+        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(249,115,22,0.9)"; ctx.shadowColor = "#f97316"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("HYBRID MOVEMENT — MOD", 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // IS-312 — 847.3 MHz frequency scan
+      if (type === "is_signal") {
+        ctx.fillStyle = "#020408"
+        ctx.fillRect(0, 0, w, h)
+        const cx2 = w / 2
+        const cy2 = h / 2
+        for (let r = 1; r <= 5; r++) {
+          const radius = r * (Math.min(w,h) * 0.09)
+          const alpha = 0.08 + Math.sin(frame * 0.02 - r * 0.5) * 0.04
+          ctx.strokeStyle = `rgba(0,245,255,${alpha})`; ctx.lineWidth = 0.5
+          ctx.beginPath(); ctx.arc(cx2, cy2, radius, 0, Math.PI*2); ctx.stroke()
+        }
+        const angle = (frame * 0.025) % (Math.PI * 2)
+        const sweepG = ctx.createLinearGradient(cx2, cy2, cx2 + Math.cos(angle)*w*0.5, cy2 + Math.sin(angle)*h*0.5)
+        sweepG.addColorStop(0, "rgba(0,245,255,0.4)")
+        sweepG.addColorStop(1, "rgba(0,245,255,0)")
+        ctx.strokeStyle = sweepG; ctx.lineWidth = 1.5
+        ctx.beginPath(); ctx.moveTo(cx2, cy2); ctx.lineTo(cx2 + Math.cos(angle)*w*0.6, cy2 + Math.sin(angle)*h*0.6); ctx.stroke()
+        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 6
+        ctx.beginPath(); ctx.arc(cx2, cy2, 2, 0, Math.PI*2); ctx.fill(); ctx.shadowBlur = 0
+        if (Math.sin(frame * 0.07) > 0.85) {
+          const bx = cx2 + Math.cos(angle - 0.3) * 30
+          const by = cy2 + Math.sin(angle - 0.3) * 30
+          ctx.fillStyle = "rgba(0,245,255,0.9)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 8
+          ctx.beginPath(); ctx.arc(bx, by, 2, 0, Math.PI*2); ctx.fill(); ctx.shadowBlur = 0
+        }
+        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("847.3 MHz — SCANNING", 3, h-5); ctx.shadowBlur = 0
+      }
       animRef.current = requestAnimationFrame(draw)
     }
     draw()
@@ -669,156 +762,6 @@ function Camera({ label, coords, type, docId }) {
     </div>
   )
 }
-
-      // IS-312 — Chicago skyline 2162
-      if (type === "is_skyline") {
-        ctx.fillStyle = "#020408"
-        ctx.fillRect(0, 0, w, h)
-        // Stars
-        for (let i = 0; i < 30; i++) {
-          const sx = (i * 47 + 13) % w
-          const sy = (i * 31 + 7) % (h * 0.5)
-          const pulse = 0.3 + Math.sin(frame * 0.02 + i) * 0.2
-          ctx.fillStyle = `rgba(150,180,220,${pulse})`
-          ctx.fillRect(sx, sy, 1, 1)
-        }
-        // Skyline buildings
-        const bldgs = [[0,0.3,0.05,0.7],[0.04,0.2,0.04,0.8],[0.07,0.25,0.05,0.75],[0.11,0.15,0.04,0.85],[0.14,0.22,0.06,0.78],[0.19,0.1,0.05,0.9],[0.23,0.18,0.04,0.82],[0.26,0.28,0.07,0.72],[0.32,0.12,0.04,0.88],[0.35,0.2,0.05,0.8],[0.39,0.3,0.06,0.7],[0.44,0.15,0.04,0.85],[0.47,0.22,0.05,0.78],[0.51,0.08,0.05,0.92],[0.55,0.18,0.06,0.82],[0.6,0.25,0.05,0.75],[0.64,0.35,0.07,0.65],[0.7,0.2,0.04,0.8],[0.73,0.28,0.06,0.72],[0.78,0.15,0.05,0.85],[0.82,0.22,0.06,0.78],[0.87,0.3,0.05,0.7],[0.91,0.18,0.04,0.82],[0.94,0.25,0.06,0.75]]
-        bldgs.forEach(([x,y,bw,bh]) => {
-          ctx.fillStyle = "#080d16"
-          ctx.fillRect(x*w, y*h, bw*w, bh*h)
-          // Windows — sporadic lights
-          for (let r = 0; r < 6; r++) {
-            for (let c = 0; c < 3; c++) {
-              const wx = x*w + c*(bw*w/3) + 2
-              const wy = y*h + r*8 + 4
-              const on = Math.sin(frame*0.01 + x*10 + r*3 + c*7) > 0.6
-              if (on) {
-                ctx.fillStyle = "rgba(255,220,120,0.5)"
-                ctx.fillRect(wx, wy, 2, 2)
-              }
-            }
-          }
-        })
-        // Ground glow — city light pollution
-        const groundG = ctx.createLinearGradient(0, h*0.7, 0, h)
-        groundG.addColorStop(0, "rgba(0,10,30,0)")
-        groundG.addColorStop(1, "rgba(0,20,60,0.4)")
-        ctx.fillStyle = groundG
-        ctx.fillRect(0, h*0.7, w, h*0.3)
-        // Label
-        ctx.fillStyle = "rgba(0,0,0,0.6)"
-        ctx.fillRect(0, h-16, w, 16)
-        ctx.fillStyle = "rgba(0,245,255,0.7)"
-        ctx.shadowColor = "#00f5ff"
-        ctx.shadowBlur = 4
-        ctx.font = "7px monospace"
-        ctx.fillText("CHICAGO IL — 2162", 3, h-5)
-        ctx.shadowBlur = 0
-      }
-
-      // IS-312 — Level 4 Hybrid movement
-      if (type === "is_hybrid") {
-        ctx.fillStyle = "#030508"
-        ctx.fillRect(0, 0, w, h)
-        // Grid overlay — surveillance aesthetic
-        ctx.strokeStyle = "rgba(0,245,255,0.04)"
-        ctx.lineWidth = 0.5
-        for (let x = 0; x < w; x += 20) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke() }
-        for (let y = 0; y < h; y += 20) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke() }
-        // Hybrid silhouettes moving
-        const hybrids = [
-          { x: 0.15, speed: 0.0008, y: 0.55 },
-          { x: 0.42, speed: 0.0005, y: 0.6 },
-          { x: 0.7,  speed: 0.0011, y: 0.52 },
-          { x: 0.85, speed: 0.0006, y: 0.58 },
-        ]
-        hybrids.forEach((h2, i) => {
-          const px = ((h2.x + frame * h2.speed) % 1.0) * w
-          const py = h2.y * h
-          // Body
-          ctx.fillStyle = "rgba(180,200,255,0.15)"
-          ctx.fillRect(px - 3, py - 14, 6, 14)
-          // Head
-          ctx.beginPath()
-          ctx.arc(px, py - 18, 4, 0, Math.PI*2)
-          ctx.fill()
-          // Gold pulse — ALADDIN remnant
-          const gpulse = 0.3 + Math.sin(frame * 0.04 + i * 1.5) * 0.3
-          ctx.strokeStyle = `rgba(255,200,0,${gpulse})`
-          ctx.lineWidth = 1
-          ctx.beginPath()
-          ctx.arc(px, py - 18, 6, 0, Math.PI*2)
-          ctx.stroke()
-        })
-        // Threat indicator
-        ctx.fillStyle = "rgba(0,0,0,0.6)"
-        ctx.fillRect(0, h-16, w, 16)
-        ctx.fillStyle = "rgba(249,115,22,0.9)"
-        ctx.shadowColor = "#f97316"
-        ctx.shadowBlur = 4
-        ctx.font = "7px monospace"
-        ctx.fillText("HYBRID MOVEMENT — MOD", 3, h-5)
-        ctx.shadowBlur = 0
-      }
-
-      // IS-312 — 847.3 MHz frequency scan
-      if (type === "is_signal") {
-        ctx.fillStyle = "#020408"
-        ctx.fillRect(0, 0, w, h)
-        const cx2 = w / 2
-        const cy2 = h / 2
-        // Concentric scan rings
-        for (let r = 1; r <= 5; r++) {
-          const radius = r * (Math.min(w,h) * 0.09)
-          const alpha = 0.08 + Math.sin(frame * 0.02 - r * 0.5) * 0.04
-          ctx.strokeStyle = `rgba(0,245,255,${alpha})`
-          ctx.lineWidth = 0.5
-          ctx.beginPath()
-          ctx.arc(cx2, cy2, radius, 0, Math.PI*2)
-          ctx.stroke()
-        }
-        // Rotating sweep line
-        const angle = (frame * 0.025) % (Math.PI * 2)
-        const sweepG = ctx.createLinearGradient(cx2, cy2, cx2 + Math.cos(angle)*w*0.5, cy2 + Math.sin(angle)*h*0.5)
-        sweepG.addColorStop(0, "rgba(0,245,255,0.4)")
-        sweepG.addColorStop(1, "rgba(0,245,255,0)")
-        ctx.strokeStyle = sweepG
-        ctx.lineWidth = 1.5
-        ctx.beginPath()
-        ctx.moveTo(cx2, cy2)
-        ctx.lineTo(cx2 + Math.cos(angle)*w*0.6, cy2 + Math.sin(angle)*h*0.6)
-        ctx.stroke()
-        // Center dot
-        ctx.fillStyle = "rgba(0,245,255,0.8)"
-        ctx.shadowColor = "#00f5ff"
-        ctx.shadowBlur = 6
-        ctx.beginPath()
-        ctx.arc(cx2, cy2, 2, 0, Math.PI*2)
-        ctx.fill()
-        ctx.shadowBlur = 0
-        // Signal blips — occasional
-        if (Math.sin(frame * 0.07) > 0.85) {
-          const bx = cx2 + Math.cos(angle - 0.3) * 30
-          const by = cy2 + Math.sin(angle - 0.3) * 30
-          ctx.fillStyle = "rgba(0,245,255,0.9)"
-          ctx.shadowColor = "#00f5ff"
-          ctx.shadowBlur = 8
-          ctx.beginPath()
-          ctx.arc(bx, by, 2, 0, Math.PI*2)
-          ctx.fill()
-          ctx.shadowBlur = 0
-        }
-        // Label
-        ctx.fillStyle = "rgba(0,0,0,0.6)"
-        ctx.fillRect(0, h-16, w, 16)
-        ctx.fillStyle = "rgba(0,245,255,0.8)"
-        ctx.shadowColor = "#00f5ff"
-        ctx.shadowBlur = 4
-        ctx.font = "7px monospace"
-        ctx.fillText("847.3 MHz — SCANNING", 3, h-5)
-        ctx.shadowBlur = 0
-      }
 
 const DOC_CAMERAS = {
   "EM-001": [
