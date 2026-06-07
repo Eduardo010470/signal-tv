@@ -170,7 +170,7 @@ export default function App() {
       setTimeout(() => setGlitch(false), 150)
     }, 4000)
     return () => clearInterval(interval)
-  }, [generateFeed])
+  }, [])
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -183,7 +183,7 @@ export default function App() {
       if (session?.user) { checkPremium(session.user.email); setPage("archive") }
     })
     return () => subscription.unsubscribe()
-  }, [generateFeed])
+  }, [])
 
   async function checkPremium(email) {
     const { data } = await supabase.from("signal_users").select("is_premium").eq("email", email).single()
