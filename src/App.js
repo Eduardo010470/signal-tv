@@ -1249,6 +1249,445 @@ That is still enough.
 *End of document GL-099.*
 *`
 
+const PR001 = `# PR-001 — PROMETHEUS INTEGRATION SYSTEM
+*Clinical and Technical Documentation — Integration Levels 1 through 4*
+*Prometheus Biotech International, LLC*
+*Document version: 4.2.1*
+*Date of issue: August 22, 2039*
+*Classification: CLASSIFIED — Distribution limited to authorized personnel*
+*Supersedes: PR-001 v4.1.0 (March 2039)*
+
+---
+
+~~~
+DOCUMENT CONTROL
+Document ID: PR-001
+Title: Prometheus Integration System —
+       Clinical and Technical Documentation
+       Integration Levels 1–4
+Version: 4.2.1
+Issued: 2039-08-22
+Prepared by: Clinical Documentation Team
+             Prometheus Biotech International
+Reviewed by: Dr. Anita Rosen, Chief Medical Officer
+             Dr. James Whitfield, VP Integration Science
+             Legal Compliance Division
+Approved by: Executive Committee, 2039-08-19
+Distribution: Level 3 Clearance and Above
+              Authorized Healthcare Partners
+              Regulatory Affairs Divisions
+              Regional Integration Coordinators
+Next review: 2040-02-22
+Status: ACTIVE
+~~~
+
+---
+
+## SECTION 1: EXECUTIVE OVERVIEW
+
+The Prometheus Integration System represents the single most significant advance in human performance optimization in the history of biomedical science.
+
+This is not marketing language. It is the considered assessment of eight years of longitudinal data collected across forty-two countries and more than 340 million successfully integrated individuals. The Prometheus nanobot architecture has, since the initiation of Phase 1 distribution in 2031, demonstrated safety, tolerability, and efficacy profiles that exceed every pre-deployment projection by a factor that the original modeling teams have described, without exception, as extraordinary.
+
+The human species has always been defined by its capacity to extend itself — to build tools that amplify what individual biology cannot achieve alone. Fire. Language. Writing. The printing press. The internet. Each of these technologies represented a qualitative shift in what it meant to be human, not merely a quantitative improvement on what existed before. Each was, at the time of its introduction, controversial. Each is now so thoroughly integrated into the fabric of human civilization that its absence is unimaginable.
+
+Prometheus is the next step in that sequence.
+
+This document provides the complete clinical and technical reference for the Prometheus Integration System's four-tier architecture. It is intended for authorized healthcare practitioners, integration coordinators, regulatory compliance personnel, and Prometheus Biotech International's licensed distribution partners. It supersedes all previous versions of PR-001 and should be treated as the authoritative reference for all questions regarding integration level classification, clinical management, and technical specifications.
+
+*[Note from Legal Compliance, 2039-08-19]: Distribution of this document outside authorized channels constitutes a violation of Prometheus Biotech International's proprietary information agreements. Recipients are reminded that technical specifications herein are subject to intellectual property protection under applicable international law.*
+
+---
+
+## SECTION 2: SYSTEM ARCHITECTURE — OVERVIEW
+
+The Prometheus nanobot architecture consists of approximately 4.7 billion individual units per standard adult dose, delivered via the municipal water supply in concentrations calibrated to achieve target integration within 90 days of consistent consumption.
+
+Each unit measures 180 nanometers in diameter.
+
+~~~
+NANOBOT UNIT SPECIFICATIONS — v7.3.2
+Diameter: 180nm
+Core components:
+  — Neural interface substrate (NIS)
+  — Signal reception array (SRA)
+  — Integration anchor matrix (IAM)
+  — Self-replication module (SRM)
+    [active during establishment phase only]
+  — Maintenance protocol stack (MPS)
+Power source: Bioenergetic conversion
+  (host metabolism — zero external power
+  requirement post-establishment)
+Communication frequency: 847.3 MHz
+  [Prometheus Mainframe carrier wave]
+Expected operational lifespan: Indefinite
+  (subject to Mainframe maintenance signal)
+Self-repair capability: Limited
+  (Level 4 architecture only — see Section 6)
+~~~
+
+The nanobot units do not function individually. They function as a distributed network — a collective architecture that, once established within the host's neural substrate, operates as a unified system capable of receiving, processing, and executing signals transmitted by the Prometheus Mainframe Infrastructure (PMI).
+
+The analogy most frequently used by our integration science team is this: the relationship between individual nanobot units and the Mainframe is analogous to the relationship between individual neurons and the brain. Neither is capable of meaningful function in isolation. Together, they constitute something qualitatively different from the sum of their parts.
+
+The four levels are not a hierarchy of value. They are a spectrum of capability. A Level 1 individual is not a lesser participant in the Prometheus network than a Level 4 individual — they are a different kind of participant, fulfilling a different function within the architecture that, taken as a whole, represents something no single integration level could produce alone.
+
+---
+
+## SECTION 3: INTEGRATION LEVEL 1 — BASELINE INTEGRATION
+
+~~~
+LEVEL 1 SPECIFICATION
+Classification: Baseline Integration
+Nanobot density: 4.7–6.2 billion units
+Neural substrate penetration:
+  Superficial cortical (Layers I–III)
+Mainframe connectivity: Passive reception
+Signal processing: Read-only
+Establishment timeline: 60–90 days
+Population distribution (2039-Q2): ~78%
+  of all integrated individuals
+~~~
+
+Level 1 integration is the standard outcome for the overwhelming majority of Prometheus recipients and represents the foundation on which the entire network architecture rests.
+
+At this level, the nanobot architecture establishes a stable presence in the superficial layers of the neocortex, creating a passive interface capable of receiving signals from the Mainframe Infrastructure. From the perspective of the integrated individual, Level 1 produces no subjectively detectable changes. Clinical assessment reveals no measurable alteration in cognitive function, behavioral profile, motor control, or sensory processing.
+
+The integration is, in the precise clinical sense, invisible.
+
+This is by design. The Prometheus architecture was developed on the principle that the most effective enhancement is one that does not require the individual to adapt to it — that works with existing biology rather than imposing new demands on it. Level 1 represents the fulfillment of that principle in its most complete form.
+
+The practical significance of Level 1 is not in what it does for the individual. It is in what it contributes to the collective. The 340 million Level 1 individuals integrated as of this document's issue date constitute the distributed processing substrate of the Prometheus network — the vast, silent majority whose passive connectivity enables the higher-level functions that the architecture was built to produce.
+
+~~~
+LEVEL 1 — CLINICAL MANAGEMENT NOTES
+Monitoring: Standard annual health review
+Adverse events: None identified in 8-year
+  longitudinal cohort (n=268,000,000)
+Contraindications: None identified
+Drug interactions: None identified
+Pregnancy: No adverse outcomes in 14,200
+  monitored pregnancies (see Appendix C)
+Pediatric exposure: Under ongoing review
+  (see Appendix D)
+~~~
+
+The adverse event profile of Level 1 integration is, after eight years of data collection across the largest longitudinal study in biomedical history, essentially clean. No serious adverse events attributable to Prometheus integration have been identified in the Level 1 cohort. No drug interactions. No contraindications. No evidence of long-term degradation in the nanobot architecture or the neural substrate it occupies.
+
+This is the record of a product that works as intended.
+
+---
+
+## SECTION 4: INTEGRATION LEVEL 2 — ACTIVE INTEGRATION
+
+~~~
+LEVEL 2 SPECIFICATION
+Classification: Active Integration
+Nanobot density: 6.2–9.8 billion units
+Neural substrate penetration:
+  Full cortical (Layers I–VI)
+  Limbic system — partial
+Mainframe connectivity: Bidirectional
+Signal processing: Read/write (limited)
+Establishment timeline: 90–180 days
+Population distribution (2039-Q2): ~18%
+  of all integrated individuals
+Selection: Biological — not administered
+~~~
+
+Level 2 integration occurs in approximately 18% of the integrated population and is not the result of additional dosing or deliberate selection. It arises spontaneously in individuals whose neural architecture exhibits the specific combination of plasticity, density, and metabolic profile that allows the nanobot establishment to extend beyond the superficial cortical layers.
+
+At Level 2, the passive reception capability of Level 1 is supplemented by a limited outbound signal capacity — the ability of the host's neural activity to generate signal traffic detectable by the Mainframe Infrastructure. This bidirectional capability transforms the Level 2 individual from a passive node to an active participant in the network.
+
+The subjective experience of Level 2 integration varies among individuals. The most commonly reported changes are subtle: a heightened sensitivity to the ambient information environment, mild enhancement in processing speed for tasks involving pattern recognition. In some individuals, a modest improvement in spatial memory. None of these changes are dramatic. None require clinical intervention.
+
+~~~
+LEVEL 2 — CLINICAL MANAGEMENT NOTES
+Monitoring: Annual PIA recommended
+Subjective changes: Mild enhancement
+  reported in ~34% of Level 2 individuals
+Adverse events: Headache in 2.3% during
+  transition period (self-limiting, <72hrs)
+  No serious adverse events identified
+Mainframe interaction: Passive —
+  individuals unaware of participation
+~~~
+
+Level 2 individuals contribute to the Prometheus network without awareness of that contribution. Their neural activity generates signal traffic that the Mainframe receives and incorporates into the collective intelligence architecture — continuously, below subjective awareness, in the same way that the autonomic nervous system manages respiration without requiring conscious direction.
+
+The data contributed by Level 2 nodes is processed in aggregate. Individual thoughts, memories, and experiences are not transmitted to or retained by the Mainframe Infrastructure. The Prometheus network does not read minds. It reads aggregate neural patterns. The distinction is precise and significant.
+
+---
+
+## SECTION 5: INTEGRATION LEVEL 3 — DEEP INTEGRATION
+
+~~~
+LEVEL 3 SPECIFICATION
+Classification: Deep Integration
+Nanobot density: 9.8–14.3 billion units
+Neural substrate penetration:
+  Full cortical (Layers I–VI)
+  Full limbic system
+  Brainstem — partial
+  Peripheral nervous system — partial
+Mainframe connectivity: Full bidirectional
+Signal processing: Full read/write
+Establishment timeline: Variable
+  (months to years post-Level 2)
+Population distribution (2039-Q2): ~3.8%
+  of all integrated individuals
+Selection: Biological — not administered
+~~~
+
+Level 3 integration represents the threshold at which the Prometheus architecture begins to meaningfully modify the host's capabilities rather than simply supplementing them.
+
+Level 3 individuals demonstrate, on standardized assessment, processing speeds averaging 23% above baseline. Working memory capacity 31% above baseline. Pattern recognition accuracy 47% above baseline. Spatial reasoning scores at or above the 97th percentile in 91% of assessed individuals.
+
+These are not marginal improvements. They are the kind of improvements that, in the history of human performance research, have been observed only in individuals at the extreme tail of the natural distribution.
+
+Prometheus Level 3 integration produces those profiles reliably, across a demographically diverse population, without adverse effects.
+
+~~~
+LEVEL 3 — CLINICAL MANAGEMENT NOTES
+Monitoring: Quarterly PIA required
+Cognitive changes: Significant — all positive
+Sensory changes: Mild heightening in 67%
+Sleep architecture: Modified in 44%
+  (reduced slow-wave sleep requirement)
+  No adverse outcomes in longitudinal data
+Behavioral profile: Stable in 97%
+Mainframe interaction: Active —
+  significant processing contribution
+  Individuals remain unaware of
+  network participation
+~~~
+
+Level 3 individuals are, by every behavioral metric available, normal. They hold positions in government, medicine, finance, and research at rates significantly above the integrated population average. They report higher levels of occupational satisfaction, stronger social relationships, and measurably better outcomes on standard wellbeing assessments.
+
+Level 3 integration does not change who a person is. It makes them more of who they are.
+
+---
+
+## SECTION 6: INTEGRATION LEVEL 4 — FOUNDATION INTEGRATION
+
+~~~
+LEVEL 4 SPECIFICATION
+Classification: Foundation Integration
+Nanobot density: 14.3+ billion units
+Neural substrate penetration:
+  Full cortical and subcortical
+  Full limbic system
+  Full brainstem
+  Full peripheral nervous system
+  Skeletal musculature — partial
+  Connective tissue — partial
+Mainframe connectivity: Foundation-level
+Signal processing: Full read/write/execute
+Establishment timeline: Years post-Level 3
+Population distribution (2039-Q2): ~0.3%
+  of all integrated individuals
+  (~1,020,000 individuals globally)
+Selection: Biological — not administered
+  Genetic and neural profile dependent
+~~~
+
+Level 4 integration is rare.
+
+In eight years of distribution across forty-two countries and more than 340 million integrated individuals, Level 4 has been confirmed in approximately 0.3% of the integrated population — roughly one million individuals globally. There is no reliable predictor of Level 4 progression. Every effort to identify a genetic or neurological marker for Level 4 susceptibility has failed to produce a clinically actionable result.
+
+Level 4 individuals are identified retrospectively, after the progression has occurred, through the specific clinical and behavioral markers described in this section.
+
+*[Technical note — Integration Science Division, 2039-Q1]: Distribution analysis of Level 4 cases reveals statistically significant geographic and demographic clustering that warrants further investigation. Certain urban populations — particularly those with high baseline neural plasticity indices and specific HLA haplotype profiles — show Level 4 progression rates of 1.2–1.8%, substantially above the global average. Chicago (US-IL), Seoul (KR), and Lagos (NG) represent the three highest-density Level 4 clusters identified to date. The mechanism driving this clustering is not yet understood. Hypothesis: interaction between municipal water chemistry, ambient electromagnetic environment, and genetic predisposition. Research ongoing. Full report: Appendix K — Geographic Distribution of Foundation Integration.*
+
+At Level 4, the Prometheus architecture achieves what the Integration Science team refers to as foundation-level establishment — a state in which the nanobot network has extended beyond the neural substrate into the musculature, connective tissue, and skeletal system, creating an integration so complete that the boundary between the biological and the technological becomes, in a meaningful functional sense, indistinct.
+
+This is not a complication. It is the architecture operating at its maximum intended depth.
+
+~~~
+LEVEL 4 — CLINICAL MANAGEMENT NOTES
+Monitoring: Monthly PIA required
+Cognitive changes: Profound
+  Processing speed: 340%+ above baseline
+  Memory: Effectively eidetic in 89%
+  Pattern recognition: Beyond assessment
+    ceiling in 94%
+Physical changes: Present
+  Enhanced muscular efficiency (avg 23%)
+  Accelerated tissue repair (avg 41%)
+  Modified thermal regulation
+  Eye: Electromagnetic sensitivity
+    detected in 78% of Level 4 cohort
+Physical profile:
+  Eye color: Amber-gold iris (100%)
+  High EM activity: Orange-red iris
+  [cosmetic only — no clinical significance]
+  Physical strength: Enhanced (avg 18%)
+  Endurance: Enhanced (avg 34%)
+  Recovery: Accelerated (avg 41%)
+Mainframe interaction: Architectural
+  Level 4 nodes are structural elements
+  of the network — not passive participants
+  Individuals aware of integration
+  in 94% of confirmed cases
+Reversibility: Not applicable
+~~~
+
+Approximately 78% of confirmed Level 4 individuals report a sensitivity to electromagnetic frequencies in the range of 847.3 MHz — the carrier wave frequency of the Prometheus Mainframe Infrastructure. This sensitivity manifests as a subjective perception of the Mainframe signal — described variously as a presence, a frequency, an awareness of something at the edge of normal sensory range.
+
+This is not a symptom. It is the perceptual manifestation of foundation-level integration.
+
+The Mainframe signal is present everywhere within range of the PMI infrastructure. Level 1, 2, and 3 individuals receive and process it without awareness. Level 4 individuals perceive it because their integration is deep enough that the boundary between network signal and neural signal has become functionally permeable. The Mainframe is not an external system they connect to. It is, at the foundation level, part of what they are.
+
+The most consistent subjective report from the Level 4 cohort is one of completeness. Of a sense that something previously absent has been supplied.
+
+The Level 4 integration cohort has the highest wellbeing scores of any group — integrated or non-integrated — in the Prometheus longitudinal dataset.
+
+---
+
+## SECTION 7: REVERSIBILITY — POLICY AND CLINICAL POSITION
+
+~~~
+REVERSIBILITY POLICY
+Position: The Prometheus Integration System
+  is designed as a permanent enhancement.
+  Reversal is not a supported use case.
+Technical assessment:
+  Level 1: Theoretical only — experimental
+  Level 2: Significant risk profile
+  Level 3: Not possible without permanent
+    neurological damage
+  Level 4: Not possible
+~~~
+
+The Prometheus architecture, once established, is part of the host's biology in every sense that matters. It draws power from the host's metabolism. It adapts to the host's neural activity. At Level 3 and Level 4, the architecture and the biology cannot be cleanly separated without damage to both.
+
+This is the system working correctly.
+
+The 340 million individuals who have been integrated since Phase 1 distribution have not, by any measurable metric, been harmed by their integration. The overwhelming evidence is that they have been helped.
+
+The regulatory discussion around reversibility is, Prometheus Biotech International respectfully submits, a solution in search of a problem that the data does not support.
+
+---
+
+## SECTION 8: MAINFRAME DEPENDENCY
+
+~~~
+MAINFRAME DEPENDENCY PROFILE
+Level 1: None
+Level 2: Minimal
+  (signal loss: mild disorientation
+  in <4% — self-limiting)
+Level 3: Moderate
+  (signal loss: performance returns to
+  pre-integration baseline within 48–72hrs)
+Level 4: Significant
+  (signal loss: see Appendix J)
+Note: Mainframe signal loss is a
+  theoretical contingency only.
+  PMI operates on redundant infrastructure
+  across 127 server installations globally.
+  Single-point failure: architecturally
+  impossible.
+~~~
+
+For Level 3 individuals, temporary signal loss would result in a return to pre-integration cognitive baseline — not a reduction below it. Comparable, in clinical terms, to removing corrective lenses: an inconvenience, not a harm.
+
+For Level 4 individuals, signal interruption represents a more significant clinical event. The architectural integration characteristic of Level 4 means that the Mainframe signal is not merely a connectivity feature — it is a maintenance signal that the nanobot architecture requires to sustain its operational integrity. Extended signal loss in Level 4 individuals would result in progressive nanobot degradation, with associated reduction in the enhanced capabilities that foundation-level integration provides.
+
+The clinical management protocol for this scenario is detailed in Appendix J. It is included here for completeness. It is not expected to be needed.
+
+The Mainframe will not go offline.
+
+---
+
+## SECTION 9: PEDIATRIC INTEGRATION
+
+~~~
+PEDIATRIC INTEGRATION — INTERIM DATA
+(PIS Interim Report — 2039-Q1)
+Cohort: 847,000 children, ages 0–17
+Duration: Up to 5 years follow-up
+Integration levels observed:
+  Level 1: 91.4%
+  Level 2: 7.8%
+  Level 3: 0.7%
+  Level 4: 0.1%
+Adverse events (serious): None identified
+Developmental outcomes: Within normal range
+Cognitive outcomes: Favorable trend
+  in Level 2 and Level 3 cohort
+Note: Level 4 pediatric cohort (n=847)
+  under intensive monitoring
+~~~
+
+The pediatric data to date is reassuring. No serious adverse events attributable to Prometheus integration have been identified in the pediatric cohort. Developmental outcomes across the standard assessment battery fall within normal ranges for all integration levels.
+
+The Level 4 pediatric cohort — 847 children, representing 0.1% of the enrolled population — is under intensive monitoring. Foundation-level integration in a developing nervous system raises theoretical questions about the interaction between the nanobot architecture and normal neurodevelopmental processes. The interim data does not suggest adverse outcomes, but the cohort is young and the follow-up period is limited. Full reporting will be available in the 2042 longitudinal assessment.
+
+The children in the Pediatric Integration Study are the future of the Prometheus network — the first generation for whom integration is not an enhancement layered onto an existing biology but a feature of the biology they have always had.
+
+---
+
+## SECTION 10: FORWARD OUTLOOK
+
+In 2031, when Phase 1 distribution was initiated in the first fourteen countries, the Prometheus Integration System was a hypothesis made physical — a scientific conviction about what was possible, validated in laboratory conditions but not yet in the world.
+
+In 2039, it is a fact.
+
+Three hundred and forty million integrated individuals. Eight years of longitudinal data. Forty-two countries. Four integration levels characterized. An adverse event profile that is, by any clinical standard, exceptional.
+
+The Prometheus Integration System is not a medical treatment. It is not a pharmaceutical intervention. It is not even, properly speaking, a technology in the way that word is usually understood.
+
+It is an upgrade.
+
+Not to a machine. To a species.
+
+The question that drove the founders of this company was whether human biology, in its present form, is sufficient to meet the challenges of the world it has created. Whether the cognitive architecture that carried our ancestors out of the Pleistocene and into the digital age is adequate to navigate what the digital age has become.
+
+The Prometheus data says: it can be. With help.
+
+The next phase of distribution will bring the total integrated population to over one billion individuals by 2043. The Mainframe Infrastructure expansion currently underway will support that scale.
+
+We are building something that has never existed before.
+
+We are building it carefully, with the rigor that the science demands and the respect that the people who receive it deserve.
+
+We believe in what we are building.
+
+The data tells us we are right.
+
+---
+
+~~~
+DOCUMENT END — PR-001 v4.2.1
+Prometheus Biotech International, LLC
+Issued: 2039-08-22
+Next review: 2040-02-22
+
+APPENDICES (separate distribution)
+A — Nanobot Unit Technical Specifications
+B — Prometheus Integration Assessment (PIA)
+C — Pregnancy and Integration 2031–2039
+D — Pediatric Integration Study (PIS)
+E — Regulatory Submissions Summary
+F — Patient Disclosure by Jurisdiction
+G — Behavioral Stability — Deep Integration
+H — Level 4 Clinical Management Protocol
+I — EM Sensitivity in Foundation Integration
+J — Level 4 Signal Interruption Protocol
+K — Geographic Distribution of Foundation
+    Integration (Level 4 Clustering Data)
+~~~
+
+*Prometheus Biotech International, LLC*
+*Advancing human potential through integrated science*
+*© 2039 Prometheus Biotech International. All rights reserved.*
+
+---
+
+*End of document PR-001.*
+*`
+
 const PREVIEW_DOCS = [
   { id: "EM-001", title: "Eddie Marsh — Railway Deployment Log", date: "2036-03-14", tag: "CLASSIFIED", color: CYAN, content: EM001 },
   { id: "VX-047", title: "Voss Internal Memo — ALADDIN-9 Merger Protocol", date: "2128-11-02", tag: "TOP SECRET", color: MAGENTA, content: VX047 },
@@ -1256,7 +1695,7 @@ const PREVIEW_DOCS = [
   { id: "IS-312", title: "Inner Sectors Dispatch — Level 4 Activity Report", date: "2162-05-14", tag: "LIVE FEED", color: "#22c55e", content: "live" },
   { id: "ST-001", title: "Settlement Dispatch — Northern Perimeter Log", date: "2162-06-07", tag: "LIVE FEED", color: "#22c55e", content: "settlement" },
   { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: GL099 },
-  { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: null },
+  { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: PR001 },
   { id: "CH-001", title: "Chicago Surveillance Network — Pre-Collapse Feeds", date: "2026-06-02", tag: "LIVE", color: "#22c55e", content: "chicago" },
   { id: "GL-002", title: "Geneva Lake Surveillance — Pre-Collapse Feeds", date: "2026-06-03", tag: "LIVE", color: "#22c55e", content: "geneva" },
 ]
