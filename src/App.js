@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { createClient } from "@supabase/supabase-js"
 import ReactMarkdown from "react-markdown"
+import DocCameras from "./DocCameras"
 
 const CYAN = "#00f5ff"
 const MAGENTA = "#ff00aa"
@@ -315,6 +316,7 @@ export default function App() {
           <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
             <div onClick={() => setSelectedDoc(null)} style={{ fontSize: 11, color: CYAN, cursor: "pointer", marginBottom: 24, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
             <div style={{ background: "rgba(0,20,35,0.4)", border: `1px solid rgba(0,245,255,0.08)`, padding: "24px 20px", fontSize: 13, lineHeight: 1.9, color: "#c8e0e8" }}>
+              <DocCameras docId={selectedDoc.id} />
               <ReactMarkdown components={{
                 h1: ({children}) => <h1 style={{ color: CYAN, fontFamily: "monospace", fontSize: 16, letterSpacing: 2, marginBottom: 8, borderBottom: `1px solid rgba(0,245,255,0.12)`, paddingBottom: 8 }}>{children}</h1>,
                 h2: ({children}) => <h2 style={{ color: CYAN, fontFamily: "monospace", fontSize: 13, letterSpacing: 2, marginTop: 24, marginBottom: 8 }}>{children}</h2>,
