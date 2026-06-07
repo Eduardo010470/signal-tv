@@ -170,6 +170,7 @@ export default function App() {
       setTimeout(() => setGlitch(false), 150)
     }, 4000)
     return () => clearInterval(interval)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -183,6 +184,7 @@ export default function App() {
       if (session?.user) { checkPremium(session.user.email); setPage("archive") }
     })
     return () => subscription.unsubscribe()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function checkPremium(email) {
@@ -360,6 +362,7 @@ function LiveFeedComponent({ feedId }) {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
     generateFeed()
     return () => clearInterval(si)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function generateFeed() {
