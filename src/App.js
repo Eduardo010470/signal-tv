@@ -1927,7 +1927,7 @@ function LiveFeedComponent({ feedId }) {
     setIsLoading(false)
   }
 
-  const getColor = l => l.includes("CRITICAL") ? "#ef4444" : l.includes("HIGH") ? "#f97316" : l.includes("VOSS") || l.includes("C.L.A.W.") ? "#ff00aa" : "#9ca3af"
+  const getColor = (l, id) => l.includes("CRITICAL") ? "#ef4444" : l.includes("HIGH") ? "#f97316" : l.includes("VOSS") || l.includes("C.L.A.W.") ? "#ff00aa" : id === "ST-001" && l.startsWith("---") ? "rgba(0,245,255,0.3)" : id === "ST-001" && (l.startsWith("OBSERVATION") || l.startsWith("WEATHER") || l.startsWith("DISPATCH")) ? "rgba(0,245,255,0.85)" : id === "ST-001" && l.startsWith("STATUS:") ? (l.includes("CRITICAL") ? "#ef4444" : l.includes("NOTE") ? "#f97316" : "#22c55e") : "#9ca3af"
 
   return (
     <div>
@@ -1938,7 +1938,7 @@ function LiveFeedComponent({ feedId }) {
           <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>SIG {signalStrength}%</span>
         </div>
         <div style={{ padding: "16px 14px", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, minHeight: 300, maxHeight: 500, overflowY: "auto" }}>
-          {lines.map((line, i) => <div key={i} style={{ color: getColor(line), marginBottom: 2 }}>{line || "\u00A0"}</div>)}
+          {lines.map((line, i) => <div key={i} style={{ color: getColor(line, feedId), marginBottom: 2 }}>{line || "\u00A0"}</div>)}
         </div>
         <div style={{ background: "rgba(0,245,255,0.04)", borderTop: "1px solid rgba(0,245,255,0.1)", padding: "8px 14px", display: "flex", justifyContent: "flex-end" }}>
           <button onClick={() => !isLoading && generateFeed()} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>↺ REFRESH</button>
