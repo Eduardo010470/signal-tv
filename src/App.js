@@ -170,7 +170,7 @@ export default function App() {
       setTimeout(() => setGlitch(false), 150)
     }, 4000)
     return () => clearInterval(interval)
-  }, [])
+  }, [generateFeed])
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -183,7 +183,7 @@ export default function App() {
       if (session?.user) { checkPremium(session.user.email); setPage("archive") }
     })
     return () => subscription.unsubscribe()
-  }, [])
+  }, [generateFeed])
 
   async function checkPremium(email) {
     const { data } = await supabase.from("signal_users").select("is_premium").eq("email", email).single()
@@ -360,7 +360,7 @@ function LiveFeedComponent({ feedId }) {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
     generateFeed()
     return () => clearInterval(si)
-  }, [])
+  }, [generateFeed])
 
   async function generateFeed() {
     setIsLoading(true)
