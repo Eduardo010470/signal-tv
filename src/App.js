@@ -360,7 +360,7 @@ function LiveFeedComponent({ feedId }) {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
     generateFeed()
     return () => clearInterval(si)
-  }, [generateFeed])
+  }, [])
 
   async function generateFeed() {
     setIsLoading(true)
