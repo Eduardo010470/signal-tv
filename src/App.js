@@ -1941,7 +1941,7 @@ function LiveFeedComponent({ feedId }) {
           {lines.map((line, i) => <div key={i} style={{ color: getColor(line), marginBottom: 2 }}>{line || "\u00A0"}</div>)}
         </div>
         <div style={{ background: "rgba(0,245,255,0.04)", borderTop: "1px solid rgba(0,245,255,0.1)", padding: "8px 14px", display: "flex", justifyContent: "flex-end" }}>
-          <button onClick={generateFeed} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }} onClick={() => !isLoading && generateFeed()}>↺ REFRESH</button>
+          <button onClick={() => !isLoading && generateFeed()} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>↺ REFRESH</button>
         </div>
       </div>
     </div>
