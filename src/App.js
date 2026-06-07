@@ -161,7 +161,6 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [selectedDoc, setSelectedDoc] = useState(null)
   const [showLiveFeed, setShowLiveFeed] = useState(false)
-  const [activeFeedId, setActiveFeedId] = useState(null)
   const [page, setPage] = useState("landing")
 
   useEffect(() => {
@@ -170,7 +169,6 @@ export default function App() {
       setTimeout(() => setGlitch(false), 150)
     }, 4000)
     return () => clearInterval(interval)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -184,7 +182,6 @@ export default function App() {
       if (session?.user) { checkPremium(session.user.email); setPage("archive") }
     })
     return () => subscription.unsubscribe()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function checkPremium(email) {
@@ -268,7 +265,7 @@ export default function App() {
         {page === "archive" && user && showLiveFeed && (
           <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
             <div onClick={() => setShowLiveFeed(false)} style={{ fontSize: 11, color: CYAN, cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
-            <LiveFeedComponent feedId={activeFeedId} />
+            <LiveFeedComponent />
           </div>
         )}
 
@@ -291,10 +288,10 @@ export default function App() {
               {PREVIEW_DOCS.map(a => (
                 <div key={a.id} onClick={() => {
                   if (!isPremium) return
-                  if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
+                  if (a.id === "IS-312") { setShowLiveFeed(true) }
                   else if (a.content && a.content !== "chicago" && a.content !== "geneva") { setSelectedDoc(a) }
                   else if (a.content === "chicago" || a.content === "geneva") { setSelectedDoc(a) }
-                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
+                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
                       <span style={{ fontSize: 9, color: "#405060", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
@@ -303,10 +300,10 @@ export default function App() {
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
                       <span style={{ fontSize: 8, letterSpacing: 1, color: a.color, border: `1px solid ${a.color}`, padding: "2px 6px", whiteSpace: "nowrap" }}>{a.tag}</span>
                       <span style={{ fontSize: 9, color: "#405060" }}>{a.date}</span>
-                      <span style={{ fontSize: 12 }}>{isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "🔓" : "🔒"}</span>
+                      <span style={{ fontSize: 12 }}>{isPremium && (a.content || a.id === "IS-312") ? "🔓" : "🔒"}</span>
                     </div>
                   </div>
-                  {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && <div style={{ fontSize: 10, color: "#405060", marginTop: 6 }}>— Coming soon —</div>}
+                  {isPremium && !a.content && a.id !== "IS-312" && <div style={{ fontSize: 10, color: "#405060", marginTop: 6 }}>— Coming soon —</div>}
                 </div>
               ))}
             </div>
@@ -353,7 +350,7 @@ export default function App() {
   )
 }
 
-function LiveFeedComponent({ feedId }) {
+function LiveFeedComponent() {
   const [lines, setLines] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [signalStrength, setSignalStrength] = useState(87)
@@ -362,14 +359,12 @@ function LiveFeedComponent({ feedId }) {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
     generateFeed()
     return () => clearInterval(si)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function generateFeed() {
     setIsLoading(true)
     try {
-      const endpoint = feedId === "ST-001" ? "settlement-feed" : "signal-feed"
-      const r = await fetch(`https://etf-api-production-093e.up.railway.app/${endpoint}`, { method: "POST", headers: { "Content-Type": "application/json" } })
+      const r = await fetch("https://etf-api-production-093e.up.railway.app/signal-feed", { method: "POST", headers: { "Content-Type": "application/json" } })
       const d = await r.json()
       const text = d.text || "TRANSMISSION ERROR — SIGNAL LOST"
       const newLines = text.split("\n").filter(l => l.trim())
@@ -470,4 +465,3 @@ function GenevaLiveComponent({ onBack }) {
     </div>
   )
 }
-    </div>
