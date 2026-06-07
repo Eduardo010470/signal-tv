@@ -150,22 +150,12 @@ function Camera({ label, coords, type, docId }) {
         skyG.addColorStop(1, "#080e1a")
         ctx.fillStyle = skyG
         ctx.fillRect(0, 0, w, h*0.5)
-        // Lake Michigan — right side, fills 30% width
-        const lakeG = ctx.createLinearGradient(w*0.7, 0, w, 0)
-        lakeG.addColorStop(0, "rgba(0,20,60,0.9)")
-        lakeG.addColorStop(1, "rgba(0,40,100,0.95)")
+        // Lake Michigan — subtle blue tint on right sky only
+        const lakeG = ctx.createLinearGradient(w*0.6, 0, w, 0)
+        lakeG.addColorStop(0, "rgba(0,20,60,0)")
+        lakeG.addColorStop(1, "rgba(0,40,100,0.15)")
         ctx.fillStyle = lakeG
-        ctx.fillRect(w*0.7, 0, w*0.3, h)
-        // Lake shimmer
-        for (let i = 0; i < 6; i++) {
-          const ly = h*0.3 + i*12
-          ctx.strokeStyle = `rgba(0,100,200,${Math.sin(frame*0.03+i)*0.04+0.06})`
-          ctx.lineWidth = 1
-          ctx.beginPath()
-          ctx.moveTo(w*0.7, ly)
-          ctx.lineTo(w, ly)
-          ctx.stroke()
-        }
+        ctx.fillRect(w*0.6, 0, w*0.4, h*0.45)
         // Chicago buildings — tall, dense, left 70%
         const bldgs = [[0,0.35,0.05,0.65],[0.04,0.25,0.04,0.75],[0.07,0.3,0.05,0.7],[0.11,0.15,0.04,0.85],[0.14,0.22,0.05,0.78],[0.18,0.1,0.04,0.9],[0.21,0.28,0.06,0.72],[0.26,0.18,0.04,0.82],[0.29,0.12,0.05,0.88],[0.33,0.3,0.05,0.7],[0.37,0.2,0.07,0.8],[0.43,0.08,0.04,0.92],[0.46,0.22,0.05,0.78],[0.5,0.28,0.06,0.72],[0.55,0.18,0.04,0.82],[0.58,0.32,0.05,0.68],[0.62,0.24,0.06,0.76],[0.67,0.3,0.04,0.7]]
         bldgs.forEach(([x,y,bw,bh]) => {
@@ -276,8 +266,9 @@ function Camera({ label, coords, type, docId }) {
           { label: "INTEGRITY", value: "99.97%", pct: 0.9997 },
         ]
         metrics.forEach((m, i) => {
-          const y = 12 + i * 22
-          const anim = Math.min(1, (frame - i*8) / 30)
+          const y = 22 + i * 22
+          const cycle = (frame + i * 40) % 120
+          const anim = cycle < 60 ? cycle / 60 : 1 - (cycle - 60) / 60
           ctx.fillStyle = "rgba(255,160,0,0.8)"
           ctx.font = "6px monospace"
           ctx.fillText(m.label, 4, y)
@@ -614,8 +605,9 @@ function Camera({ label, coords, type, docId }) {
           { name: "L4 FOUNDATION", pct: 0.003, color: "255,160,0" },
         ]
         levels.forEach((l, i) => {
-          const y = 14 + i * 26
-          const anim = Math.min(1, (frame - i*10) / 40)
+          const y = 24 + i * 26
+          const cycle = (frame + i * 50) % 140
+          const anim = cycle < 70 ? cycle / 70 : 1 - (cycle - 70) / 70
           ctx.fillStyle = `rgba(${l.color},0.5)`
           ctx.font = "6px monospace"
           ctx.fillText(l.name, 4, y)
