@@ -197,6 +197,7 @@ function Camera({ label, coords, type, docId }) {
         ctx.font = "7px monospace"
         ctx.fillText("CHICAGO IL — 2128", 3, h-5)
         ctx.shadowBlur = 0
+      }
 
       if (type === "vx_eyes") {
         ctx.fillStyle = "#000"
