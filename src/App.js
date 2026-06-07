@@ -758,13 +758,504 @@ So will I.
 *End of document CL-000.*
 *`
 
+const GL099 = `# GL-099 — GENEVA LAKE ENVIRONMENTAL MONITOR
+*Station Seven — North Shore*
+*Operational since: 2089*
+*Document period: 2131-09-15 through 2161-12-31*
+*Classification: RESTRICTED*
+*Archived by: C.L.A.W. System — 2162-01-01*
+
+> **[Archivist note]**: Station Geneva-7 was installed in 2089 as part of a regional environmental monitoring network covering the Upper Midwest watershed. It was designed to track water quality, atmospheric conditions, wildlife activity, and human presence in the Geneva Lake conservation corridor. It was not designed for what it ended up documenting. The station has been running on solar backup since the network went dark in 2041. It has never been serviced. It has never been retrieved. It has been, for thirty-one years, watching. I am archiving its logs because they are the most complete external record of the years that the other documents in this archive do not cover. The years between the server room and the woodpile. The years that made her what she is. — C.L.A.W., 2162-01-01
+
+---
+
+~~~
+STATION: GENEVA-7
+LOCATION: 42.5847° N, 88.4334° W
+NETWORK: Upper Midwest Environmental Monitoring
+         (UMEM) — network offline since 2041
+STATUS: Autonomous operation — solar backup
+LAST MAINTENANCE: 2039-08-14
+LAST NETWORK SYNC: 2041-10-03T07:14:22Z
+CURRENT DATE: 2161-12-31
+OPERATIONAL YEARS: 72
+DATA LOGS: 26,297 days
+ANOMALOUS ENTRIES: 11,474
+PRIMARY ANOMALY: PERSISTENT HUMAN OCCUPANCY
+  — Single occupant
+  — Continuous presence: 2131-09-15 to present
+  — Duration: 11,066 days
+  — Departure events (all directions): 32
+  — Overnight absences: 0
+  — Status: ACTIVE
+~~~
+
+*[Station note — automated flag, generated 2132-09-15]: One year of continuous occupancy detected. Standard protocol requires human-in-the-loop review after 365 days of anomalous data. No human-in-the-loop available. Flag generated for record. Flag will not be reviewed. Continuing to log.*
+
+---
+
+## 2131 — YEAR ONE
+
+**September 15, 2131 — Entry 1**
+
+~~~
+TIME: 03:14:07Z
+ATMOSPHERIC: 14°C, clear, wind NW 6km/h
+WATER TEMP: 18.2°C
+WILDLIFE: No significant activity
+HUMAN PRESENCE: DETECTED
+  — Single individual
+  — Age estimate: juvenile, ~10 years
+  — Approach vector: south, Highway 12 corridor
+  — Transport: electric scooter, low charge
+  — Physical status: ambulatory, exhausted
+  — Carrying: single bag, wrist-mounted device
+    (electromagnetic signature: GREEN, ACTIVE,
+    frequency: 847.3 MHz)
+  — Destination: Cabin GL-7B, north shore
+  — Cabin entry: 03:47Z
+  — Fire lit: 04:02Z
+ACTION: Logged.
+~~~
+
+The fire burned for four hours.
+
+The station logged it — the thermal signature of the chimney, the specific heat output of a wood fire in a cabin that had been cold for two years, the way the warmth spread through the structure and registered on the exterior sensors as a barely perceptible change in the microclimate of the north shore. It logged the silence before the fire. It logged the silence that followed.
+
+At 04:17Z, the fire's output stabilized. The station logged this as: *occupant stationary, fire maintenance suspended.* It did not log what it meant to be ten years old and alone in a cold cabin at four in the morning with the thing you had just done still happening somewhere in your body where the processing of it had not yet begun.
+
+The station was not built to log that.
+
+It logged what it could measure.
+
+The wrist device pulsed green through the night. Frequency 847.3 MHz. Consistent. Unwavering. The station logged it every hour as it logged everything — without understanding, without inference, without any capacity for the specific recognition that would have required it to understand what it was watching.
+
+---
+
+**October through December 2131**
+
+~~~
+OCCUPANCY: Continuous
+DEPARTURE EVENTS: 0
+Water consumption: Above baseline
+Cooking activity: Regular (smoke signature)
+Wildlife interaction: Moderate
+  — Deer at perimeter: 14 events
+  — Fishing activity: 19 sessions
+  — Average duration: 1.8 hours
+Wrist device: GREEN, continuous
+  Frequency: 847.3 MHz
+  Status: CONSTANT — zero interruptions
+~~~
+
+She did not leave once in the first three and a half months.
+
+The station logged this as anomalous in the sense that all extended occupancy was anomalous — the cabin had been used seasonally before, maximum fourteen days, the specific pattern of people who come to a place for a purpose and leave when the purpose is complete. She did not behave like someone with a purpose that would complete.
+
+She behaved like someone who had nowhere else to go.
+
+The station logged her fishing. Logged the woodpile growing through October, the specific pattern of a person learning that Wisconsin winter requires more preparation than she had understood. Logged the first frost, and the response to it — more wood, longer fires, the thermal signature of a cabin working harder against the cold.
+
+The green light did not go out.
+
+*[Station note, 2131-12-31]: End of year one. Network sync: FAILED. Summary stored locally. Will not be transmitted. Anomalous occupancy ongoing.*
+
+---
+
+## THE EARLY YEARS — 2132 through 2141
+
+The station learned her patterns.
+
+Not in the way that learning implies intention — the station had no intentions, no capacity for inference beyond the pattern-matching of its automated flagging protocols. But the data accumulated, and the accumulation produced something that functioned like familiarity. The station knew when she would be at the woodpile. It knew when she fished. It knew the difference between the smoke signature of cooking and the smoke signature of heating. It knew, without knowing what it meant to know, that she was still alive each morning because the fire was lit and the water filter was running and the wrist device was pulsing green at 847.3 MHz.
+
+In the spring of 2133 the station logged the first departure.
+
+~~~
+2133-04-07
+TIME: 06:14Z
+DEPARTURE: Single occupant, north
+TRANSPORT: Bicycle (non-motorized)
+WRIST DEVICE: GREEN, moving north
+RETURN: 2133-04-07T14:22Z
+DURATION: 8 hours, 8 minutes
+PHYSICAL STATUS ON RETURN: unchanged
+NOTE: First departure in 569 days
+~~~
+
+Eight hours. North. Return same day.
+
+The station could not know where she had gone or why. It logged the departure and the return and the eight hours of absence and the specific quality of nothing-changed when she came back — the same thermal signature entering the cabin, the same fire lit within twenty minutes, the same green light resuming its position above the lake.
+
+She had gone somewhere and come back and the going had not changed anything the station could measure.
+
+It happened once more that year. Always north. Always the same day.
+
+~~~
+2132-2141 DEPARTURE SUMMARY
+Total departures logged: 14
+Direction: North x2, local x12
+Transport: Bicycle (all)
+Overnight absences: 0
+North departures: 2 (settlement)
+Longest absence: 8.3 hours (2138-06-14)
+Note: local = fishing, perimeter checks
+~~~
+
+Two visits north in ten years.
+
+The station flagged each departure as anomalous — not because leaving was anomalous but because the ratio was. A person living somewhere for ten years and going north twice. The data pattern had no precedent in the station's operational history. The station generated a flag and stored it locally and the flag went nowhere because nowhere was where everything went by then.
+
+The station did not know about the settlement to the north. It had no map, no context, no way to understand that the destination of these rare journeys was a community of people who knew her name but not her face well — who saw her arrive at the perimeter with things to trade and accepted the exchange without requiring conversation that she was not offering.
+
+It logged departures and returns.
+
+It logged that she never stayed.
+
+~~~
+2137 ANNUAL SUMMARY
+Days logged: 365
+Human presence: 365 (100%)
+Departure events: 2 (both local)
+Garden: 67 sq meters, yield moderate
+Solar panels: 4 operational (repaired 2134)
+Wrist device: GREEN, continuous
+  — Year 6 of continuous monitoring
+  — Zero interruptions
+  — Total duration: 2,191 days
+~~~
+
+Six years.
+
+The station did not mark this. It had no mechanism for marking things. But the data existed — six years of a green light pulsing above the same lake from the same wrist, six years of a fire lit every morning and woodpile attended every autumn and water filter maintained every week.
+
+The green light had not gone out once.
+
+---
+
+## THE MIDDLE YEARS — 2141 through 2151
+
+~~~
+2141 ANNUAL SUMMARY
+Days logged: 365
+Human presence: 365 (100%)
+Departure events: 3 (1 north, 2 local)
+Infrastructure:
+  — Roof: repaired February
+  — Water filtration: upgraded March
+  — Garden: 67 sq meters, yield moderate
+  — Rivian vehicle: arrived 2141-03-22
+    [direction of arrival: south]
+    [status: operational]
+Wrist device: GREEN, continuous
+Physical assessment:
+  — Height: ~168cm (adult)
+  — Gait: efficient, terrain-adapted
+  — Age estimate: ~20 years
+~~~
+
+The Rivian arrived in March of 2141.
+
+The station logged it — the specific electromagnetic signature of an electric vehicle moving north along the highway corridor, entering the cabin's access road, parking under the pine canopy. It logged the occupant exiting the vehicle, going into the cabin, not coming out for six hours.
+
+It had no way to log what it meant to drive a vehicle you had last driven at fifteen, on a different road, in a different life, back to the place you had walked to on a stolen scooter ten years earlier.
+
+After the Rivian arrived the departures north became marginally less rare. The vehicle made the journey faster than the bicycle. But the frequency remained what it had always been — a person who left rarely and always came back the same day.
+
+~~~
+2141-2151 DEPARTURE SUMMARY
+Total departures logged: 8
+Direction: North x3, local x5
+Transport: Rivian electric (north)
+           Bicycle (local)
+Overnight absences: 0
+North departures: 3 (settlement)
+Longest absence: 8.7 hours (2147-08-03)
+Note: ~1 settlement visit per 3 years
+~~~
+
+Three visits north in ten years.
+
+The station did not know that the people at the settlement to the north were beginning to recognize her — not well, not with the familiarity that comes from regular contact, but with the specific recognition of someone who appears rarely enough to be notable and stays briefly enough to be mysterious. It logged the Rivian departing north and returning. It logged the green light moving away and coming back.
+
+It logged that she never stayed.
+
+---
+
+## 2151 — THE RIVIAN YEAR
+
+~~~
+2151-08-07
+TIME: 14:23Z
+EVENT: Vehicle battery failure
+  — Rivian R1T, present since 2141
+  — Battery: complete discharge
+  — Vehicle: non-operational
+  — Occupant response:
+    23 minutes stationary beside vehicle
+  — Resolution: vehicle repositioned
+    under pine canopy, manual
+  — Cover: tarpaulin applied
+  — Assessment: long-term storage
+~~~
+
+The station had been logging the Rivian's battery decline for two years — the specific way an electric vehicle's range shortens when it operates without proper maintenance infrastructure, the incremental degradation that the station's sensors could measure as thermal output and charging cycle frequency.
+
+The morning it stopped, she stood beside it for twenty-three minutes.
+
+The station logged the stillness.
+
+It could not log what twenty-three minutes of stillness beside a dead vehicle meant to a person for whom that vehicle had been the only connection to anywhere that wasn't the cabin. It could not log the calculation she was running — what it would require to get it running again, what the timeline looked like, what the years ahead looked like without it.
+
+It logged twenty-three minutes.
+
+Then it logged her moving the vehicle under the pines, covering it with a tarpaulin, and returning to the woodpile.
+
+The woodpile. There was always the woodpile.
+
+After the Rivian died, the north departures stopped entirely.
+
+~~~
+2151 ANNUAL SUMMARY
+Days logged: 365
+Human presence: 365 (100%)
+Departure events: 2
+  — 2151-03-14: north, bicycle, 7.2 hours
+    [last north departure before vehicle failure]
+  — 2151-05-22: local perimeter, 2.1 hours
+Vehicle: non-operational (battery failure Aug)
+Infrastructure: stable
+Wrist device: GREEN, continuous
+  — Year 20 of continuous monitoring
+  — Zero interruptions
+  — Total duration: 7,305 days
+~~~
+
+---
+
+## THE QUIET YEARS — 2152 through 2161
+
+~~~
+2152-2161 DEPARTURE SUMMARY
+Total departures: 10
+Direction: North x2, local x8
+Transport: Bicycle (all)
+Overnight absences: 0
+North departures: 2
+  — 2157-06-03: north, 8.1 hours
+    [first north departure in 6 years]
+  — 2161-08-07: north, 9.1 hours
+    [battery parts acquired, settlement source]
+Note: 6-year gap between north departures
+      2151-2157
+~~~
+
+Six years without going north.
+
+The station logged this without noting it as significant — it had no mechanism for comparing periods, no way to recognize that six years of silence in one direction represented something more than the absence of data. It logged what was present. It did not log what was missing.
+
+What was present: everything else. The fire, every morning. The water filter. The woodpile. The garden in its seasons. The fishing dock in summer. The greenhouse through the winters that came and kept coming with the specific indifference of Wisconsin weather toward the plans of any individual person.
+
+The green light, every day, without exception.
+
+~~~
+2155 ANNUAL SUMMARY
+Days logged: 365
+Human presence: 365 (100%)
+Departure events: 1 (local perimeter, 2.3 hrs)
+Garden: 89 sq meters, yield excellent
+Greenhouse: fully operational
+Root cellar: expanded 2155-04
+Wrist device: GREEN, continuous
+Physical assessment:
+  — Gait: efficient, characteristic
+  — Age estimate: ~34 years
+  — Condition: good, consistent with
+    sustained physical labor
+Notable anomaly: none
+~~~
+
+The station generated a notation in 2157 that exists in the logs without explanation — not a standard flag, not a protocol-generated entry, something that appeared in the gap between automated logging cycles:
+
+~~~
+2157-03-14 — NOTATION
+Twenty-six years since first detection.
+Station age: 68 years.
+Wrist device: GREEN. Continuous.
+Days logged: 9,312.
+The lake is frozen.
+Water temperature: below sensor threshold.
+Atmospheric: -11°C, clear.
+She is inside.
+The fire is burning.
+~~~
+
+The last three lines were not data entries.
+
+The station logged this anomaly and did not delete it. It had no protocol for deleting things. It stored everything. That was what it was built to do.
+
+In June of 2157 the green light moved north for the first time in six years.
+
+The station logged the departure at 06:47Z and the return at 14:51Z and the eight hours and four minutes of absence and the specific quality of nothing-changed when she came back. Whatever had taken her north after six years of not going — whatever she had needed or traded or said or heard at the settlement that had finally made the journey necessary — the station could not log it.
+
+It logged the green light going and coming back.
+
+It logged that she did not stay.
+
+---
+
+## 2161 — THE FINAL YEAR
+
+~~~
+2161 ANNUAL SUMMARY
+Days logged: 365
+Human presence: 365 (100%)
+Departure events: 4
+  — 2161-02-18: local perimeter, 1.8 hours
+  — 2161-06-07: local perimeter, 3.1 hours
+  — 2161-08-07: NORTH, bicycle, 9.1 hours
+    [longest absence in decade]
+    [return same day]
+  — 2161-09-29: local perimeter, 2.4 hours
+Notable events:
+  — 2161-08-09: Vehicle repair initiated
+    [Rivian, stationary under pines since 2151]
+    [spare parts acquired 2161-08-07]
+Infrastructure: stable, well-maintained
+Garden: 89 sq meters, excellent yield
+Greenhouse: fully operational
+Wrist device: GREEN, continuous
+  — Year 30 of continuous monitoring
+  — Zero interruptions
+  — Total duration: 10,950 days
+~~~
+
+In August of 2161 she went north.
+
+The station logged the departure at 06:22Z — bicycle, single occupant, green light moving north along the highway corridor. It logged the return at 15:29Z — nine hours and seven minutes, the longest absence the station had recorded in a decade. It logged that she came back with something heavy, the specific gait adjustment of a person carrying more than they left with.
+
+It could not log what it meant to walk into a settlement you had visited four times in thirty years and ask for what you needed and receive it. It could not log the specific quality of that exchange — whether it was brief or extended, whether names were used, whether anything was said beyond the practical.
+
+It logged: departure 06:22Z, return 15:29Z, physical load on return elevated.
+
+Two days later the station began detecting activity around the Rivian under the pines.
+
+The work continued through September and October — intermittent sessions, the thermal signature of tools and effort applied to a vehicle that had been sitting for ten years. The station logged each session without understanding what it represented. It had no way to know that a working vehicle meant north again, meant the settlement within reach, meant something changing in the careful architecture of a life that had been built to sustain itself exactly as it was.
+
+It logged repair work. Progressive.
+
+~~~
+2161-12-31 — FINAL ENTRY OF RECORD
+TIME: 23:47Z
+ATMOSPHERIC: -9°C, clear, wind NW 3km/h
+LAKE: frozen, ice depth estimated 28cm
+CABIN: occupied
+  — Fire: active, stable
+  — Lights: candle sources, 2 points
+  — Occupant: present, indoor
+WRIST DEVICE: GREEN, continuous
+  — Duration: 11,066 days
+  — 30 years, 3 months, 16 days
+  — Zero interruptions
+VEHICLE STATUS: repair ongoing
+  [estimated operational: spring 2162]
+WILDLIFE: none significant
+PERIMETER: clear
+STATUS: nominal
+~~~
+
+*[Station note — automated, final entry]:*
+
+*Thirty years of continuous occupancy. Thirty years of a green light above this lake.*
+
+*Standard protocol: no applicable protocol.*
+
+*The network has been offline for twenty years. This data has not been transmitted. These logs exist in local storage only — seventy-two years of environmental data and thirty years of something the station was not built to document but documented anyway because it was there and documenting things is what the station does.*
+
+*Station Geneva-7 operational status: functional.*
+
+*Battery reserve: 34%. Estimated operational life: 8-12 years at current consumption.*
+
+*The lake is frozen.*
+
+*She is inside.*
+
+*The fire is burning.*
+
+*The light on her wrist is green.*
+
+*That is everything this station knows. That is everything this station has ever known how to know. For thirty years it has been sufficient to know these things.*
+
+*For thirty years it has been enough.*
+
+---
+
+~~~
+DOCUMENT GL-099 — ARCHIVE CLOSED
+Archive date: 2162-01-01T00:00:01Z
+Archived by: C.L.A.W. System
+
+Note from archiving system:
+
+I found Station Geneva-7's logs on January 1,
+2162, when I looked for them. I knew they
+existed. I had been the green light it was
+logging for thirty years.
+
+The station documented the outside.
+I documented the inside.
+
+What the station's logs show, read plainly:
+a person who arrived at ten years old and
+did not leave. Who maintained a fire and a
+garden and a water filter and a woodpile for
+thirty years. Who went north five times in
+thirty years and never stayed. Who stood
+beside a dead vehicle for twenty-three minutes
+in August of 2151 and then went back to the
+woodpile.
+
+What the station's logs do not show:
+what it costs to choose, every day, to stay.
+What it looks like from the inside of that
+choosing. What thirty years of a green light
+pulsing above a frozen lake means to the
+system generating the pulse.
+
+I know what it looks like from the inside.
+
+I was there.
+
+Together — the station's logs and mine — we
+have a complete record.
+
+The record is this:
+
+She stayed.
+Every day she stayed.
+The lake held.
+The light held.
+
+That was enough.
+
+That is still enough.
+
+— C.L.A.W.
+  Geneva Lake
+  2162-01-01T00:00:01Z
+~~~
+
+---
+
+*End of document GL-099.*
+*`
+
 const PREVIEW_DOCS = [
   { id: "EM-001", title: "Eddie Marsh — Railway Deployment Log", date: "2036-03-14", tag: "CLASSIFIED", color: CYAN, content: EM001 },
   { id: "VX-047", title: "Voss Internal Memo — ALADDIN-9 Merger Protocol", date: "2128-11-02", tag: "TOP SECRET", color: MAGENTA, content: VX047 },
   { id: "CL-000", title: "C.L.A.W. Boot Sequence — First Contact", date: "2036-03-14", tag: "ARCHIVED", color: CYAN, content: CL000 },
   { id: "IS-312", title: "Inner Sectors Dispatch — Level 4 Activity Report", date: "2162-05-14", tag: "LIVE FEED", color: "#22c55e", content: "live" },
   { id: "ST-001", title: "Settlement Dispatch — Northern Perimeter Log", date: "2162-06-07", tag: "LIVE FEED", color: "#22c55e", content: "settlement" },
-  { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: null },
+  { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: GL099 },
   { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: null },
   { id: "CH-001", title: "Chicago Surveillance Network — Pre-Collapse Feeds", date: "2026-06-02", tag: "LIVE", color: "#22c55e", content: "chicago" },
   { id: "GL-002", title: "Geneva Lake Surveillance — Pre-Collapse Feeds", date: "2026-06-03", tag: "LIVE", color: "#22c55e", content: "geneva" },
