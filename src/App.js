@@ -147,6 +147,7 @@ const PREVIEW_DOCS = [
   { id: "VX-047", title: "Voss Internal Memo — ALADDIN-9 Merger Protocol", date: "2128-11-02", tag: "TOP SECRET", color: MAGENTA, content: null },
   { id: "CL-000", title: "C.L.A.W. Boot Sequence — First Contact", date: "2036-03-14", tag: "ARCHIVED", color: CYAN, content: null },
   { id: "IS-312", title: "Inner Sectors Dispatch — Level 4 Activity Report", date: "2162-05-14", tag: "LIVE FEED", color: "#22c55e", content: "live" },
+  { id: "ST-001", title: "Settlement Dispatch — Northern Perimeter Log", date: "2162-06-07", tag: "LIVE FEED", color: "#22c55e", content: "settlement" },
   { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: null },
   { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: null },
   { id: "CH-001", title: "Chicago Surveillance Network — Pre-Collapse Feeds", date: "2026-06-02", tag: "LIVE", color: "#22c55e", content: "chicago" },
@@ -160,6 +161,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [selectedDoc, setSelectedDoc] = useState(null)
   const [showLiveFeed, setShowLiveFeed] = useState(false)
+  const [activeFeedId, setActiveFeedId] = useState(null)
   const [page, setPage] = useState("landing")
 
   useEffect(() => {
@@ -264,7 +266,7 @@ export default function App() {
         {page === "archive" && user && showLiveFeed && (
           <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
             <div onClick={() => setShowLiveFeed(false)} style={{ fontSize: 11, color: CYAN, cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
-            <LiveFeedComponent />
+            <LiveFeedComponent feedId={activeFeedId} />
           </div>
         )}
 
@@ -287,10 +289,10 @@ export default function App() {
               {PREVIEW_DOCS.map(a => (
                 <div key={a.id} onClick={() => {
                   if (!isPremium) return
-                  if (a.id === "IS-312") { setShowLiveFeed(true) }
+                  if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
                   else if (a.content && a.content !== "chicago" && a.content !== "geneva") { setSelectedDoc(a) }
                   else if (a.content === "chicago" || a.content === "geneva") { setSelectedDoc(a) }
-                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" ? 0.5 : 1 }}>
+                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
                       <span style={{ fontSize: 9, color: "#405060", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
@@ -299,10 +301,10 @@ export default function App() {
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
                       <span style={{ fontSize: 8, letterSpacing: 1, color: a.color, border: `1px solid ${a.color}`, padding: "2px 6px", whiteSpace: "nowrap" }}>{a.tag}</span>
                       <span style={{ fontSize: 9, color: "#405060" }}>{a.date}</span>
-                      <span style={{ fontSize: 12 }}>{isPremium && (a.content || a.id === "IS-312") ? "🔓" : "🔒"}</span>
+                      <span style={{ fontSize: 12 }}>{isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "🔓" : "🔒"}</span>
                     </div>
                   </div>
-                  {isPremium && !a.content && a.id !== "IS-312" && <div style={{ fontSize: 10, color: "#405060", marginTop: 6 }}>— Coming soon —</div>}
+                  {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && <div style={{ fontSize: 10, color: "#405060", marginTop: 6 }}>— Coming soon —</div>}
                 </div>
               ))}
             </div>
@@ -349,7 +351,7 @@ export default function App() {
   )
 }
 
-function LiveFeedComponent() {
+function LiveFeedComponent({ feedId }) {
   const [lines, setLines] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [signalStrength, setSignalStrength] = useState(87)
@@ -363,7 +365,8 @@ function LiveFeedComponent() {
   async function generateFeed() {
     setIsLoading(true)
     try {
-      const r = await fetch("https://etf-api-production-093e.up.railway.app/signal-feed", { method: "POST", headers: { "Content-Type": "application/json" } })
+      const endpoint = feedId === "ST-001" ? "settlement-feed" : "signal-feed"
+      const r = await fetch(`https://etf-api-production-093e.up.railway.app/${endpoint}`, { method: "POST", headers: { "Content-Type": "application/json" } })
       const d = await r.json()
       const text = d.text || "TRANSMISSION ERROR — SIGNAL LOST"
       const newLines = text.split("\n").filter(l => l.trim())
