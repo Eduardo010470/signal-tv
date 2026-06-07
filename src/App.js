@@ -323,19 +323,30 @@ export default function App() {
                 strong: ({children}) => <strong style={{ color: CYAN }}>{children}</strong>,
                 code: ({inline, children}) => inline
                   ? <code style={{ background: "rgba(0,245,255,0.08)", color: CYAN, padding: "1px 6px", fontFamily: "monospace", fontSize: 12 }}>{children}</code>
-                  : <pre style={{ background: "rgba(0,0,0,0.4)", border: `1px solid rgba(0,245,255,0.12)`, padding: "12px 16px", overflowX: "auto", fontSize: 11, color: CYAN, fontFamily: "monospace" }}>{children}</pre>,
-                blockquote: ({children}) => <blockquote style={{ borderLeft: `2px solid rgba(0,245,255,0.3)`, paddingLeft: 16, color: "#607888", marginLeft: 0 }}>{children}</blockquote>,
-              }}>{selectedDoc.content}</ReactMarkdown>
+                  : <pre style={{ background: "rgba(0,0,0,0.4)", border: `1px solid rgba(0,245,255,0.12)`, padding: "12px 16px", overflowX: "auto", fontSize: 11, color: "#22c55e", fontFamily: "monospace", lineHeight: 1.6, margin: "16px 0" }}><code>{children}</code></pre>,
+                blockquote: ({children}) => <blockquote style={{ borderLeft: `2px solid ${MAGENTA}`, paddingLeft: 16, color: "#9ca3af", margin: "16px 0" }}>{children}</blockquote>,
+                hr: () => <hr style={{ border: "none", borderTop: `1px solid rgba(0,245,255,0.08)`, margin: "24px 0" }} />,
+              }}>
+                {selectedDoc.content}
+              </ReactMarkdown>
             </div>
           </div>
         )}
 
-        {page === "archive" && user && selectedDoc && (selectedDoc.content === "chicago" || selectedDoc.content === "geneva") && (
-          <ChicagoLiveComponent onBack={() => setSelectedDoc(null)} isGeneva={selectedDoc.content === "geneva"} />
+        {page === "archive" && user && selectedDoc && selectedDoc.content === "chicago" && (
+          <ChicagoLiveComponent onBack={() => setSelectedDoc(null)} />
+        )}
+
+        {page === "archive" && user && selectedDoc && selectedDoc.content === "geneva" && (
+          <GenevaLiveComponent onBack={() => setSelectedDoc(null)} />
         )}
       </div>
 
-      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
+      <div style={{ borderTop: `1px solid rgba(0,245,255,0.08)`, padding: "20px", textAlign: "center", fontSize: 10, color: "#405060", letterSpacing: 2 }}>
+        SIGNAL.tv · CLAW AI UNIVERSE TRANSMISSION · © 2162
+      </div>
+
+      <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} } * { box-sizing: border-box; }`}</style>
     </div>
   )
 }
@@ -349,7 +360,6 @@ function LiveFeedComponent({ feedId }) {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
     generateFeed()
     return () => clearInterval(si)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function generateFeed() {
@@ -365,98 +375,95 @@ function LiveFeedComponent({ feedId }) {
         await new Promise(r => setTimeout(r, 80))
         setLines(p => [...p, newLines[i]])
       }
-    } catch (e) {
-      setLines(["TRANSMISSION ERROR — SIGNAL LOST"])
-    }
+    } catch(e) { setLines(["TRANSMISSION ERROR — SIGNAL LOST"]) }
     setIsLoading(false)
   }
 
-  const getLineColor = (line) => {
-    if (line.includes("CRITICAL")) return "#ef4444"
-    if (line.includes("ELEVATED")) return "#f97316"
-    if (line.includes("HIGH")) return "#f97316"
-    if (line.includes("VOSS") || line.includes("C.L.A.W.")) return "#ff00aa"
-    if (line.startsWith("SETTLEMENT DISPATCH") || line.startsWith("INNER SECTORS")) return "#00f5ff"
-    if (line.includes("ROUTINE")) return "#22c55e"
-    if (line.startsWith("---")) return "rgba(0,245,255,0.2)"
-    return "#9ca3af"
-  }
-
-  const isSettlement = feedId === "ST-001"
-  const headerLabel = isSettlement ? "SETTLEMENT DISPATCH — WISCONSIN 2162" : "INNER SECTORS DISPATCH — CHICAGO 2162"
-  const headerColor = isSettlement ? "#22c55e" : "#22c55e"
+  const getColor = l => l.includes("CRITICAL") ? "#ef4444" : l.includes("HIGH") ? "#f97316" : l.includes("VOSS") || l.includes("C.L.A.W.") ? "#ff00aa" : "#9ca3af"
 
   return (
-    <div style={{ background: "#000", border: `2px solid rgba(0,245,255,0.3)`, borderRadius: 4, overflow: "hidden" }}>
-      <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: isLoading ? "#f59e0b" : headerColor, boxShadow: `0 0 8px ${isLoading ? "#f59e0b" : headerColor}`, animation: "pulse 1s infinite" }} />
-          <span style={{ fontSize: 10, color: headerColor, letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
+    <div>
+      <div style={{ background: "#000", border: "2px solid rgba(0,245,255,0.3)", borderRadius: 4, overflow: "hidden" }}>
+        <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
+          <span style={{ fontSize: 10, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>INNER SECTORS — CHICAGO 2162</span>
+          <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>SIG {signalStrength}%</span>
         </div>
-        <span style={{ fontSize: 10, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{headerLabel}</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>SIG</span>
-          <div style={{ width: 40, height: 4, background: "rgba(0,245,255,0.1)", borderRadius: 2 }}>
-            <div style={{ width: `${signalStrength}%`, height: "100%", background: signalStrength > 70 ? "#22c55e" : "#f59e0b", borderRadius: 2, transition: "width 0.5s" }} />
+        <div style={{ padding: "16px 14px", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, minHeight: 300, maxHeight: 500, overflowY: "auto" }}>
+          {lines.map((line, i) => <div key={i} style={{ color: getColor(line), marginBottom: 2 }}>{line || "\u00A0"}</div>)}
+        </div>
+        <div style={{ background: "rgba(0,245,255,0.04)", borderTop: "1px solid rgba(0,245,255,0.1)", padding: "8px 14px", display: "flex", justifyContent: "flex-end" }}>
+          <button onClick={generateFeed} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>↺ REFRESH</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ChicagoLiveComponent({ onBack }) {
+  const cameras = [
+    { id: "skydeck", label: "CAM-A / WILLIS TOWER SKYDECK", coords: "41.8789°N 87.6359°W — 442m", desc: "EarthCam — Willis Tower apex.", embed: "https://www.youtube-nocookie.com/embed/O0UGT7AT3aw?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+    { id: "powerhouse", label: "CAM-B / NORTH WESTERN POWER HOUSE", coords: "41.8858°N 87.6412°W — CANAL ST", desc: "Rail corridor surveillance.", embed: "https://www.youtube-nocookie.com/embed/6M6rK0ssjYg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+    { id: "lakefront", label: "CAM-C / LAKE SHORE DRIVE — LAKEFRONT", coords: "41.8663°N 87.6170°W — LAKE MICHIGAN", desc: "4K Lake Shore Drive surveillance.", embed: "https://www.youtube-nocookie.com/embed/xREjRxY0UVs?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+  ]
+  return (
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
+      <div onClick={onBack} style={{ fontSize: 11, color: "#00f5ff", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
+      <div style={{ background: "rgba(0,245,255,0.04)", border: "1px solid rgba(0,245,255,0.15)", padding: "12px 16px", marginBottom: 16 }}>
+        <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — CHICAGO SURVEILLANCE NETWORK</div>
+        <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>CHICAGO, ILLINOIS — 41.8781°N 87.6298°W — {new Date().getFullYear()} CE</div>
+      </div>
+      <div style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)", padding: "8px 12px", marginBottom: 16, fontFamily: "monospace", fontSize: 10, color: "rgba(239,68,68,0.7)", letterSpacing: 1 }}>
+        ARCHIVE NOTE: These feeds originate from 2026 CE — 15 years before the Prometheus Collapse. Some of these buildings still stand in 2162.
+      </div>
+      {cameras.map(cam => (
+        <div key={cam.id} style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
+          <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.1)", padding: "6px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
+              <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 2, fontFamily: "monospace" }}>● LIVE</span>
+            </div>
+            <span style={{ fontSize: 9, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{cam.label}</span>
+            <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>{cam.coords}</span>
           </div>
-          <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>{signalStrength}%</span>
+          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+            <iframe title={cam.label} src={cam.embed} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", filter: "saturate(0.4) hue-rotate(160deg) brightness(0.85) contrast(1.1)" }} allow="autoplay; encrypted-media" allowFullScreen />
+            <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)", pointerEvents: "none", zIndex: 10 }} />
+            <div style={{ position: "absolute", top: 8, left: 8, fontSize: 8, color: "rgba(239,68,68,0.8)", fontFamily: "monospace", zIndex: 11 }}>● REC</div>
+            <div style={{ position: "absolute", top: 8, right: 8, fontSize: 8, color: "rgba(0,245,255,0.7)", fontFamily: "monospace", zIndex: 11 }}>2026 CE</div>
+          </div>
+          <div style={{ padding: "8px 12px", borderTop: "1px solid rgba(0,245,255,0.08)", background: "rgba(0,0,0,0.5)" }}>
+            <div style={{ fontSize: 10, color: "#6a8090", fontFamily: "monospace", letterSpacing: 1 }}>{cam.desc}</div>
+          </div>
         </div>
-      </div>
-      <div style={{ position: "relative", minHeight: 400 }}>
-        <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)", pointerEvents: "none", zIndex: 10 }} />
-        <div style={{ padding: "16px 14px", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, minHeight: 400, maxHeight: 500, overflowY: "auto", position: "relative", zIndex: 5 }}>
-          {lines.length === 0 && isLoading && <div style={{ color: "#22c55e", letterSpacing: 2, fontSize: 11 }}>ESTABLISHING CONNECTION...</div>}
-          {lines.map((line, i) => (
-            <div key={i} style={{ color: getLineColor(line), marginBottom: 2 }}>{line || "\u00A0"}</div>
-          ))}
-        </div>
-      </div>
-      <div style={{ background: "rgba(0,245,255,0.04)", borderTop: "1px solid rgba(0,245,255,0.1)", padding: "8px 14px", display: "flex", justifyContent: "flex-end" }}>
-        <button onClick={generateFeed} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>↺ REFRESH</button>
-      </div>
+      ))}
+      <div style={{ fontSize: 9, color: "#405060", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>SIGNAL.tv — CHICAGO SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION</div>
       <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
     </div>
   )
 }
 
-function ChicagoLiveComponent({ onBack, isGeneva }) {
-  const cameras = isGeneva ? [
-    { id: "lake", label: "CAM-01 / LAKE VIEW", coords: "GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W", desc: "Pre-Collapse lake surveillance. The cabin is north shore. Station Geneva-7 logged 11,066 days.", embed: "https://www.youtube-nocookie.com/embed/uGRSBaB-374?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
-  ] : [
-    { id: "skydeck", label: "CAM-A / WILLIS TOWER SKYDECK", coords: "41.8789°N 87.6359°W — 442m", desc: "EarthCam — Willis Tower apex.", embed: "https://www.youtube-nocookie.com/embed/O0UGT7AT3aw?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
-    { id: "powerhouse", label: "CAM-B / NORTH WESTERN POWER HOUSE", coords: "41.8858°N 87.6412°W — CANAL ST", desc: "Rail corridor surveillance.", embed: "https://www.youtube-nocookie.com/embed/6M6rK0ssjYg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
-    { id: "lakeshore", label: "CAM-C / LAKE SHORE DRIVE", coords: "41.8827°N 87.6233°W", desc: "Lake Shore Drive northbound. Outer sector boundary.", embed: "https://www.youtube-nocookie.com/embed/xREjRxY0UVs?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
-  ]
-
-  const title = isGeneva ? "GENEVA LAKE SURVEILLANCE" : "CHICAGO SURVEILLANCE NETWORK"
-  const subtitle = isGeneva ? "GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W" : "CHICAGO, ILLINOIS — PRE-COLLAPSE FEEDS"
-  const footerText = isGeneva ? "SIGNAL.tv — GENEVA LAKE SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION" : "SIGNAL.tv — CHICAGO SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION"
-
+function GenevaLiveComponent({ onBack }) {
   return (
     <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
       <div onClick={onBack} style={{ fontSize: 11, color: "#00f5ff", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
       <div style={{ background: "rgba(0,245,255,0.04)", border: "1px solid rgba(0,245,255,0.15)", padding: "12px 16px", marginBottom: 16 }}>
-        <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — {title}</div>
-        <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>{subtitle}</div>
+        <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — GENEVA LAKE SURVEILLANCE</div>
+        <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W</div>
       </div>
-      {cameras.map(cam => (
-        <div key={cam.id} style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
-          <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.1)", padding: "6px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 2, fontFamily: "monospace" }}>● LIVE</span>
-            <span style={{ fontSize: 9, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{cam.label}</span>
-          </div>
-          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
-            <iframe title={cam.label} src={cam.embed} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", filter: "saturate(0.5) hue-rotate(180deg) brightness(0.8)" }} allow="autoplay; encrypted-media" allowFullScreen />
-            <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)", pointerEvents: "none", zIndex: 10 }} />
-          </div>
-          <div style={{ padding: "8px 12px", borderTop: "1px solid rgba(0,245,255,0.08)", background: "rgba(0,0,0,0.5)" }}>
-            <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>{cam.coords}</div>
-            <div style={{ fontSize: 10, color: "#6a8090", fontFamily: "monospace", marginTop: 2 }}>{cam.desc}</div>
-          </div>
+      <div style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
+        <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.1)", padding: "6px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 2, fontFamily: "monospace" }}>● LIVE</span>
+          <span style={{ fontSize: 9, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>CAM-01 / LAKE VIEW</span>
         </div>
-      ))}
-      <div style={{ fontSize: 10, color: "#405060", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>{footerText}</div>
-      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
+        <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+          <iframe title="Geneva Lake" src="https://www.youtube-nocookie.com/embed/uGRSBaB-374?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", filter: "saturate(0.5) hue-rotate(180deg) brightness(0.8)" }} allow="autoplay; encrypted-media" allowFullScreen />
+          <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)", pointerEvents: "none", zIndex: 10 }} />
+        </div>
+        <div style={{ padding: "8px 12px", borderTop: "1px solid rgba(0,245,255,0.08)", background: "rgba(0,0,0,0.5)" }}>
+          <div style={{ fontSize: 10, color: "#6a8090", fontFamily: "monospace" }}>Pre-Collapse lake surveillance. The cabin is north shore. Station Geneva-7 logged 11,066 days.</div>
+        </div>
+      </div>
     </div>
   )
 }
