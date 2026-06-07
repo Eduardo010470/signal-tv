@@ -141,45 +141,63 @@ function Camera({ label, coords, type, docId }) {
 
       // VX-047 — Chicago alto
       if (type === "vx_chicago") {
-        // Chicago aerial — tall dense buildings, Lake Michigan on right, cold blue
         ctx.fillStyle = "#060a12"
         ctx.fillRect(0, 0, w, h)
-        // Sky — cold blue night
-        const skyG = ctx.createLinearGradient(0,0,0,h*0.5)
-        skyG.addColorStop(0, "#04080f")
+        // Sky gradient
+        const skyG = ctx.createLinearGradient(0, 0, 0, h*0.55)
+        skyG.addColorStop(0, "#020408")
         skyG.addColorStop(1, "#080e1a")
         ctx.fillStyle = skyG
-        ctx.fillRect(0, 0, w, h*0.5)
-        // No lake overlay — full skyline
-        // Chicago buildings — tall, dense, left 70%
-        const bldgs = [[0,0.35,0.05,0.65],[0.04,0.25,0.04,0.75],[0.07,0.3,0.05,0.7],[0.11,0.15,0.04,0.85],[0.14,0.22,0.05,0.78],[0.18,0.1,0.04,0.9],[0.21,0.28,0.06,0.72],[0.26,0.18,0.04,0.82],[0.29,0.12,0.05,0.88],[0.33,0.3,0.05,0.7],[0.37,0.2,0.07,0.8],[0.43,0.08,0.04,0.92],[0.46,0.22,0.05,0.78],[0.5,0.28,0.06,0.72],[0.55,0.18,0.04,0.82],[0.58,0.32,0.05,0.68],[0.62,0.24,0.06,0.76],[0.67,0.3,0.04,0.7]]
-        bldgs.forEach(([x,y,bw,bh]) => {
-          ctx.fillStyle = "#0e1522"
+        ctx.fillRect(0, 0, w, h*0.55)
+        // Stars
+        for (let i = 0; i < 20; i++) {
+          const sx = (i * 53 + 17) % w
+          const sy = (i * 29 + 5) % (h * 0.4)
+          const pulse = 0.2 + Math.sin(frame * 0.015 + i) * 0.15
+          ctx.fillStyle = `rgba(180,200,255,${pulse})`
+          ctx.fillRect(sx, sy, 1, 1)
+        }
+        // Buildings — full width, all heights, no lake cut
+        const bldgs = [
+          [0,0.38,0.05,0.62],[0.04,0.28,0.04,0.72],[0.07,0.32,0.05,0.68],
+          [0.11,0.16,0.04,0.84],[0.14,0.24,0.05,0.76],[0.18,0.1,0.04,0.9],
+          [0.21,0.3,0.06,0.7],[0.26,0.2,0.04,0.8],[0.29,0.13,0.05,0.87],
+          [0.33,0.32,0.05,0.68],[0.37,0.22,0.07,0.78],[0.43,0.09,0.04,0.91],
+          [0.46,0.24,0.05,0.76],[0.5,0.3,0.06,0.7],[0.55,0.2,0.04,0.8],
+          [0.58,0.34,0.05,0.66],[0.62,0.26,0.06,0.74],[0.67,0.18,0.05,0.82],
+          [0.71,0.28,0.04,0.72],[0.74,0.14,0.06,0.86],[0.79,0.22,0.05,0.78],
+          [0.83,0.3,0.04,0.7],[0.86,0.19,0.06,0.81],[0.91,0.26,0.05,0.74],
+          [0.95,0.32,0.05,0.68]
+        ]
+        bldgs.forEach(([x,y,bw,bh], bi) => {
+          ctx.fillStyle = "#0b1220"
           ctx.fillRect(x*w, y*h, bw*w, bh*h)
-          for (let wy = y*h+3; wy < h-3; wy += 5) {
-            for (let wx = x*w+2; wx < (x+bw)*w-2; wx += 5) {
-              if (Math.random() > 0.6) {
-                ctx.fillStyle = `rgba(200,180,100,${Math.random()*0.3})`
-                ctx.fillRect(wx, wy, 2, 3)
+          // Windows — stable seed per building
+          for (let r = 0; r < 8; r++) {
+            for (let c = 0; c < 3; c++) {
+              const seed = Math.sin(bi*31 + r*7 + c*13) * 0.5 + 0.5
+              const on = seed > 0.45
+              if (on) {
+                const flicker = 0.25 + Math.sin(frame*0.008 + bi*2.3 + r*1.1) * 0.15
+                ctx.fillStyle = `rgba(220,190,100,${flicker})`
+                ctx.fillRect(x*w + c*(bw*w/3) + 2, y*h + r*7 + 4, 2, 3)
               }
             }
           }
         })
-        // Shore line
-        ctx.strokeStyle = "rgba(0,80,180,0.4)"
-        ctx.lineWidth = 1
-        ctx.beginPath()
-        ctx.moveTo(w*0.7, 0)
-        ctx.lineTo(w*0.7, h)
-        ctx.stroke()
-        ctx.shadowColor = "rgba(0,150,255,0.5)"
+        // Ground — dark base
+        ctx.fillStyle = "#020508"
+        ctx.fillRect(0, h*0.92, w, h*0.08)
+        // Label
+        ctx.fillStyle = "rgba(0,0,0,0.65)"
+        ctx.fillRect(0, h-16, w, 16)
+        ctx.shadowColor = "#00f5ff"
         ctx.shadowBlur = 4
-        ctx.fillStyle = "rgba(0,150,255,0.9)"
-        ctx.font = "6px monospace"
-        ctx.fillText("CHICAGO IL — 2128", 3, h-4)
+        ctx.fillStyle = "rgba(0,245,255,0.75)"
+        ctx.font = "7px monospace"
+        ctx.fillText("CHICAGO IL — 2128", 3, h-5)
         ctx.shadowBlur = 0
-      }
-      // VX-047 — Gold eyes
+
       if (type === "vx_eyes") {
         ctx.fillStyle = "#000"
         ctx.fillRect(0, 0, w, h)
