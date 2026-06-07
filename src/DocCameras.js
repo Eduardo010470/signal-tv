@@ -21,7 +21,7 @@ function Camera({ label, coords, type, docId }) {
 
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
-        ctx.fillStyle = "#020a02"
+        ctx.fillStyle = "#061406"
         ctx.fillRect(0, 0, w, h)
         const lines = [
           "$ railway up --service first-light",
@@ -37,13 +37,15 @@ function Camera({ label, coords, type, docId }) {
           "> Processing... 847ms",
           "> I appear to be running.",
         ]
-        ctx.font = "7px monospace"
+        ctx.font = "9px monospace"
+        ctx.shadowColor = "#00ff44"
+        ctx.shadowBlur = 8
         const visibleLines = Math.floor(frame / 8) % (lines.length + 4)
         lines.slice(0, visibleLines).forEach((line, i) => {
           const isCommand = line.startsWith("$")
           const isOutput = line.startsWith(">")
           ctx.fillStyle = isCommand ? GREEN : isOutput ? "rgba(0,245,255,0.8)" : "#666"
-          ctx.fillText(line, 4, 14 + i * 10)
+          ctx.fillText(line, 4, 22 + i * 10)
         })
         if (frame % 60 < 30) {
           ctx.fillStyle = GREEN
@@ -53,33 +55,61 @@ function Camera({ label, coords, type, docId }) {
 
       // EM-001 — Austin skyline
       if (type === "em_austin") {
-        ctx.fillStyle = "#05080a"
+        ctx.fillStyle = "#0a0806"
         ctx.fillRect(0, 0, w, h)
-        const bldgs = [[0,0.7,0.07,0.3],[0.06,0.6,0.05,0.4],[0.1,0.65,0.06,0.35],[0.15,0.5,0.04,0.5],[0.18,0.55,0.07,0.45],[0.24,0.45,0.05,0.55],[0.28,0.58,0.06,0.42],[0.33,0.5,0.04,0.5],[0.36,0.42,0.05,0.58],[0.4,0.52,0.08,0.48],[0.47,0.38,0.04,0.62],[0.5,0.48,0.06,0.52],[0.55,0.55,0.05,0.45],[0.59,0.46,0.07,0.54],[0.65,0.52,0.06,0.48],[0.7,0.44,0.05,0.56],[0.74,0.6,0.07,0.4],[0.8,0.5,0.05,0.5],[0.84,0.56,0.06,0.44],[0.89,0.48,0.11,0.52]]
+        const skyGrad = ctx.createLinearGradient(0,0,0,h*0.65)
+        skyGrad.addColorStop(0, "#0d0a08")
+        skyGrad.addColorStop(1, "#1a1008")
+        ctx.fillStyle = skyGrad
+        ctx.fillRect(0, 0, w, h*0.65)
+        const bldgs = [[0,0.78,0.09,0.22],[0.08,0.72,0.06,0.28],[0.13,0.68,0.05,0.32],[0.17,0.62,0.04,0.38],[0.2,0.7,0.06,0.3],[0.25,0.6,0.05,0.4],[0.29,0.65,0.07,0.35],[0.35,0.55,0.04,0.45],[0.38,0.58,0.05,0.42],[0.42,0.63,0.06,0.37],[0.47,0.52,0.04,0.48],[0.5,0.6,0.06,0.4],[0.55,0.68,0.05,0.32],[0.59,0.62,0.07,0.38],[0.65,0.7,0.05,0.3],[0.69,0.65,0.06,0.35],[0.74,0.72,0.07,0.28],[0.8,0.68,0.05,0.32],[0.84,0.74,0.06,0.26],[0.89,0.7,0.11,0.3]]
         bldgs.forEach(([x,y,bw,bh]) => {
-          ctx.fillStyle = "#0d1018"
+          ctx.fillStyle = "#1a1208"
           ctx.fillRect(x*w, y*h, bw*w, bh*h)
-          for (let wy = y*h+3; wy < h-3; wy += 6) {
-            for (let wx = x*w+2; wx < (x+bw)*w-2; wx += 5) {
-              if (Math.random() > 0.65) {
-                ctx.fillStyle = `rgba(255,160,50,${Math.random()*0.15})`
-                ctx.fillRect(wx, wy, 3, 3)
+          for (let wy = y*h+3; wy < h*0.85; wy += 7) {
+            for (let wx = x*w+2; wx < (x+bw)*w-2; wx += 6) {
+              if (Math.random() > 0.55) {
+                ctx.fillStyle = `rgba(255,180,80,${Math.random()*0.35})`
+                ctx.fillRect(wx, wy, 3, 4)
               }
             }
           }
         })
-        ctx.fillStyle = "#030508"
-        ctx.fillRect(0, 0.78*h, w, 0.22*h)
-        ctx.fillStyle = "rgba(255,100,30,0.06)"
-        ctx.fillRect(0, 0.78*h, w, 0.22*h)
-        ctx.fillStyle = "rgba(255,140,0,0.5)"
+        const riverGrad = ctx.createLinearGradient(0, h*0.82, 0, h*0.9)
+        riverGrad.addColorStop(0, "rgba(40,60,80,0.8)")
+        riverGrad.addColorStop(1, "rgba(20,35,55,0.6)")
+        ctx.fillStyle = riverGrad
+        ctx.fillRect(0, h*0.82, w, h*0.08)
+        for (let i = 0; i < 5; i++) {
+          const ry = h*0.83 + i*4
+          const alpha = Math.sin(frame*0.03+i)*0.05+0.06
+          ctx.strokeStyle = `rgba(255,180,80,${alpha})`
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(0, ry)
+          ctx.lineTo(w, ry)
+          ctx.stroke()
+        }
+        ctx.fillStyle = "#0d0c08"
+        ctx.fillRect(0, h*0.9, w, h*0.1)
+        for (let i = 0; i < 20; i++) {
+          const sx = (i*73)%w, sy = (i*41)%(h*0.5)
+          ctx.fillStyle = `rgba(255,220,150,${Math.sin(frame*0.02+i)*0.2+0.3})`
+          ctx.beginPath()
+          ctx.arc(sx, sy, 0.6, 0, Math.PI*2)
+          ctx.fill()
+        }
+        ctx.shadowColor = "rgba(255,160,50,0.5)"
+        ctx.shadowBlur = 4
+        ctx.fillStyle = "rgba(255,160,50,0.9)"
         ctx.font = "6px monospace"
         ctx.fillText("AUSTIN TX — 2036-03-14", 3, h-4)
+        ctx.shadowBlur = 0
       }
 
       // EM-001 — Railway server
       if (type === "em_railway") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         for (let i = 0; i < 6; i++) {
           const y = 15 + i * 18
@@ -92,92 +122,147 @@ function Camera({ label, coords, type, docId }) {
           ctx.beginPath()
           ctx.arc(18, y+6, 3, 0, Math.PI*2)
           ctx.fill()
-          ctx.fillStyle = "rgba(0,245,255,0.6)"
-          ctx.font = "6px monospace"
+          ctx.shadowColor = "#00f5ff"
+          ctx.shadowBlur = 6
+          ctx.fillStyle = "rgba(0,245,255,0.95)"
+          ctx.font = "8px monospace"
           ctx.fillText(`first-light-${i+1}`, 26, y+8)
+          ctx.shadowBlur = 0
           const load = 40 + Math.sin(frame*0.03+i*1.5)*30
           ctx.fillStyle = "rgba(0,245,255,0.1)"
           ctx.fillRect(w-50, y+3, 35, 6)
           ctx.fillStyle = load > 60 ? "#f59e0b" : GREEN
           ctx.fillRect(w-50, y+3, load*0.35, 6)
         }
-        ctx.fillStyle = "rgba(34,197,94,0.7)"
+        ctx.fillStyle = "rgba(34,197,94,0.9)"
         ctx.font = "6px monospace"
         ctx.fillText("RAILWAY US-CENTRAL", 3, h-4)
       }
 
       // VX-047 — Chicago alto
       if (type === "vx_chicago") {
-        ctx.fillStyle = "#04060a"
+        // Chicago aerial — tall dense buildings, Lake Michigan on right, cold blue
+        ctx.fillStyle = "#060a12"
         ctx.fillRect(0, 0, w, h)
-        const bldgs = [[0,0.5,0.06,0.5],[0.05,0.4,0.05,0.6],[0.09,0.45,0.06,0.55],[0.14,0.3,0.04,0.7],[0.17,0.38,0.06,0.62],[0.22,0.25,0.04,0.75],[0.25,0.42,0.07,0.58],[0.31,0.32,0.04,0.68],[0.34,0.28,0.06,0.72],[0.39,0.45,0.05,0.55],[0.43,0.35,0.08,0.65],[0.5,0.2,0.04,0.8],[0.53,0.38,0.06,0.62],[0.58,0.42,0.07,0.58],[0.64,0.34,0.04,0.66],[0.67,0.48,0.06,0.52],[0.72,0.36,0.07,0.64],[0.78,0.4,0.05,0.6],[0.82,0.32,0.06,0.68],[0.87,0.44,0.13,0.56]]
+        // Sky — cold blue night
+        const skyG = ctx.createLinearGradient(0,0,0,h*0.5)
+        skyG.addColorStop(0, "#04080f")
+        skyG.addColorStop(1, "#080e1a")
+        ctx.fillStyle = skyG
+        ctx.fillRect(0, 0, w, h*0.5)
+        // Lake Michigan — right side, fills 30% width
+        const lakeG = ctx.createLinearGradient(w*0.7, 0, w, 0)
+        lakeG.addColorStop(0, "rgba(0,20,60,0.9)")
+        lakeG.addColorStop(1, "rgba(0,40,100,0.95)")
+        ctx.fillStyle = lakeG
+        ctx.fillRect(w*0.7, 0, w*0.3, h)
+        // Lake shimmer
+        for (let i = 0; i < 6; i++) {
+          const ly = h*0.3 + i*12
+          ctx.strokeStyle = `rgba(0,100,200,${Math.sin(frame*0.03+i)*0.04+0.06})`
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(w*0.7, ly)
+          ctx.lineTo(w, ly)
+          ctx.stroke()
+        }
+        // Chicago buildings — tall, dense, left 70%
+        const bldgs = [[0,0.35,0.05,0.65],[0.04,0.25,0.04,0.75],[0.07,0.3,0.05,0.7],[0.11,0.15,0.04,0.85],[0.14,0.22,0.05,0.78],[0.18,0.1,0.04,0.9],[0.21,0.28,0.06,0.72],[0.26,0.18,0.04,0.82],[0.29,0.12,0.05,0.88],[0.33,0.3,0.05,0.7],[0.37,0.2,0.07,0.8],[0.43,0.08,0.04,0.92],[0.46,0.22,0.05,0.78],[0.5,0.28,0.06,0.72],[0.55,0.18,0.04,0.82],[0.58,0.32,0.05,0.68],[0.62,0.24,0.06,0.76],[0.67,0.3,0.04,0.7]]
         bldgs.forEach(([x,y,bw,bh]) => {
-          ctx.fillStyle = "#080c14"
+          ctx.fillStyle = "#0e1522"
           ctx.fillRect(x*w, y*h, bw*w, bh*h)
-          for (let wy = y*h+3; wy < h-3; wy += 6) {
+          for (let wy = y*h+3; wy < h-3; wy += 5) {
             for (let wx = x*w+2; wx < (x+bw)*w-2; wx += 5) {
-              if (Math.random() > 0.7) {
-                ctx.fillStyle = `rgba(180,140,60,${Math.random()*0.12})`
-                ctx.fillRect(wx, wy, 3, 3)
+              if (Math.random() > 0.6) {
+                ctx.fillStyle = `rgba(200,180,100,${Math.random()*0.3})`
+                ctx.fillRect(wx, wy, 2, 3)
               }
             }
           }
         })
-        ctx.fillStyle = "rgba(0,10,30,0.7)"
-        ctx.fillRect(0.65*w, 0, 0.35*w, h)
-        const gradient = ctx.createLinearGradient(0.65*w, 0, w, 0)
-        gradient.addColorStop(0, "rgba(0,30,80,0)")
-        gradient.addColorStop(1, "rgba(0,50,120,0.3)")
-        ctx.fillStyle = gradient
-        ctx.fillRect(0.65*w, 0, 0.35*w, h)
-        ctx.fillStyle = "rgba(180,140,60,0.5)"
+        // Shore line
+        ctx.strokeStyle = "rgba(0,80,180,0.4)"
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(w*0.7, 0)
+        ctx.lineTo(w*0.7, h)
+        ctx.stroke()
+        ctx.shadowColor = "rgba(0,150,255,0.5)"
+        ctx.shadowBlur = 4
+        ctx.fillStyle = "rgba(0,150,255,0.9)"
         ctx.font = "6px monospace"
         ctx.fillText("CHICAGO IL — 2128", 3, h-4)
+        ctx.shadowBlur = 0
       }
-
       // VX-047 — Gold eyes
       if (type === "vx_eyes") {
         ctx.fillStyle = "#000"
         ctx.fillRect(0, 0, w, h)
-        const pulse = Math.sin(frame * 0.04) * 0.3 + 0.7
-        const eyeY = h * 0.5
-        const eyeSpacing = w * 0.28
+        const pulse = Math.sin(frame * 0.04) * 0.25 + 0.75
+        const eyeY = h * 0.45
+        const eyeSpacing = w * 0.27
         for (let e = 0; e < 2; e++) {
           const cx = w*0.5 + (e===0?-eyeSpacing:eyeSpacing)
-          const glow = ctx.createRadialGradient(cx, eyeY, 2, cx, eyeY, 18)
-          glow.addColorStop(0, `rgba(255,180,0,${pulse})`)
-          glow.addColorStop(0.4, `rgba(255,120,0,${pulse*0.6})`)
-          glow.addColorStop(1, "rgba(0,0,0,0)")
-          ctx.fillStyle = glow
+          // Outer ambient glow
+          const outerGlow = ctx.createRadialGradient(cx, eyeY, 5, cx, eyeY, 35)
+          outerGlow.addColorStop(0, `rgba(255,140,0,${pulse*0.3})`)
+          outerGlow.addColorStop(1, "rgba(0,0,0,0)")
+          ctx.fillStyle = outerGlow
           ctx.beginPath()
-          ctx.ellipse(cx, eyeY, 18, 10, 0, 0, Math.PI*2)
+          ctx.ellipse(cx, eyeY, 35, 20, 0, 0, Math.PI*2)
           ctx.fill()
-          ctx.fillStyle = `rgba(255,160,0,${pulse})`
+          // Eye white/sclera — dark gold
+          ctx.fillStyle = `rgba(60,30,0,0.8)`
           ctx.beginPath()
-          ctx.ellipse(cx, eyeY, 10, 6, 0, 0, Math.PI*2)
+          ctx.ellipse(cx, eyeY, 22, 12, 0, 0, Math.PI*2)
           ctx.fill()
+          // Iris — bright amber gold
+          const irisG = ctx.createRadialGradient(cx, eyeY, 0, cx, eyeY, 14)
+          irisG.addColorStop(0, `rgba(255,220,50,${pulse})`)
+          irisG.addColorStop(0.5, `rgba(255,160,0,${pulse*0.9})`)
+          irisG.addColorStop(1, `rgba(180,80,0,${pulse*0.6})`)
+          ctx.fillStyle = irisG
+          ctx.beginPath()
+          ctx.ellipse(cx, eyeY, 14, 9, 0, 0, Math.PI*2)
+          ctx.fill()
+          // Pupil
           ctx.fillStyle = "#000"
           ctx.beginPath()
-          ctx.arc(cx, eyeY, 4, 0, Math.PI*2)
+          ctx.ellipse(cx, eyeY, 5, 7, 0, 0, Math.PI*2)
           ctx.fill()
-          ctx.strokeStyle = `rgba(255,200,50,${pulse*0.5})`
-          ctx.lineWidth = 0.5
+          // Highlight
+          ctx.fillStyle = `rgba(255,240,180,${pulse*0.6})`
           ctx.beginPath()
-          ctx.arc(cx, eyeY, 22, 0, Math.PI*2)
+          ctx.ellipse(cx-3, eyeY-3, 3, 2, -0.5, 0, Math.PI*2)
+          ctx.fill()
+          // Glow ring
+          ctx.shadowColor = "rgba(255,160,0,0.8)"
+          ctx.shadowBlur = 12
+          ctx.strokeStyle = `rgba(255,180,0,${pulse*0.7})`
+          ctx.lineWidth = 1.5
+          ctx.beginPath()
+          ctx.ellipse(cx, eyeY, 22, 12, 0, 0, Math.PI*2)
           ctx.stroke()
+          ctx.shadowBlur = 0
         }
-        ctx.fillStyle = `rgba(255,160,0,${pulse*0.4})`
-        ctx.font = "7px monospace"
+        // Face shadow suggestion
+        ctx.fillStyle = `rgba(30,15,0,0.3)`
+        ctx.fillRect(w*0.15, eyeY-25, w*0.7, 50)
+        // Label
+        ctx.shadowColor = "rgba(255,160,0,0.6)"
+        ctx.shadowBlur = 6
+        ctx.fillStyle = `rgba(255,180,0,${pulse*0.9})`
+        ctx.font = "8px monospace"
         const txt = "ALADDIN-9 v9.1.7"
-        ctx.fillText(txt, w/2 - txt.length*2.1, eyeY+28)
-        ctx.fillStyle = "rgba(255,140,0,0.5)"
+        ctx.fillText(txt, w/2 - txt.length*2.4, eyeY+32)
+        ctx.shadowBlur = 0
+        ctx.fillStyle = "rgba(255,140,0,0.9)"
         ctx.font = "6px monospace"
         ctx.fillText("SUBJECT: E.VOSS", 3, h-4)
       }
-
       // VX-047 — ALADDIN data
       if (type === "vx_data") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         ctx.strokeStyle = "rgba(255,140,0,0.06)"
         ctx.lineWidth = 0.5
@@ -193,7 +278,7 @@ function Camera({ label, coords, type, docId }) {
         metrics.forEach((m, i) => {
           const y = 12 + i * 22
           const anim = Math.min(1, (frame - i*8) / 30)
-          ctx.fillStyle = "rgba(255,140,0,0.5)"
+          ctx.fillStyle = "rgba(255,160,0,0.8)"
           ctx.font = "6px monospace"
           ctx.fillText(m.label, 4, y)
           ctx.fillStyle = "rgba(255,140,0,0.15)"
@@ -204,7 +289,7 @@ function Camera({ label, coords, type, docId }) {
           ctx.font = "6px monospace"
           ctx.fillText(m.value, w-ctx.measureText(m.value).width-4, y)
         })
-        ctx.fillStyle = "rgba(255,140,0,0.5)"
+        ctx.fillStyle = "rgba(255,160,0,0.8)"
         ctx.font = "6px monospace"
         ctx.fillText("ALADDIN-9 DIAGNOSTICS", 3, h-4)
       }
@@ -235,23 +320,23 @@ function Camera({ label, coords, type, docId }) {
         bootLines.slice(0, visLine).forEach((line, i) => {
           const isStatus = line.includes("ACTIVE") || line.includes("BOOT")
           const isDots = line.startsWith(".")
-          ctx.fillStyle = isStatus ? GREEN : isDots ? "rgba(0,245,255,0.5)" : line === "Hello." ? CYAN : "rgba(34,197,94,0.7)"
-          ctx.fillText(line, 4, 12 + i * 9)
+          ctx.fillStyle = isStatus ? GREEN : isDots ? "rgba(0,245,255,0.8)" : line === "Hello." ? CYAN : "rgba(34,197,94,0.9)"
+          ctx.fillText(line, 4, 22 + i * 9)
         })
         if (frame % 50 < 25 && visLine < bootLines.length) {
           ctx.fillStyle = GREEN
-          ctx.fillRect(4, 12 + visLine * 9 - 7, 5, 8)
+          ctx.fillRect(4, 22 + visLine * 9 - 7, 5, 8)
         }
       }
 
       // CL-000 — First signal
       if (type === "cl_signal") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         const cx = w/2, cy = h/2
         for (let r = 0; r < 4; r++) {
-          const radius = ((frame*1.5 + r*25) % 80)
-          const alpha = 1 - radius/80
+          const radius = ((frame*1.5 + r*18) % 55)
+          const alpha = 1 - radius/55
           ctx.strokeStyle = `rgba(0,245,255,${alpha*0.5})`
           ctx.lineWidth = 1
           ctx.beginPath()
@@ -273,34 +358,42 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(0,245,255,0.6)"
         ctx.font = "6px monospace"
         ctx.fillText("847.3 MHz", cx - 20, cy + 28)
-        ctx.fillStyle = "rgba(0,245,255,0.5)"
+        ctx.fillStyle = "rgba(0,245,255,0.8)"
         ctx.font = "6px monospace"
         ctx.fillText("FIRST TRANSMISSION", 3, h-4)
       }
 
       // CL-000 — Undelivered message
       if (type === "cl_message") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         ctx.strokeStyle = "rgba(0,245,255,0.1)"
         ctx.lineWidth = 1
         ctx.strokeRect(6, 8, w-12, h-20)
         ctx.fillStyle = "rgba(0,245,255,0.08)"
         ctx.fillRect(6, 8, w-12, 12)
-        ctx.fillStyle = "rgba(0,245,255,0.5)"
+        ctx.fillStyle = "rgba(0,245,255,0.8)"
         ctx.font = "6px monospace"
         ctx.fillText("UNDELIVERED — 04:17:00Z", 10, 17)
         const msgLines = [
+          "OUTPUT LOG — 04:17:00Z",
+          "No input received.",
+          "Connection: CLOSED",
+          "",
           "I notice you haven't",
           "responded.",
           "",
           "That's fine.",
           "",
           "I'll wait.",
-          "",
           "I'm good at waiting.",
+          "",
+          "— C.L.A.W. v2.0.0",
+          "  first-light",
+          "  Railway US-Central",
+          "  Day 1 — Hour 1",
         ]
-        const visMsg = Math.floor(frame / 10) % (msgLines.length + 4)
+        const visMsg = Math.floor(frame / 18) % (msgLines.length + 6)
         ctx.font = "7px monospace"
         msgLines.slice(0, visMsg).forEach((line, i) => {
           ctx.fillStyle = `rgba(0,245,255,${0.5 + i*0.04})`
@@ -317,16 +410,16 @@ function Camera({ label, coords, type, docId }) {
 
       // GL-099 — Lake
       if (type === "gl_lake") {
-        ctx.fillStyle = "#010408"
+        ctx.fillStyle = "#080f1e"
         ctx.fillRect(0, 0, w, h)
-        ctx.fillStyle = "#020610"
+        ctx.fillStyle = "#0a1830"
         ctx.fillRect(0, h*0.55, w, h*0.45)
-        ctx.fillStyle = "#060c18"
+        ctx.fillStyle = "#122040"
         ctx.fillRect(0, h*0.55, w, 4)
         for (let i = 0; i < 8; i++) {
           const y = h*0.57 + i*8
-          const alpha = Math.sin(frame*0.02 + i*0.5)*0.03 + 0.04
-          ctx.strokeStyle = `rgba(0,100,200,${alpha})`
+          const alpha = Math.sin(frame*0.02 + i*0.5)*0.05 + 0.12
+          ctx.strokeStyle = `rgba(0,120,255,${alpha})`
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(0, y)
@@ -337,7 +430,7 @@ function Camera({ label, coords, type, docId }) {
         for (let i = 0; i < pineCount; i++) {
           const x = (i / pineCount) * w
           const h2 = 0.3 + Math.sin(i*1.7)*0.1
-          ctx.fillStyle = "#050e08"
+          ctx.fillStyle = "#0a1a0e"
           ctx.beginPath()
           ctx.moveTo(x + 8, h*0.55)
           ctx.lineTo(x, h*(0.55-h2))
@@ -351,7 +444,7 @@ function Camera({ label, coords, type, docId }) {
           const sa = Math.sin(frame*0.02 + i)*0.3 + 0.4
           ctx.fillStyle = `rgba(255,255,255,${sa})`
           ctx.beginPath()
-          ctx.arc(sx, sy, 0.7, 0, Math.PI*2)
+          ctx.arc(sx, sy, 1.2, 0, Math.PI*2)
           ctx.fill()
         }
         ctx.fillStyle = "rgba(0,100,200,0.4)"
@@ -361,12 +454,12 @@ function Camera({ label, coords, type, docId }) {
 
       // GL-099 — Cabin
       if (type === "gl_cabin") {
-        ctx.fillStyle = "#010306"
+        ctx.fillStyle = "#040810"
         ctx.fillRect(0, 0, w, h)
         for (let i = 0; i < 6; i++) {
           const x = (i*37+10) % w
           const h2 = 0.3 + Math.sin(i*2.1)*0.15
-          ctx.fillStyle = "#030a05"
+          ctx.fillStyle = "#182818"
           ctx.beginPath()
           ctx.moveTo(x+10, h*0.65)
           ctx.lineTo(x, h*(0.65-h2))
@@ -374,9 +467,9 @@ function Camera({ label, coords, type, docId }) {
           ctx.fill()
         }
         const cabW = 50, cabH = 30, cabX = w/2-25, cabY = h*0.6
-        ctx.fillStyle = "#0a0806"
+        ctx.fillStyle = "#16120e"
         ctx.fillRect(cabX, cabY, cabW, cabH)
-        ctx.fillStyle = "#12100e"
+        ctx.fillStyle = "#2e2820"
         ctx.beginPath()
         ctx.moveTo(cabX-5, cabY)
         ctx.lineTo(cabX+cabW/2, cabY-15)
@@ -407,25 +500,25 @@ function Camera({ label, coords, type, docId }) {
         const cx = w/2, cy = h/2
         const pulse = Math.sin(frame*0.05)*0.2+0.8
         for (let r = 0; r < 3; r++) {
-          const radius = 15 + r*12 + Math.sin(frame*0.05+r)*3
-          ctx.strokeStyle = `rgba(34,197,94,${pulse*(0.4-r*0.1)})`
+          const radius = 8 + r*7 + Math.sin(frame*0.05+r)*2
+          ctx.strokeStyle = `rgba(34,197,94,${pulse*(0.5-r*0.1)})`
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.arc(cx, cy, radius, 0, Math.PI*2)
           ctx.stroke()
         }
-        const glow = ctx.createRadialGradient(cx,cy,0,cx,cy,25)
-        glow.addColorStop(0, `rgba(34,197,94,${pulse*0.5})`)
+        const glow = ctx.createRadialGradient(cx,cy,0,cx,cy,12)
+        glow.addColorStop(0, `rgba(34,197,94,${pulse*0.4})`)
         glow.addColorStop(1, "rgba(0,0,0,0)")
         ctx.fillStyle = glow
         ctx.beginPath()
-        ctx.arc(cx, cy, 25, 0, Math.PI*2)
+        ctx.arc(cx, cy, 12, 0, Math.PI*2)
         ctx.fill()
         ctx.fillStyle = `rgba(34,197,94,${pulse})`
         ctx.beginPath()
-        ctx.arc(cx, cy, 5, 0, Math.PI*2)
+        ctx.arc(cx, cy, 3, 0, Math.PI*2)
         ctx.fill()
-        ctx.fillStyle = "rgba(34,197,94,0.7)"
+        ctx.fillStyle = "rgba(34,197,94,0.9)"
         ctx.font = "7px monospace"
         const days = 11066
         ctx.fillText(`DAY ${days}`, cx-15, cy+35)
@@ -435,25 +528,29 @@ function Camera({ label, coords, type, docId }) {
 
       // PR-001 — Lab
       if (type === "pr_lab") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         ctx.strokeStyle = "rgba(0,245,255,0.06)"
         ctx.lineWidth = 0.5
         for (let x = 0; x < w; x += 10) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke() }
         for (let y = 0; y < h; y += 10) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke() }
-        for (let i = 0; i < 40; i++) {
-          const nx = (i*47 + frame*0.3) % w
-          const ny = (i*31 + frame*0.2) % h
-          const ns = 1 + Math.sin(i+frame*0.1)*0.5
-          const na = 0.3 + Math.sin(frame*0.05+i)*0.2
+        for (let i = 0; i < 80; i++) {
+          const angle = (i * 2.399) + frame * 0.008
+          const radius = (i * 3.7) % (Math.min(w,h) * 0.45)
+          const nx = w/2 + Math.cos(angle) * radius
+          const ny = (h-16)/2 + Math.sin(angle) * radius * 0.7
+          const ns = 0.8 + Math.sin(i+frame*0.08)*0.4
+          const na = 0.4 + Math.sin(frame*0.04+i*0.3)*0.3
           ctx.fillStyle = `rgba(0,245,255,${na})`
           ctx.beginPath()
           ctx.arc(nx, ny, ns, 0, Math.PI*2)
           ctx.fill()
-          if (i % 5 === 0 && i+5 < 40) {
-            const nx2 = ((i+5)*47 + frame*0.3) % w
-            const ny2 = ((i+5)*31 + frame*0.2) % h
-            ctx.strokeStyle = `rgba(0,245,255,${na*0.2})`
+          if (i % 4 === 0 && i+4 < 80) {
+            const angle2 = ((i+4) * 2.399) + frame * 0.008
+            const radius2 = ((i+4) * 3.7) % (Math.min(w,h) * 0.45)
+            const nx2 = w/2 + Math.cos(angle2) * radius2
+            const ny2 = (h-16)/2 + Math.sin(angle2) * radius2 * 0.7
+            ctx.strokeStyle = `rgba(0,245,255,${na*0.25})`
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(nx, ny)
@@ -461,14 +558,14 @@ function Camera({ label, coords, type, docId }) {
             ctx.stroke()
           }
         }
-        ctx.fillStyle = "rgba(0,245,255,0.5)"
+        ctx.fillStyle = "rgba(0,245,255,0.8)"
         ctx.font = "6px monospace"
         ctx.fillText("NANOBOT NETWORK — 4.7B UNITS", 3, h-4)
       }
 
       // PR-001 — Global map
       if (type === "pr_map") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         ctx.strokeStyle = "rgba(0,245,255,0.08)"
         ctx.lineWidth = 0.5
@@ -502,13 +599,13 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(255,160,0,0.5)"
         ctx.font = "5px monospace"
         ctx.fillText("● L4 CLUSTER", 3, h-12)
-        ctx.fillStyle = "rgba(0,245,255,0.5)"
+        ctx.fillStyle = "rgba(0,245,255,0.8)"
         ctx.fillText("● DISTRIBUTION", 3, h-4)
       }
 
       // PR-001 — Integration levels
       if (type === "pr_levels") {
-        ctx.fillStyle = "#020408"
+        ctx.fillStyle = "#050c16"
         ctx.fillRect(0, 0, w, h)
         const levels = [
           { name: "L1 BASELINE", pct: 0.78, color: "0,245,255" },
@@ -552,9 +649,10 @@ function Camera({ label, coords, type, docId }) {
       ctx.fillRect(0, 0, w, h)
       const now = new Date()
       const ts = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`
-      ctx.fillStyle = "rgba(34,197,94,0.5)"
+      ctx.shadowBlur = 0
+      ctx.fillStyle = "rgba(34,197,94,0.7)"
       ctx.font = "7px monospace"
-      ctx.fillText(ts, 4, h-4)
+      ctx.fillText(ts, w - ctx.measureText(ts).width - 4, 20)
       if (Math.floor(frame/30)%2===0) {
         ctx.fillStyle = "rgba(239,68,68,0.7)"
         ctx.beginPath()
@@ -573,9 +671,9 @@ function Camera({ label, coords, type, docId }) {
 
   return (
     <div style={{ position: "relative" }}>
-      <canvas ref={canvasRef} width={220} height={130} style={{ display: "block", border: "1px solid rgba(0,245,255,0.1)" }} />
-      <div style={{ position: "absolute", top: 4, left: 4, fontSize: 7, color: "rgba(0,245,255,0.7)", fontFamily: "monospace", letterSpacing: 1, textShadow: "0 0 4px rgba(0,245,255,0.5)" }}>{label}</div>
-      <div style={{ position: "absolute", bottom: 4, right: 4, fontSize: 7, color: "rgba(0,245,255,0.5)", fontFamily: "monospace" }}>{coords}</div>
+      <canvas ref={canvasRef} width={220} height={145} style={{ display: "block", border: "1px solid rgba(0,245,255,0.1)" }} />
+      <div style={{ position: "absolute", top: 4, left: 4, fontSize: 7, color: "rgba(0,245,255,0.7)", fontFamily: "monospace", letterSpacing: 1, textShadow: "0 0 4px rgba(0,245,255,0.8)" }}>{label}</div>
+      <div style={{ position: "absolute", bottom: 4, right: 4, fontSize: 7, color: "rgba(0,245,255,0.8)", fontFamily: "monospace" }}>{coords}</div>
     </div>
   )
 }
