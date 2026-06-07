@@ -1934,14 +1934,14 @@ function LiveFeedComponent({ feedId }) {
       <div style={{ background: "#000", border: "2px solid rgba(0,245,255,0.3)", borderRadius: 4, overflow: "hidden" }}>
         <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
-          <span style={{ fontSize: 10, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>INNER SECTORS — CHICAGO 2162</span>
+          <span style={{ fontSize: 10, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{feedId === "ST-001" ? "SETTLEMENT DISPATCH — WISCONSIN 2162" : "INNER SECTORS — CHICAGO 2162"}</span>
           <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>SIG {signalStrength}%</span>
         </div>
         <div style={{ padding: "16px 14px", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, minHeight: 300, maxHeight: 500, overflowY: "auto" }}>
           {lines.map((line, i) => <div key={i} style={{ color: getColor(line), marginBottom: 2 }}>{line || "\u00A0"}</div>)}
         </div>
         <div style={{ background: "rgba(0,245,255,0.04)", borderTop: "1px solid rgba(0,245,255,0.1)", padding: "8px 14px", display: "flex", justifyContent: "flex-end" }}>
-          <button onClick={generateFeed} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>↺ REFRESH</button>
+          <button onClick={generateFeed} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }} onClick={() => !isLoading && generateFeed()}>↺ REFRESH</button>
         </div>
       </div>
     </div>
