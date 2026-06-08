@@ -2126,6 +2126,3 @@ function GenevaLiveComponent({ onBack }) {
     </div>
   )
 }
-
-export default App
-
