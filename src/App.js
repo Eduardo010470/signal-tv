@@ -2022,7 +2022,7 @@ function ChicagoLiveComponent({ onBack }) {
 }
 
 function GenevaLiveComponent({ onBack }) {
-  const [activeCam, setActiveCam] = React.useState("cam01")
+  const [activeCam, setActiveCam] = useState("cam01")
 
   const cameras = [
     {
