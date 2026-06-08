@@ -2054,6 +2054,9 @@ function GenevaLiveComponent({ onBack }) {
         <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — GENEVA LAKE SURVEILLANCE</div>
         <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W</div>
       </div>
+      <div style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", padding: "8px 14px", marginBottom: 16, fontSize: 10, color: "rgba(239,68,68,0.7)", letterSpacing: 1, fontFamily: "monospace" }}>
+        ARCHIVE NOTE: These feeds originate from 2026 CE — 136 years before this transmission. Geneva Lake is 40km north of the Inner Sectors. The cabin on the north shore is still occupied in 2162.
+      </div>
       {cameras.map(cam => (
         <div key={cam.id} style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
           <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.1)", padding: "6px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
