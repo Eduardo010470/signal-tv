@@ -1705,6 +1705,11 @@ export default function App() {
   const [user, setUser] = useState(null)
   const [isPremium, setIsPremium] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [authMode, setAuthMode] = useState(null) // null | 'login' | 'signup'
+  const [authEmail, setAuthEmail] = useState("")
+  const [authPassword, setAuthPassword] = useState("")
+  const [authError, setAuthError] = useState("")
+  const [authLoading, setAuthLoading] = useState(false)
   const [selectedDoc, setSelectedDoc] = useState(null)
   const [showLiveFeed, setShowLiveFeed] = useState(false)
   const [activeFeedId, setActiveFeedId] = useState(null)
@@ -1740,6 +1745,21 @@ export default function App() {
     await supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: "https://signal-tv-drab.vercel.app" } })
   }
 
+  async function handleEmailLogin() {
+    setAuthLoading(true); setAuthError("")
+    const { error } = await supabase.auth.signInWithPassword({ email: authEmail, password: authPassword })
+    if (error) { setAuthError(error.message); setAuthLoading(false) }
+    else { setAuthMode(null); setAuthEmail(""); setAuthPassword("") }
+    setAuthLoading(false)
+  }
+
+  async function handleEmailSignup() {
+    setAuthLoading(true); setAuthError("")
+    const { error } = await supabase.auth.signUp({ email: authEmail, password: authPassword })
+    if (error) { setAuthError(error.message); setAuthLoading(false) }
+    else { setAuthError("CHECK YOUR EMAIL TO CONFIRM YOUR ACCOUNT"); setAuthLoading(false) }
+  }
+
   async function handleSignOut() {
     await supabase.auth.signOut()
     setUser(null); setIsPremium(false); setPage("landing"); setSelectedDoc(null); setShowLiveFeed(false)
@@ -1764,7 +1784,10 @@ export default function App() {
           {user ? (
             <span onClick={handleSignOut} style={{ color: "#607888", cursor: "pointer" }}>SIGN OUT</span>
           ) : (
-            <button onClick={handleGoogleLogin} style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "4px 12px", fontSize: 10, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>LOGIN</button>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={handleGoogleLogin} style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "4px 12px", fontSize: 10, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>GOOGLE</button>
+              <button onClick={() => setAuthMode("login")} style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "4px 12px", fontSize: 10, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>EMAIL</button>
+            </div>
           )}
         </div>
       </nav>
