@@ -1902,11 +1902,13 @@ function LiveFeedComponent({ feedId }) {
   const [lines, setLines] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [signalStrength, setSignalStrength] = useState(87)
+  const [glitch, setGlitch] = useState(false)
 
   useEffect(() => {
     const si = setInterval(() => setSignalStrength(p => Math.min(99, Math.max(60, Math.round(p + (Math.random()-0.5)*6)))), 2000)
+    const gi = setInterval(() => { setGlitch(true); setTimeout(() => setGlitch(false), 120) }, 4000)
     generateFeed()
-    return () => clearInterval(si)
+    return () => { clearInterval(si); clearInterval(gi) }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -1932,6 +1934,8 @@ function LiveFeedComponent({ feedId }) {
   return (
     <div>
       <DocCameras docId={feedId} />
+      <div style={{ position: "relative" }}>
+      {glitch && <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,245,255,0.04)", zIndex: 10, pointerEvents: "none", mixBlendMode: "screen" }}><div style={{ width: "100%", height: "30%", background: "rgba(0,0,0,0.8)", marginTop: `${Math.random()*60}%` }} /></div>}
       <div style={{ background: "#000", border: "2px solid rgba(0,245,255,0.3)", borderRadius: 4, overflow: "hidden" }}>
         <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
@@ -1944,6 +1948,7 @@ function LiveFeedComponent({ feedId }) {
         <div style={{ background: "rgba(0,245,255,0.04)", borderTop: "1px solid rgba(0,245,255,0.1)", padding: "8px 14px", display: "flex", justifyContent: "flex-end" }}>
           <button onClick={() => !isLoading && generateFeed()} disabled={isLoading} style={{ background: "rgba(0,245,255,0.1)", border: "1px solid rgba(0,245,255,0.3)", color: "#00f5ff", padding: "4px 12px", fontSize: 9, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>↺ REFRESH</button>
         </div>
+      </div>
       </div>
     </div>
   )
