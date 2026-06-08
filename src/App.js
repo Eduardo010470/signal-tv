@@ -2124,5 +2124,8 @@ function GenevaLiveComponent({ onBack }) {
         SIGNAL.tv — GENEVA LAKE SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION<br/>SIGNAL.tv · CLAW AI UNIVERSE TRANSMISSION · © 2162
       </div>
     </div>
+  )
+}
+
 export default App
 
