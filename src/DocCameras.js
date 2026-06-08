@@ -804,6 +804,11 @@ const DOC_CAMERAS = {
     { label: "CAM-01 / NANOBOTS", coords: "4.7B UNITS/DOSE", type: "pr_lab" },
     { label: "CAM-02 / DISTRIBUTION", coords: "42 COUNTRIES", type: "pr_map" },
     { label: "CAM-03 / LEVELS", coords: "340M INTEGRATED", type: "pr_levels" },
+  ],
+  "IS-312": [
+    { label: "CAM-01 / SKYLINE", coords: "CHICAGO IL — 2162", type: "is_skyline" },
+    { label: "CAM-02 / HYBRID", coords: "SECTOR INNER-02", type: "is_hybrid" },
+    { label: "CAM-03 / SIGNAL", coords: "847.3 MHz SCAN", type: "is_signal" },
   ]
 }
 
