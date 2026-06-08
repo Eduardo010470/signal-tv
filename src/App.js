@@ -2022,6 +2022,37 @@ function ChicagoLiveComponent({ onBack }) {
 }
 
 function GenevaLiveComponent({ onBack }) {
+  const [activeCam, setActiveCam] = React.useState("cam01")
+
+  const cameras = [
+    {
+      id: "cam01",
+      label: "CAM-01 / YACHT CLUB",
+      coords: "42.5847°N 88.4334°W — LAKE VIEW",
+      desc: "Geneva Lake Yacht Club — lake surveillance.",
+      embed: "https://www.ipcamlive.com/player/player.php?alias=5b1a9a31a1f64",
+      type: "iframe"
+    },
+    {
+      id: "cam02",
+      label: "CAM-02 / RIVIERA DOCKS",
+      coords: "CRUISE LINE PIER — LAKE GENEVA",
+      desc: "Lake Geneva Cruise Line — Riviera Docks.",
+      embed: "https://www.cruiselakegeneva.com/webcam/",
+      type: "iframe"
+    },
+    {
+      id: "cam03",
+      label: "CAM-03 / MOUNTAIN TOP",
+      coords: "GRAND GENEVA RESORT — ELEVATION 1086ft",
+      desc: "Mountain Top ski & adventure center.",
+      embed: "https://www.grandgeneva.com/ski-snow-sports/ski-cam-feed",
+      type: "iframe"
+    },
+  ]
+
+  const cam = cameras.find(c => c.id === activeCam)
+
   return (
     <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
       <div onClick={onBack} style={{ fontSize: 11, color: "#00f5ff", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
@@ -2029,19 +2060,41 @@ function GenevaLiveComponent({ onBack }) {
         <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — GENEVA LAKE SURVEILLANCE</div>
         <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W</div>
       </div>
-      <div style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
-        <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.1)", padding: "6px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 2, fontFamily: "monospace" }}>● LIVE</span>
-          <span style={{ fontSize: 9, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>CAM-01 / LAKE VIEW</span>
+      <div style={{ marginBottom: 16, display: "flex", gap: 8 }}>
+        {cameras.map(c => (
+          <button key={c.id} onClick={() => setActiveCam(c.id)} style={{
+            background: activeCam === c.id ? "rgba(0,245,255,0.15)" : "transparent",
+            border: `1px solid ${activeCam === c.id ? "rgba(0,245,255,0.6)" : "rgba(0,245,255,0.2)"}`,
+            color: activeCam === c.id ? "#00f5ff" : "#405060",
+            padding: "4px 10px", fontSize: 9, letterSpacing: 1, cursor: "pointer", fontFamily: "monospace"
+          }}>{c.id.toUpperCase()}</button>
+        ))}
+      </div>
+      <div style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.2)", position: "relative" }}>
+        <div style={{ background: "rgba(0,0,0,0.8)", padding: "6px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: 9, color: "#00f5ff", fontFamily: "monospace", letterSpacing: 1 }}>{cam.label}</span>
+          <span style={{ fontSize: 8, color: "#405060", fontFamily: "monospace" }}>{cam.coords}</span>
         </div>
         <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
-          <iframe title="Geneva Lake" src="https://www.youtube-nocookie.com/embed/uGRSBaB-374?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", filter: "saturate(0.5) hue-rotate(180deg) brightness(0.8)" }} allow="autoplay; encrypted-media" allowFullScreen />
-          <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)", pointerEvents: "none", zIndex: 10 }} />
+          <iframe
+            key={activeCam}
+            src={cam.embed}
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            allow="autoplay"
+            allowFullScreen
+            title={cam.label}
+          />
         </div>
-        <div style={{ padding: "8px 12px", borderTop: "1px solid rgba(0,245,255,0.08)", background: "rgba(0,0,0,0.5)" }}>
-          <div style={{ fontSize: 10, color: "#6a8090", fontFamily: "monospace" }}>Pre-Collapse lake surveillance. The cabin is north shore. Station Geneva-7 logged 11,066 days.</div>
+        <div style={{ background: "rgba(0,0,0,0.8)", padding: "6px 12px" }}>
+          <span style={{ fontSize: 8, color: "#405060", fontFamily: "monospace" }}>{cam.desc}</span>
+          <span style={{ fontSize: 8, color: "#00f5ff", fontFamily: "monospace", marginLeft: 8 }}>● REC2026 CE</span>
         </div>
+      </div>
+      <div style={{ fontSize: 8, color: "#1a2530", fontFamily: "monospace", textAlign: "center", letterSpacing: 2 }}>
+        SIGNAL.tv — GENEVA LAKE SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION<br/>SIGNAL.tv · CLAW AI UNIVERSE TRANSMISSION · © 2162
       </div>
     </div>
   )
 }
+
+
