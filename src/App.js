@@ -2042,8 +2042,24 @@ function ChicagoLiveComponent({ onBack }) {
       <div style={{ fontSize: 9, color: "#405060", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>SIGNAL.tv — CHICAGO SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION</div>
       <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
     </div>
+    {authMode && (
+      <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => { setAuthMode(null); setAuthError("") }}>
+        <div style={{ background: "#080d14", border: "1px solid rgba(0,245,255,0.3)", padding: 32, width: 320, fontFamily: "monospace" }} onClick={e => e.stopPropagation()}>
+          <div style={{ color: "#00f5ff", fontSize: 12, letterSpacing: 3, marginBottom: 24 }}>{authMode === "login" ? "LOGIN" : "CREATE ACCOUNT"}</div>
+          <input type="email" placeholder="EMAIL" value={authEmail} onChange={e => setAuthEmail(e.target.value)} style={{ width: "100%", background: "transparent", border: "1px solid rgba(0,245,255,0.2)", color: "#00f5ff", padding: "8px 12px", fontSize: 11, fontFamily: "monospace", marginBottom: 12, boxSizing: "border-box", outline: "none" }} />
+          <input type="password" placeholder="PASSWORD" value={authPassword} onChange={e => setAuthPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && (authMode === "login" ? handleEmailLogin() : handleEmailSignup())} style={{ width: "100%", background: "transparent", border: "1px solid rgba(0,245,255,0.2)", color: "#00f5ff", padding: "8px 12px", fontSize: 11, fontFamily: "monospace", marginBottom: 16, boxSizing: "border-box", outline: "none" }} />
+          {authError && <div style={{ color: authError.includes("CHECK") ? "#22c55e" : "#ef4444", fontSize: 10, marginBottom: 12, letterSpacing: 1 }}>{authError}</div>}
+          <button onClick={authMode === "login" ? handleEmailLogin : handleEmailSignup} disabled={authLoading} style={{ width: "100%", background: "#00f5ff", color: "#000", border: "none", padding: "10px", fontSize: 11, fontWeight: 900, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace", marginBottom: 12 }}>{authLoading ? "..." : authMode === "login" ? "LOGIN" : "CREATE ACCOUNT"}</button>
+          <div style={{ textAlign: "center", fontSize: 10, color: "#405060" }}>
+            {authMode === "login" ? <span>No account? <span onClick={() => { setAuthMode("signup"); setAuthError("") }} style={{ color: "#00f5ff", cursor: "pointer" }}>Create one</span></span> : <span>Have an account? <span onClick={() => { setAuthMode("login"); setAuthError("") }} style={{ color: "#00f5ff", cursor: "pointer" }}>Login</span></span>}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 16, fontSize: 10, color: "#405060", cursor: "pointer" }} onClick={() => { setAuthMode(null); setAuthError("") }}>✕ CANCEL</div>
+        </div>
+      </div>
+    )}
   )
 }
+
 
 function GenevaLiveComponent({ onBack }) {
   const cameras = [
@@ -2108,23 +2124,5 @@ function GenevaLiveComponent({ onBack }) {
         SIGNAL.tv — GENEVA LAKE SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION<br/>SIGNAL.tv · CLAW AI UNIVERSE TRANSMISSION · © 2162
       </div>
     </div>
-    {authMode && (
-      <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => { setAuthMode(null); setAuthError("") }}>
-        <div style={{ background: "#080d14", border: "1px solid rgba(0,245,255,0.3)", padding: 32, width: 320, fontFamily: "monospace" }} onClick={e => e.stopPropagation()}>
-          <div style={{ color: "#00f5ff", fontSize: 12, letterSpacing: 3, marginBottom: 24 }}>{authMode === "login" ? "LOGIN" : "CREATE ACCOUNT"}</div>
-          <input type="email" placeholder="EMAIL" value={authEmail} onChange={e => setAuthEmail(e.target.value)} style={{ width: "100%", background: "transparent", border: "1px solid rgba(0,245,255,0.2)", color: "#00f5ff", padding: "8px 12px", fontSize: 11, fontFamily: "monospace", marginBottom: 12, boxSizing: "border-box", outline: "none" }} />
-          <input type="password" placeholder="PASSWORD" value={authPassword} onChange={e => setAuthPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && (authMode === "login" ? handleEmailLogin() : handleEmailSignup())} style={{ width: "100%", background: "transparent", border: "1px solid rgba(0,245,255,0.2)", color: "#00f5ff", padding: "8px 12px", fontSize: 11, fontFamily: "monospace", marginBottom: 16, boxSizing: "border-box", outline: "none" }} />
-          {authError && <div style={{ color: authError.includes("CHECK") ? "#22c55e" : "#ef4444", fontSize: 10, marginBottom: 12, letterSpacing: 1 }}>{authError}</div>}
-          <button onClick={authMode === "login" ? handleEmailLogin : handleEmailSignup} disabled={authLoading} style={{ width: "100%", background: "#00f5ff", color: "#000", border: "none", padding: "10px", fontSize: 11, fontWeight: 900, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace", marginBottom: 12 }}>{authLoading ? "..." : authMode === "login" ? "LOGIN" : "CREATE ACCOUNT"}</button>
-          <div style={{ textAlign: "center", fontSize: 10, color: "#405060" }}>
-            {authMode === "login" ? <span>No account? <span onClick={() => { setAuthMode("signup"); setAuthError("") }} style={{ color: "#00f5ff", cursor: "pointer" }}>Create one</span></span> : <span>Have an account? <span onClick={() => { setAuthMode("login"); setAuthError("") }} style={{ color: "#00f5ff", cursor: "pointer" }}>Login</span></span>}
-          </div>
-          <div style={{ textAlign: "center", marginTop: 16, fontSize: 10, color: "#405060", cursor: "pointer" }} onClick={() => { setAuthMode(null); setAuthError("") }}>✕ CANCEL</div>
-        </div>
-      </div>
-    )}
-  )
-}
-
 export default App
 
