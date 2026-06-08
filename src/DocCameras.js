@@ -764,6 +764,187 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
         ctx.font = "7px monospace"; ctx.fillText("847.3 MHz — SCANNING", 3, h-5); ctx.shadowBlur = 0
       }
+
+      // ST-001 — Cow in field
+      if (type === "st_cow") {
+        ctx.fillStyle = "#0a0f08"
+        ctx.fillRect(0, 0, w, h)
+        // Sky — pre-dawn grey green
+        const skyG = ctx.createLinearGradient(0, 0, 0, h*0.5)
+        skyG.addColorStop(0, "#080c06")
+        skyG.addColorStop(1, "#111a0d")
+        ctx.fillStyle = skyG
+        ctx.fillRect(0, 0, w, h*0.5)
+        // Ground — dark green field
+        const groundG = ctx.createLinearGradient(0, h*0.5, 0, h)
+        groundG.addColorStop(0, "#0d1a08")
+        groundG.addColorStop(1, "#060e04")
+        ctx.fillStyle = groundG
+        ctx.fillRect(0, h*0.5, w, h*0.5)
+        // Treeline
+        for (let i = 0; i < 12; i++) {
+          const tx = (i * 23 + 5) % w
+          const th = 8 + (i*7)%10
+          ctx.fillStyle = "#060c04"
+          ctx.fillRect(tx, h*0.5 - th, 6 + (i*3)%8, th)
+        }
+        // Cow body
+        const cowX = ((frame * 0.15) % (w + 40)) - 20
+        const cowY = h * 0.62
+        ctx.fillStyle = "#c8b89a"
+        // Body
+        ctx.beginPath()
+        ctx.ellipse(cowX, cowY, 18, 10, 0, 0, Math.PI*2)
+        ctx.fill()
+        // Head
+        ctx.fillStyle = "#b8a88a"
+        ctx.beginPath()
+        ctx.ellipse(cowX + 20, cowY - 4, 8, 7, 0.2, 0, Math.PI*2)
+        ctx.fill()
+        // Legs
+        ctx.fillStyle = "#a09070"
+        const legBob = Math.sin(frame * 0.15) * 2
+        ctx.fillRect(cowX - 12, cowY + 8, 3, 8 + legBob)
+        ctx.fillRect(cowX - 4,  cowY + 8, 3, 8 - legBob)
+        ctx.fillRect(cowX + 4,  cowY + 8, 3, 8 + legBob)
+        ctx.fillRect(cowX + 12, cowY + 8, 3, 8 - legBob)
+        // Spots
+        ctx.fillStyle = "#5a4a36"
+        ctx.beginPath(); ctx.ellipse(cowX - 5, cowY - 3, 5, 4, 0.3, 0, Math.PI*2); ctx.fill()
+        ctx.beginPath(); ctx.ellipse(cowX + 8, cowY + 2, 4, 3, -0.2, 0, Math.PI*2); ctx.fill()
+        // Tail
+        const tailSwing = Math.sin(frame * 0.08) * 8
+        ctx.strokeStyle = "#a09070"; ctx.lineWidth = 1.5
+        ctx.beginPath(); ctx.moveTo(cowX - 18, cowY - 2); ctx.quadraticCurveTo(cowX - 26, cowY + tailSwing, cowX - 24, cowY + 10); ctx.stroke()
+        // Grass details
+        for (let i = 0; i < 20; i++) {
+          const gx = (i * 41 + 7) % w
+          const gy = h*0.5 + (i*13)%30
+          ctx.strokeStyle = `rgba(20,50,10,0.6)`; ctx.lineWidth = 0.5
+          ctx.beginPath(); ctx.moveTo(gx, gy + 4); ctx.lineTo(gx + 1, gy); ctx.stroke()
+        }
+        // Label
+        ctx.fillStyle = "rgba(0,0,0,0.65)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(100,220,80,0.8)"; ctx.shadowColor = "#64dc50"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("LIVESTOCK — NORTH FIELD", 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // ST-001 — Weather station
+      if (type === "st_weather") {
+        ctx.fillStyle = "#080c0a"
+        ctx.fillRect(0, 0, w, h)
+        // Sky overcast
+        const skyG2 = ctx.createLinearGradient(0, 0, 0, h*0.6)
+        skyG2.addColorStop(0, "#0a0e0c")
+        skyG2.addColorStop(1, "#141c16")
+        ctx.fillStyle = skyG2
+        ctx.fillRect(0, 0, w, h*0.6)
+        // Cloud layers moving
+        for (let c = 0; c < 4; c++) {
+          const cx = ((frame * (0.3 + c*0.1) + c*80) % (w + 60)) - 30
+          const cy = h * (0.15 + c*0.08)
+          ctx.fillStyle = `rgba(30,40,32,0.6)`
+          ctx.beginPath(); ctx.ellipse(cx, cy, 30 + c*10, 8 + c*2, 0, 0, Math.PI*2); ctx.fill()
+          ctx.beginPath(); ctx.ellipse(cx + 15, cy - 4, 20 + c*5, 6, 0, 0, Math.PI*2); ctx.fill()
+        }
+        // Ground
+        ctx.fillStyle = "#060a07"; ctx.fillRect(0, h*0.6, w, h*0.4)
+        // Station pole
+        ctx.strokeStyle = "#4a5a4a"; ctx.lineWidth = 2
+        ctx.beginPath(); ctx.moveTo(w*0.5, h*0.85); ctx.lineTo(w*0.5, h*0.3); ctx.stroke()
+        // Anemometer — spinning cups
+        const spin = (frame * 0.06) % (Math.PI * 2)
+        for (let i = 0; i < 3; i++) {
+          const a = spin + (i * Math.PI * 2 / 3)
+          const ax = w*0.5 + Math.cos(a) * 12
+          const ay = h*0.32 + Math.sin(a) * 6
+          ctx.fillStyle = "#8aaa8a"
+          ctx.beginPath(); ctx.arc(ax, ay, 4, 0, Math.PI*2); ctx.fill()
+          ctx.strokeStyle = "#4a6a4a"; ctx.lineWidth = 1
+          ctx.beginPath(); ctx.moveTo(w*0.5, h*0.32); ctx.lineTo(ax, ay); ctx.stroke()
+        }
+        // Wind vane
+        const vaneAngle = Math.PI * 0.3 + Math.sin(frame * 0.02) * 0.3
+        ctx.strokeStyle = "#6a8a6a"; ctx.lineWidth = 1.5
+        ctx.beginPath()
+        ctx.moveTo(w*0.5 - Math.cos(vaneAngle)*14, h*0.42 - Math.sin(vaneAngle)*8)
+        ctx.lineTo(w*0.5 + Math.cos(vaneAngle)*14, h*0.42 + Math.sin(vaneAngle)*8)
+        ctx.stroke()
+        // Barometer box
+        ctx.fillStyle = "#1a2a1a"; ctx.fillRect(w*0.5 - 12, h*0.52, 24, 16)
+        ctx.strokeStyle = "#3a5a3a"; ctx.lineWidth = 0.5
+        ctx.strokeRect(w*0.5 - 12, h*0.52, 24, 16)
+        const pressure = 1008 + Math.sin(frame * 0.01) * 2
+        ctx.fillStyle = "#50aa50"; ctx.font = "5px monospace"
+        ctx.fillText(`${pressure.toFixed(0)}mb`, w*0.5 - 9, h*0.52 + 10)
+        // Rain drops if frame > 200
+        if (Math.sin(frame * 0.03) > 0.3) {
+          for (let i = 0; i < 8; i++) {
+            const rx = (i * 37 + frame * 2) % w
+            const ry = (h * 0.6 + (frame * 3 + i * 20) % (h * 0.35))
+            ctx.strokeStyle = "rgba(100,180,120,0.4)"; ctx.lineWidth = 0.5
+            ctx.beginPath(); ctx.moveTo(rx, ry); ctx.lineTo(rx - 1, ry + 4); ctx.stroke()
+          }
+        }
+        // Label
+        ctx.fillStyle = "rgba(0,0,0,0.65)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(100,220,80,0.8)"; ctx.shadowColor = "#64dc50"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("ALON'S STATION — 0615", 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // ST-001 — Fence perimeter
+      if (type === "st_fence") {
+        ctx.fillStyle = "#060a06"
+        ctx.fillRect(0, 0, w, h)
+        // Dawn sky — very subtle
+        const dawnG = ctx.createLinearGradient(0, 0, 0, h*0.55)
+        dawnG.addColorStop(0, "#06080a")
+        dawnG.addColorStop(0.7, "#0c1210")
+        dawnG.addColorStop(1, "#101808")
+        ctx.fillStyle = dawnG
+        ctx.fillRect(0, 0, w, h*0.55)
+        // Ground
+        ctx.fillStyle = "#050804"; ctx.fillRect(0, h*0.55, w, h*0.45)
+        // Fog layer
+        const fogAlpha = 0.08 + Math.sin(frame * 0.01) * 0.03
+        ctx.fillStyle = `rgba(180,220,180,${fogAlpha})`
+        ctx.fillRect(0, h*0.45, w, h*0.2)
+        // Fence posts — perspective receding
+        const posts = [0.05, 0.18, 0.3, 0.41, 0.51, 0.6, 0.68, 0.75, 0.81, 0.87, 0.92, 0.96]
+        posts.forEach((px, pi) => {
+          const postH = 30 - pi * 1.8
+          const postW = 3 - pi * 0.15
+          const postY = h * 0.55 - postH * 0.6
+          ctx.fillStyle = "#4a5a3a"
+          ctx.fillRect(px*w, postY, postW, postH)
+          // Cross beams
+          if (pi < posts.length - 1) {
+            const nx = posts[pi+1]
+            const nH = 30 - (pi+1) * 1.8
+            const nY = h * 0.55 - nH * 0.6
+            ctx.strokeStyle = "#3a4a2a"; ctx.lineWidth = 1
+            ctx.beginPath(); ctx.moveTo(px*w + postW, postY + postH*0.3); ctx.lineTo(nx*w, nY + nH*0.3); ctx.stroke()
+            ctx.beginPath(); ctx.moveTo(px*w + postW, postY + postH*0.7); ctx.lineTo(nx*w, nY + nH*0.7); ctx.stroke()
+          }
+        })
+        // Treeline south
+        for (let i = 0; i < 14; i++) {
+          const tx = (i * 19 + 3) % w
+          const th = 12 + (i*11)%15
+          ctx.fillStyle = "#040804"
+          ctx.beginPath(); ctx.moveTo(tx, h*0.55 - th); ctx.lineTo(tx + 6, h*0.55); ctx.lineTo(tx - 6, h*0.55); ctx.fill()
+        }
+        // Figure — Dessa on porch (right side, still)
+        const figX = w * 0.82
+        const figY = h * 0.5
+        ctx.fillStyle = "rgba(60,70,55,0.8)"
+        ctx.fillRect(figX - 2, figY - 12, 4, 12)
+        ctx.beginPath(); ctx.arc(figX, figY - 14, 3, 0, Math.PI*2); ctx.fill()
+        // Label
+        ctx.fillStyle = "rgba(0,0,0,0.65)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(100,220,80,0.8)"; ctx.shadowColor = "#64dc50"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("SOUTH PERIMETER — 0630", 3, h-5); ctx.shadowBlur = 0
+      }
       animRef.current = requestAnimationFrame(draw)
     }
     draw()
@@ -809,6 +990,12 @@ const DOC_CAMERAS = {
     { label: "CAM-01 / SKYLINE", coords: "CHICAGO IL — 2162", type: "is_skyline" },
     { label: "CAM-02 / HYBRID", coords: "SECTOR INNER-02", type: "is_hybrid" },
     { label: "CAM-03 / SIGNAL", coords: "847.3 MHz SCAN", type: "is_signal" },
+  ]
+}
+  "ST-001": [
+    { label: "CAM-01 / LIVESTOCK", coords: "NORTH FIELD", type: "st_cow" },
+    { label: "CAM-02 / WEATHER", coords: "ALON'S STATION", type: "st_weather" },
+    { label: "CAM-03 / PERIMETER", coords: "SOUTH FENCE", type: "st_fence" },
   ]
 }
 
