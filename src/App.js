@@ -2058,6 +2058,8 @@ function ChicagoLiveComponent({ onBack }) {
       <div style={{ fontSize: 9, color: "#405060", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>SIGNAL.tv — CHICAGO SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION</div>
       <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
     </div>
+  )
+}
 
 function GenevaLiveComponent({ onBack }) {
   const cameras = [
