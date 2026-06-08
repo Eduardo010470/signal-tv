@@ -1772,6 +1772,7 @@ export default function App() {
   )
 
   return (
+    <>
     <div style={{ background: BG, minHeight: "100vh", color: "#c8e0e8", fontFamily: "'Courier New', monospace", overflowX: "hidden", boxSizing: "border-box" }}>
       <div style={{ position: "fixed", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px)", pointerEvents: "none", zIndex: 999 }} />
 
@@ -1934,6 +1935,7 @@ export default function App() {
         </div>
       </div>
     )}
+    </>
   )
 }
 
