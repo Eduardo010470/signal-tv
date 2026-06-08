@@ -2035,14 +2035,14 @@ function GenevaLiveComponent({ onBack }) {
       label: "CAM-02 / RIVIERA DOCKS",
       coords: "CRUISE LINE PIER — LAKE GENEVA",
       desc: "Lake Geneva Cruise Line — Riviera Docks.",
-      embed: "https://www.cruiselakegeneva.com/webcam/",
+      embed: "https://g1.ipcamlive.com/player/player.php?alias=631a11e3d3293&skin=black&mute=1&disablezoombutton=1&disableframecapture=1&disableuserpause=1",
     },
     {
       id: "cam03",
-      label: "CAM-03 / MOUNTAIN TOP",
-      coords: "GRAND GENEVA RESORT — ELEVATION 1086ft",
-      desc: "Mountain Top ski & adventure center.",
-      embed: "https://www.grandgeneva.com/ski-snow-sports/ski-cam-feed",
+      label: "CAM-03 / GENEVA LAKE WEST",
+      coords: "FONTANA-ON-GENEVA-LAKE — WEST SHORE",
+      desc: "Geneva Lake west shore — Fontana surveillance.",
+      embed: "https://www.ipcamlive.com/player/player.php?alias=6116e3f442c25",
     },
   ]
 
