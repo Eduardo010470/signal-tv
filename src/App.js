@@ -1931,6 +1931,7 @@ function LiveFeedComponent({ feedId }) {
 
   return (
     <div>
+      <DocCameras docId={feedId} />
       <div style={{ background: "#000", border: "2px solid rgba(0,245,255,0.3)", borderRadius: 4, overflow: "hidden" }}>
         <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
