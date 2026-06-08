@@ -990,8 +990,7 @@ const DOC_CAMERAS = {
     { label: "CAM-01 / SKYLINE", coords: "CHICAGO IL — 2162", type: "is_skyline" },
     { label: "CAM-02 / HYBRID", coords: "SECTOR INNER-02", type: "is_hybrid" },
     { label: "CAM-03 / SIGNAL", coords: "847.3 MHz SCAN", type: "is_signal" },
-  ]
-}
+  ],
   "ST-001": [
     { label: "CAM-01 / LIVESTOCK", coords: "NORTH FIELD", type: "st_cow" },
     { label: "CAM-02 / WEATHER", coords: "ALON'S STATION", type: "st_weather" },
