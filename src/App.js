@@ -1929,13 +1929,37 @@ function LiveFeedComponent({ feedId }) {
     setIsLoading(false)
   }
 
-  const getColor = (l, id) => l.includes("CRITICAL") ? "#ef4444" : l.includes("HIGH") ? "#f97316" : l.includes("VOSS") || l.includes("C.L.A.W.") ? "#ff00aa" : id === "ST-001" && l.startsWith("---") ? "rgba(0,245,255,0.3)" : id === "ST-001" && (l.startsWith("OBSERVATION") || l.startsWith("WEATHER") || l.startsWith("DISPATCH")) ? "rgba(0,245,255,0.85)" : id === "ST-001" && l.startsWith("STATUS:") ? (l.includes("CRITICAL") ? "#ef4444" : l.includes("NOTE") ? "#f97316" : "#22c55e") : "#9ca3af"
+  const getColor = (l, id) => {
+    if (l.includes("CRITICAL")) return "#ef4444"
+    if (l.includes("HIGH")) return "#f97316"
+    if (l.includes("VOSS") || l.includes("C.L.A.W.")) return "#ff00aa"
+    if (id === "IS-312") {
+      if (l.startsWith("#")) return "#00f5ff"
+      if (l.startsWith("##")) return "#00f5ff"
+      if (l.includes("MODERATE")) return "#f59e0b"
+      if (l.includes("LOW")) return "#22c55e"
+      if (l.match(/^\[/)) return "rgba(0,245,255,0.5)"
+      if (l.startsWith("**") || l.startsWith("---")) return "rgba(0,245,255,0.4)"
+    }
+    if (id === "ST-001") {
+      if (l.startsWith("---")) return "rgba(100,220,80,0.3)"
+      if (l.startsWith("OBSERVATION")) return "#00f5ff"
+      if (l.startsWith("WEATHER")) return "#64dc50"
+      if (l.startsWith("DISPATCH")) return "#00f5ff"
+      if (l.startsWith("END DISPATCH")) return "rgba(100,220,80,0.6)"
+      if (l.startsWith("STATUS:")) return l.includes("CRITICAL") ? "#ef4444" : l.includes("NOTE") ? "#f97316" : "#22c55e"
+      if (l.startsWith("Temperature") || l.startsWith("Wind") || l.startsWith("Barometric") || l.startsWith("Cloud")) return "#a3e635"
+      if (l.includes("Marcus Reed") || l.includes("Aaron") || l.includes("Alon") || l.includes("Ruth") || l.includes("Eli") || l.includes("Dessa") || l.includes("Elena")) return "#fbbf24"
+      if (l.match(/^\d{4}\.\d{2}/)) return "rgba(100,220,80,0.7)"
+    }
+    return "#9ca3af"
+  }
 
   return (
     <div>
       <DocCameras docId={feedId} />
       <div style={{ position: "relative" }}>
-      {glitch && <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,245,255,0.04)", zIndex: 10, pointerEvents: "none", mixBlendMode: "screen" }}><div style={{ width: "100%", height: "30%", background: "rgba(0,0,0,0.8)", marginTop: `${Math.random()*60}%` }} /></div>}
+      {glitch && <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: feedId === "ST-001" ? "rgba(100,220,80,0.03)" : "rgba(0,245,255,0.04)", zIndex: 10, pointerEvents: "none", mixBlendMode: "screen" }}><div style={{ width: "100%", height: "30%", background: "rgba(0,0,0,0.8)", marginTop: `${Math.random()*60}%` }} /></div>}
       <div style={{ background: "#000", border: "2px solid rgba(0,245,255,0.3)", borderRadius: 4, overflow: "hidden" }}>
         <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
