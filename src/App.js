@@ -1982,7 +1982,7 @@ function ChicagoLiveComponent({ onBack }) {
   const cameras = [
     { id: "skydeck", label: "CAM-A / WILLIS TOWER SKYDECK", coords: "41.8789°N 87.6359°W — 442m", desc: "EarthCam — Willis Tower apex.", embed: "https://www.youtube-nocookie.com/embed/O0UGT7AT3aw?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
     { id: "powerhouse", label: "CAM-B / NORTH WESTERN POWER HOUSE", coords: "41.8858°N 87.6412°W — CANAL ST", desc: "Rail corridor surveillance.", embed: "https://www.youtube-nocookie.com/embed/6M6rK0ssjYg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
-    { id: "lakefront", label: "CAM-C / LAKE SHORE DRIVE — LAKEFRONT", coords: "41.8663°N 87.6170°W — LAKE MICHIGAN", desc: "4K Lake Shore Drive surveillance.", embed: "https://www.youtube-nocookie.com/embed/xREjRxY0UVs?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+    { id: "lakefront", label: "CAM-C / LAKE SHORE DRIVE — LAKEFRONT", coords: "41.8663°N 87.6170°W — LAKE MICHIGAN", desc: "4K Lake Shore Drive surveillance.", embed: "https://www.youtube-nocookie.com/embed/_p9ZW-Vo7LA?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
   ]
   return (
     <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
