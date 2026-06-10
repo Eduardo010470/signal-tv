@@ -1760,6 +1760,17 @@ export default function App() {
     else { setAuthError("CHECK YOUR EMAIL TO CONFIRM YOUR ACCOUNT"); setAuthLoading(false) }
   }
 
+  async function manageSubscription() {
+    try {
+      const res = await fetch("https://etf-api-production-093e.up.railway.app/customer-portal", {
+        method: "POST", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({email: user?.email})
+      })
+      const data = await res.json()
+      if (data.url) window.location.href = data.url
+    } catch(e) { alert("Error opening subscription portal") }
+  }
+
   async function handleSignOut() {
     await supabase.auth.signOut()
     setUser(null); setIsPremium(false); setPage("landing"); setSelectedDoc(null); setShowLiveFeed(false)
@@ -1784,6 +1795,7 @@ export default function App() {
         <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 12, letterSpacing: 2 }}>
           {user ? (
             <span onClick={handleSignOut} style={{ color: "#607888", cursor: "pointer" }}>SIGN OUT</span>
+          {isPremium && <span onClick={manageSubscription} style={{ color: "#607888", cursor: "pointer", marginLeft: 12 }}>⚙️ SUBSCRIPTION</span>}
           ) : (
             <div style={{ display: "flex", gap: 8 }}>
               <button onClick={handleGoogleLogin} style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "4px 12px", fontSize: 12, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>GOOGLE</button>
