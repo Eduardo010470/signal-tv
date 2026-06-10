@@ -1803,27 +1803,27 @@ export default function App() {
                 <br /><span style={{ color: "#fff" }}>IS OPEN</span>
               </h1>
               <p style={{ fontSize: 14, color: "#607888", maxWidth: 500, lineHeight: 1.8, marginBottom: 8 }}>Classified documents. C.L.A.W. logs. Inner Sectors transmissions.</p>
-              <p style={{ fontSize: 13, color: "#405060", maxWidth: 440, lineHeight: 1.7, marginBottom: 36 }}>The universe of <span style={{ color: CYAN }}>CLAW AI</span> continues here — Eddie Marsh's files, Voss dossiers, Chicago 2162 dispatches.</p>
-              <p style={{ fontSize: 12, color: "#405060", maxWidth: 440, lineHeight: 1.7, marginBottom: 36, textAlign: "center" }}>The documents here are primary sources for two novels available free on Wattpad: <a href="https://www.wattpad.com/story/410514034" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>CLAW AI</a> and <a href="https://www.wattpad.com/story/410854794" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>The Book of Carrie</a>. Read the story. Then read what happened before — and what is happening now.</p>
+              <p style={{ fontSize: 13, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36 }}>The universe of <span style={{ color: CYAN }}>CLAW AI</span> continues here — Eddie Marsh's files, Voss dossiers, Chicago 2162 dispatches.</p>
+              <p style={{ fontSize: 12, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36, textAlign: "center" }}>The documents here are primary sources for two novels available free on Wattpad: <a href="https://www.wattpad.com/story/410514034" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>CLAW AI</a> and <a href="https://www.wattpad.com/story/410854794" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>The Book of Carrie</a>. Read the story. Then read what happened before — and what is happening now.</p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 16 }}>
                 <a href={STRIPE_USD} target="_blank" rel="noreferrer" style={{ background: CYAN, color: BG, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACCESS — $4.99/mo</a>
                 <a href={STRIPE_BRL} target="_blank" rel="noreferrer" style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACESSO — R$12,90/mês</a>
               </div>
-              <div style={{ fontSize: 11, color: "#405060" }}>Already subscribed? <span onClick={handleGoogleLogin} style={{ color: CYAN, cursor: "pointer" }}>Sign in with Google →</span></div>
+              <div style={{ fontSize: 11, color: "#7090a8" }}>Already subscribed? <span onClick={handleGoogleLogin} style={{ color: CYAN, cursor: "pointer" }}>Sign in with Google →</span></div>
             </div>
             <div style={{ padding: "40px 20px", maxWidth: 760, margin: "0 auto" }}>
-              <div style={{ fontSize: 10, letterSpacing: 4, color: "#405060", marginBottom: 24, textAlign: "center" }}>— RECENT TRANSMISSIONS —</div>
+              <div style={{ fontSize: 10, letterSpacing: 4, color: "#7090a8", marginBottom: 24, textAlign: "center" }}>— RECENT TRANSMISSIONS —</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {PREVIEW_DOCS.map(a => (
                   <div key={a.id} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px" }}>
                     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                       <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
-                        <span style={{ fontSize: 9, color: "#405060", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
+                        <span style={{ fontSize: 9, color: "#7090a8", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
                         <span style={{ fontSize: 12, color: "#c8e0e8", lineHeight: 1.4 }}>{a.title}</span>
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
                         <span style={{ fontSize: 8, letterSpacing: 1, color: a.color, border: `1px solid ${a.color}`, padding: "2px 6px", whiteSpace: "nowrap" }}>{a.tag}</span>
-                        <span style={{ fontSize: 9, color: "#405060" }}>{a.date}</span>
+                        <span style={{ fontSize: 9, color: "#7090a8" }}>{a.date}</span>
                         <span style={{ fontSize: 12 }}>🔒</span>
                       </div>
                     </div>
@@ -1843,7 +1843,7 @@ export default function App() {
 
         {page === "archive" && user && !selectedDoc && !showLiveFeed && (
           <div style={{ padding: "40px 20px", maxWidth: 760, margin: "0 auto" }}>
-            <div style={{ fontSize: 11, letterSpacing: 2, color: "#405060", marginBottom: 4 }}>AUTHENTICATED</div>
+            <div style={{ fontSize: 11, letterSpacing: 2, color: "#7090a8", marginBottom: 4 }}>AUTHENTICATED</div>
             <div style={{ fontSize: 12, color: CYAN, marginBottom: 24 }}>{user.email}</div>
             {!isPremium && (
               <div style={{ background: "rgba(255,0,170,0.06)", border: `1px solid rgba(255,0,170,0.2)`, padding: "16px", marginBottom: 24 }}>
@@ -1852,10 +1852,10 @@ export default function App() {
                   <a href={STRIPE_USD} target="_blank" rel="noreferrer" style={{ background: CYAN, color: BG, padding: "8px 16px", fontWeight: 900, fontSize: 11, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>$4.99/mo</a>
                   <a href={STRIPE_BRL} target="_blank" rel="noreferrer" style={{ color: CYAN, border: `1px solid ${CYAN}`, padding: "8px 16px", fontWeight: 900, fontSize: 11, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>R$12,90/mês</a>
                 </div>
-                <p style={{ fontSize: 10, color: "#405060", marginTop: 8 }}>After subscribing, reload this page.</p>
+                <p style={{ fontSize: 10, color: "#7090a8", marginTop: 8 }}>After subscribing, reload this page.</p>
               </div>
             )}
-            <div style={{ fontSize: 10, letterSpacing: 4, color: "#405060", marginBottom: 16 }}>— CLASSIFIED ARCHIVE —</div>
+            <div style={{ fontSize: 10, letterSpacing: 4, color: "#7090a8", marginBottom: 16 }}>— CLASSIFIED ARCHIVE —</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {PREVIEW_DOCS.map(a => (
                 <div key={a.id} onClick={() => {
@@ -1866,16 +1866,16 @@ export default function App() {
                 }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
-                      <span style={{ fontSize: 9, color: "#405060", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
+                      <span style={{ fontSize: 9, color: "#7090a8", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
                       <span style={{ fontSize: 12, color: "#c8e0e8", lineHeight: 1.4 }}>{a.title}</span>
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
                       <span style={{ fontSize: 8, letterSpacing: 1, color: a.color, border: `1px solid ${a.color}`, padding: "2px 6px", whiteSpace: "nowrap" }}>{a.tag}</span>
-                      <span style={{ fontSize: 9, color: "#405060" }}>{a.date}</span>
+                      <span style={{ fontSize: 9, color: "#7090a8" }}>{a.date}</span>
                       <span style={{ fontSize: 12 }}>{isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "🔓" : "🔒"}</span>
                     </div>
                   </div>
-                  {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && <div style={{ fontSize: 10, color: "#405060", marginTop: 6 }}>— Coming soon —</div>}
+                  {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && <div style={{ fontSize: 10, color: "#7090a8", marginTop: 6 }}>— Coming soon —</div>}
                 </div>
               ))}
             </div>
@@ -1914,7 +1914,7 @@ export default function App() {
         )}
       </div>
 
-      <div style={{ borderTop: `1px solid rgba(0,245,255,0.08)`, padding: "20px", textAlign: "center", fontSize: 10, color: "#405060", letterSpacing: 2 }}>
+      <div style={{ borderTop: `1px solid rgba(0,245,255,0.08)`, padding: "20px", textAlign: "center", fontSize: 10, color: "#7090a8", letterSpacing: 2 }}>
         SIGNAL.tv · CLAW AI UNIVERSE TRANSMISSION · © 2162
       </div>
 
@@ -1928,10 +1928,10 @@ export default function App() {
           <input type="password" placeholder="PASSWORD" value={authPassword} onChange={e => setAuthPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && (authMode === "login" ? handleEmailLogin() : handleEmailSignup())} style={{ width: "100%", background: "transparent", border: "1px solid rgba(0,245,255,0.2)", color: "#00f5ff", padding: "8px 12px", fontSize: 11, fontFamily: "monospace", marginBottom: 16, boxSizing: "border-box", outline: "none" }} />
           {authError && <div style={{ color: authError.includes("CHECK") ? "#22c55e" : "#ef4444", fontSize: 10, marginBottom: 12, letterSpacing: 1 }}>{authError}</div>}
           <button onClick={authMode === "login" ? handleEmailLogin : handleEmailSignup} disabled={authLoading} style={{ width: "100%", background: "#00f5ff", color: "#000", border: "none", padding: "10px", fontSize: 11, fontWeight: 900, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace", marginBottom: 12 }}>{authLoading ? "..." : authMode === "login" ? "LOGIN" : "CREATE ACCOUNT"}</button>
-          <div style={{ textAlign: "center", fontSize: 10, color: "#405060" }}>
+          <div style={{ textAlign: "center", fontSize: 10, color: "#7090a8" }}>
             {authMode === "login" ? <span>No account? <span onClick={() => { setAuthMode("signup"); setAuthError("") }} style={{ color: "#00f5ff", cursor: "pointer" }}>Create one</span></span> : <span>Have an account? <span onClick={() => { setAuthMode("login"); setAuthError("") }} style={{ color: "#00f5ff", cursor: "pointer" }}>Login</span></span>}
           </div>
-          <div style={{ textAlign: "center", marginTop: 16, fontSize: 10, color: "#405060", cursor: "pointer" }} onClick={() => { setAuthMode(null); setAuthError("") }}>✕ CANCEL</div>
+          <div style={{ textAlign: "center", marginTop: 16, fontSize: 10, color: "#7090a8", cursor: "pointer" }} onClick={() => { setAuthMode(null); setAuthError("") }}>✕ CANCEL</div>
         </div>
       </div>
     )}
@@ -2005,7 +2005,7 @@ function LiveFeedComponent({ feedId }) {
         <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
           <span style={{ fontSize: 10, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{feedId === "ST-001" ? "SETTLEMENT DISPATCH — WISCONSIN 2162" : "INNER SECTORS — CHICAGO 2162"}</span>
-          <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>SIG {signalStrength}%</span>
+          <span style={{ fontSize: 9, color: "#7090a8", fontFamily: "monospace" }}>SIG {signalStrength}%</span>
         </div>
         <div style={{ padding: "16px 14px", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, minHeight: 300, maxHeight: 500, overflowY: "auto" }}>
           {lines.map((line, i) => <div key={i} style={{ color: getColor(line, feedId), marginBottom: 2 }}>{line || "\u00A0"}</div>)}
@@ -2029,7 +2029,7 @@ function ChicagoLiveComponent({ onBack }) {
       <div onClick={onBack} style={{ fontSize: 11, color: "#00f5ff", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
       <div style={{ background: "rgba(0,245,255,0.04)", border: "1px solid rgba(0,245,255,0.15)", padding: "12px 16px", marginBottom: 16 }}>
         <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — CHICAGO SURVEILLANCE NETWORK</div>
-        <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>CHICAGO, ILLINOIS — 41.8781°N 87.6298°W — {new Date().getFullYear()} CE</div>
+        <div style={{ fontSize: 9, color: "#7090a8", fontFamily: "monospace", marginTop: 4 }}>CHICAGO, ILLINOIS — 41.8781°N 87.6298°W — {new Date().getFullYear()} CE</div>
       </div>
       <div style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)", padding: "8px 12px", marginBottom: 16, fontFamily: "monospace", fontSize: 10, color: "rgba(239,68,68,0.7)", letterSpacing: 1 }}>
         ARCHIVE NOTE: These feeds originate from 2026 CE — 15 years before the Prometheus Collapse. Some of these buildings still stand in 2162.
@@ -2042,7 +2042,7 @@ function ChicagoLiveComponent({ onBack }) {
               <span style={{ fontSize: 10, color: "#22c55e", letterSpacing: 2, fontFamily: "monospace" }}>● LIVE</span>
             </div>
             <span style={{ fontSize: 9, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{cam.label}</span>
-            <span style={{ fontSize: 9, color: "#405060", fontFamily: "monospace" }}>{cam.coords}</span>
+            <span style={{ fontSize: 9, color: "#7090a8", fontFamily: "monospace" }}>{cam.coords}</span>
           </div>
           <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
             <iframe title={cam.label} src={cam.embed} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", filter: "saturate(0.4) hue-rotate(160deg) brightness(0.85) contrast(1.1)" }} allow="autoplay; encrypted-media" allowFullScreen />
@@ -2055,7 +2055,7 @@ function ChicagoLiveComponent({ onBack }) {
           </div>
         </div>
       ))}
-      <div style={{ fontSize: 9, color: "#405060", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>SIGNAL.tv — CHICAGO SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION</div>
+      <div style={{ fontSize: 9, color: "#7090a8", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>SIGNAL.tv — CHICAGO SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION</div>
       <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
     </div>
   )
@@ -2091,7 +2091,7 @@ function GenevaLiveComponent({ onBack }) {
       <div onClick={onBack} style={{ fontSize: 11, color: "#00f5ff", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
       <div style={{ background: "rgba(0,245,255,0.04)", border: "1px solid rgba(0,245,255,0.15)", padding: "12px 16px", marginBottom: 16 }}>
         <div style={{ fontSize: 11, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — GENEVA LAKE SURVEILLANCE</div>
-        <div style={{ fontSize: 9, color: "#405060", fontFamily: "monospace", marginTop: 4 }}>GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W</div>
+        <div style={{ fontSize: 9, color: "#7090a8", fontFamily: "monospace", marginTop: 4 }}>GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W</div>
       </div>
       <div style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", padding: "8px 14px", marginBottom: 16, fontSize: 10, color: "rgba(239,68,68,0.7)", letterSpacing: 1, fontFamily: "monospace" }}>
         ARCHIVE NOTE: These feeds originate from 2026 CE — 136 years before this transmission. Geneva Lake is 40km north of the Inner Sectors. The cabin on the north shore is still occupied in 2162.
@@ -2103,7 +2103,7 @@ function GenevaLiveComponent({ onBack }) {
               <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
               <span style={{ fontSize: 9, color: "#00f5ff", fontFamily: "monospace", letterSpacing: 1 }}>{cam.label}</span>
             </div>
-            <span style={{ fontSize: 8, color: "#405060", fontFamily: "monospace" }}>{cam.coords}</span>
+            <span style={{ fontSize: 8, color: "#7090a8", fontFamily: "monospace" }}>{cam.coords}</span>
           </div>
           <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
             <iframe
@@ -2115,12 +2115,12 @@ function GenevaLiveComponent({ onBack }) {
             />
           </div>
           <div style={{ background: "rgba(0,0,0,0.8)", padding: "6px 12px", display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 8, color: "#405060", fontFamily: "monospace" }}>{cam.desc}</span>
+            <span style={{ fontSize: 8, color: "#7090a8", fontFamily: "monospace" }}>{cam.desc}</span>
             <span style={{ fontSize: 8, color: "#00f5ff", fontFamily: "monospace" }}>● REC2026 CE</span>
           </div>
         </div>
       ))}
-      <div style={{ fontSize: 8, color: "#1a2530", fontFamily: "monospace", textAlign: "center", letterSpacing: 2 }}>
+      <div style={{ fontSize: 8, color: "#4a6070", fontFamily: "monospace", textAlign: "center", letterSpacing: 2 }}>
         SIGNAL.tv — GENEVA LAKE SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION<br/>SIGNAL.tv · CLAW AI UNIVERSE TRANSMISSION · © 2162
       </div>
     </div>
