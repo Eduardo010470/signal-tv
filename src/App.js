@@ -1794,8 +1794,8 @@ export default function App() {
         </div>
         <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 12, letterSpacing: 2 }}>
           {user ? (
-            <span onClick={handleSignOut} style={{ color: "#607888", cursor: "pointer" }}>SIGN OUT</span>
-            {isPremium && <span onClick={manageSubscription} style={{ color: "#607888", cursor: "pointer", marginLeft: 12 }}>⚙️ SUBSCRIPTION</span>}
+            <><span onClick={handleSignOut} style={{ color: "#607888", cursor: "pointer" }}>SIGN OUT</span>
+            {isPremium && <span onClick={manageSubscription} style={{ color: "#607888", cursor: "pointer", marginLeft: 12 }}>⚙️ SUBSCRIPTION</span>}</>
           ) : (
             <div style={{ display: "flex", gap: 8 }}>
               <button onClick={handleGoogleLogin} style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "4px 12px", fontSize: 12, letterSpacing: 2, cursor: "pointer", fontFamily: "monospace" }}>GOOGLE</button>
