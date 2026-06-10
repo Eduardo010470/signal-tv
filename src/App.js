@@ -1809,7 +1809,7 @@ export default function App() {
                 <a href={STRIPE_USD} target="_blank" rel="noreferrer" style={{ background: CYAN, color: BG, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACCESS — $4.99/mo</a>
                 <a href={STRIPE_BRL} target="_blank" rel="noreferrer" style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACESSO — R$12,90/mês</a>
               </div>
-              <div style={{ fontSize: 12, color: "#7090a8" }}>Already subscribed? <span onClick={handleGoogleLogin} style={{ color: CYAN, cursor: "pointer" }}>Sign in with Google →</span></div>
+              <div style={{ fontSize: 12, color: "#7090a8", letterSpacing: 1, fontFamily: "monospace" }}>Access granted to all subscribers. Secure transmission. Cancel anytime.</div>
             </div>
             <div style={{ padding: "40px 20px", maxWidth: 760, margin: "0 auto" }}>
               <div style={{ fontSize: 12, letterSpacing: 4, color: "#7090a8", marginBottom: 24, textAlign: "center" }}>— RECENT TRANSMISSIONS —</div>
