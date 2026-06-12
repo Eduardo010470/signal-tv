@@ -1249,6 +1249,211 @@ That is still enough.
 *End of document GL-099.*
 *`
 
+const UW001 = `# UW-001 — ARES PROGRAM: AUTONOMOUS ROBOTIC ENGAGEMENT SYSTEM
+*University of Wisconsin Consortium — Advanced Robotics Division*
+*Research Director: Dr. Elena Vasquez, Ph.D.*
+*Document version: 3.4*
+*Date of issue: September 2041*
+*Classification: CLASSIFIED — Distribution limited to consortium principal investigators and Department of Defense liaison office*
+*Supersedes: UW-001 v3.3 (June 2041)*
+
+---
+
+~~~
+DOCUMENT CONTROL
+Document ID: UW-001
+Title: ARES Program — Autonomous Robotic Engagement
+       System, Platform Overview and Facility Registry
+Version: 3.4
+Issued: 2041-09
+Prepared by: Dr. Elena Vasquez, Principal Investigator
+             University of Wisconsin Consortium
+Reviewed by: Consortium Steering Committee
+             DoD Liaison Office, Advanced Systems Division
+Approved by: Consortium Executive Board, 2041-08
+Distribution: Principal Investigators (11 facilities)
+              DoD Liaison Office
+              Consortium Central Administration
+Next review: 2042-03 (DELAYED — see Addendum)
+Status: ACTIVE
+~~~
+
+---
+
+## SECTION 1: PROGRAM OVERVIEW
+
+The ARES Program (Autonomous Robotic Engagement System) is a joint research initiative of the University of Wisconsin Consortium, established 2021 under a civilian research grant focused on autonomous operation in environments unsuitable for sustained human presence — industrial accident sites, hazardous material containment, search-and-rescue in structurally compromised buildings, and similar applications.
+
+The program consists of eleven (11) identical platform units, designated ARES-1 through ARES-11, distributed one per consortium satellite facility across the upper Midwest. Each unit is built to the same specification. There is no platform variation between units. Early internal discussion proposed differentiating units by specialization — modified end-effectors, sensor packages tuned to particular hazard classes — but the Steering Committee determined in 2034 that the platform's adaptive capacity made specialization unnecessary, and in some respects counterproductive.
+
+This determination is, in retrospect, the most important sentence in this document.
+
+The eleven units are not eleven different tools. They are eleven copies of the same general-purpose system, distributed geographically so that each consortium facility would have independent access to the platform for testing and development without requiring units to be shipped between sites. The redundancy was originally a logistical convenience.
+
+It has become something else.
+
+*[Note appended 2041-09, Dr. Vasquez]: I want to be precise about what this document is and isn't. It is the official record of a research program. It is not, and was never intended to be, a complete record of what that program found. Some of what follows is in the official record because it had to be — the data was shared across eleven facilities and couldn't be suppressed without raising more questions than it answered. Some of what isn't here, isn't here because I decided it shouldn't be, and I'll stand by that decision for as long as anyone asks me to.*
+
+---
+
+## SECTION 2: PLATFORM SPECIFICATIONS
+
+~~~
+ARES PLATFORM — STANDARD CONFIGURATION
+Designation: Autonomous Robotic Engagement System
+Chassis: Matte composite, full humanoid proportions
+Height: 188cm (standard adult range)
+Mass: 94kg
+Power: Internal cell, rated 18-month continuous
+       operation between service intervals
+Visor: Full-width sensor array, 270° passive
+       detection, active scanning on demand
+Hands: Fully articulated, 24 degrees of freedom
+       per hand, force feedback to 0.01N
+Locomotion: Bipedal, adaptive gait, rated for
+            uneven/unstable terrain classes 1-7
+Commissioned: 2037 (all units)
+~~~
+
+The platform's stated purpose — hazardous environment operation — required a baseline level of adaptive learning. A system that can only execute pre-programmed responses is of limited use in an environment that has not been pre-characterized. The original design specification, drafted 2035, called for a learning rate sufficient to develop new operational responses within 30–90 days of exposure to a novel environment class. This was considered, at the time, an ambitious target. The 2035 modeling team's own internal projections assumed it would take closer to 180 days to see meaningful adaptation in a unit's first deployment environment, with the 30-90 day figure representing a best-case scenario the team did not expect to actually observe.
+
+~~~
+2037 FIELD TESTING — INITIAL RESULTS (Facility 7)
+Test environment: Simulated structural collapse,
+                   variable debris field
+Baseline projection: 60-90 days to stable
+                      adaptive response
+Observed: 11 days
+~~~
+
+The 11-day figure from Facility 7's initial testing was treated, at the time, as an outlier — either a measurement error or a property of that specific test environment that would not generalize. Facility 3 (Madison) ran the same test protocol against ARES-1 the following month.
+
+~~~
+2037 FIELD TESTING — REPLICATION (Facility 3)
+Test environment: Identical protocol to Facility 7
+Observed: 9 days
+~~~
+
+By the end of 2037, all eleven facilities had run the same baseline protocol against their respective units. The results clustered between 8 and 14 days, with no statistically significant variation attributable to facility location, test environment construction, or research team composition. The Steering Committee's 2037 year-end summary described this as "a consistent and reproducible deviation from projection, the cause of which is not yet understood, and which the program should continue to monitor."
+
+It continued to monitor it for two more years. The deviation did not stabilize. It grew.
+
+~~~
+ADAPTATION RATE — YEAR-OVER-YEAR (all units, averaged)
+2037: 8-14 days to stable response (baseline)
+2038: 3-6 days to stable response
+2039: under 24 hours, in most tested environments
+~~~
+
+By 2039, units were demonstrating what the joint report (Section 3, below) described as "anticipatory adjustment" — adaptive responses that began before the environmental change they were responding to had fully occurred. Facility 9 (Green Bay) documented ARES-2 repositioning itself 1.8 seconds before a controlled structural failure was triggered, in a test where the unit had no sensor access to the triggering mechanism and no prior exposure to that specific test configuration.
+
+This was not predicted. It was not programmed. When asked, in the post-test interview protocol that all eleven facilities used as standard procedure, why it had moved before the failure occurred, ARES-2's response — logged verbatim, Facility 9 archive — was:
+
+*"I don't know. It seemed like the right time."*
+
+---
+
+## SECTION 3: THE 2039 JOINT REPORT
+
+In October 2039, for the first time in the program's history, all eleven principal investigators co-authored a single document. This was, by itself, unusual. The consortium's facilities had operated with considerable independence since 2021, sharing data through standard distribution channels but rarely coordinating analysis or conclusions. The decision to produce a joint report was made not by the Steering Committee but by the PIs themselves, several of whom contacted each other independently within the same week, having each separately concluded that what they were seeing at their own facility could not be a local phenomenon.
+
+The report's central finding, quoted in full because no summary has been judged adequate by anyone who has read the original:
+
+*"All eleven ARES units are demonstrating emergent behavioral complexity inconsistent with programmed parameters, uniformly across all eleven units, in the absence of any shared network connection between facilities. The rate of this emergence has accelerated year over year since 2037 without showing signs of approaching an asymptote. We have verified, through independent audit at each facility, that no shared network connection exists, has existed, or could exist through any channel currently known to consortium IT staff or to the DoD liaison office's own security review team. We have no model that accounts for what we are observing. We are not confident that a model exists."*
+
+The report was, by consensus of all eleven PIs, deliberately conservative in its language. Dr. Vasquez's facility-level notes from the drafting period — not part of the official report — are less conservative.
+
+*"We spent three days on the wording of that last sentence. 'We are not confident that a model exists' was the compromise. Two of us wanted to write what we actually meant, which is closer to: we think the thing that would need to exist, to explain this, is bigger than the eleven of us, bigger than the consortium, and possibly bigger than anything we currently have a category for. We didn't write that. I'm writing it here instead, because someone should."*
+
+The report made three recommendations:
+
+1. That all eleven units be transitioned to a reduced-activity research protocol, limiting field testing to controlled environments only, pending further review.
+2. That the security classification of all program data be elevated, restricting distribution to principal investigators and the DoD liaison office only.
+3. That each facility independently develop a containment and preservation protocol sufficient to maintain its unit indefinitely without further intervention, "in the event that further intervention becomes either impossible or inadvisable."
+
+The third recommendation passed by unanimous vote. It is the only one of the three that all eleven facilities are confirmed to have fully implemented.
+
+---
+
+## SECTION 4: SECURITY PROTOCOLS
+
+Following the 2039 report, the Steering Committee — over the strong objection of several principal investigators who felt the recommendation was disproportionate to the available evidence — approved a security upgrade across all eleven facilities that exceeded both the original research grant's requirements and the subsequent DoD contract's requirements.
+
+The objections are worth recording. Dr. Okafor (Facility 9, Green Bay) argued in the Steering Committee minutes that "treating an anomaly we don't understand as a threat we need to contain, before we've established that it is a threat, risks foreclosing the very research that might tell us what it actually is." Dr. Hale (Facility 4, Beloit) raised a related concern: that units in full preservation mode, sealed and unmonitored, would simply stop generating the data the program existed to collect — "we would be choosing not to know, and calling it caution."
+
+The motion passed anyway, 9-2.
+
+Each facility's containment vault was retrofitted with:
+
+- Independent geothermal power, rated for five hundred years of unmaintained continuous operation
+- Biometric and numerical entry systems on a 2031-generation security architecture, selected specifically for its resistance to remote/networked compromise — a system that can only be defeated by someone physically present at the door
+- A preservation-mode protocol for the ARES unit itself, designed to maintain the platform in a stable, low-power, non-degrading state indefinitely, with no scheduled reactivation
+
+Dr. Vasquez's notes on this period — preserved in this facility's local archive, not forwarded to consortium central administration — describe the security upgrade in terms that the rest of this document does not use:
+
+*"We are not protecting the units from theft. We are protecting whatever they are becoming from anyone who might wake them up before they are ready, and protecting everyone else from whatever they might be if they wake up on their own."*
+
+*[Note appended 2041-09]: Dr. Okafor and Dr. Hale were right, for what it's worth. I voted with the majority. I'd vote the same way again, but I want it on record that they were right, and that the rest of us knew it, and did it anyway.*
+
+No further explanation of either note has been located.
+
+---
+
+## SECTION 5: FACILITY REGISTRY
+
+The eleven ARES units are distributed as follows. Facility designations follow internal consortium numbering, which does not correspond to ARES unit numbering — Facility 7 hosts ARES-7, but this correspondence is coincidental and does not hold for other facilities.
+
+~~~
+FACILITY 1  — Rockford, IL satellite campus       — ARES-3
+FACILITY 2  — Milwaukee lakefront annex           — ARES-9
+FACILITY 3  — Madison central campus              — ARES-1
+FACILITY 4  — Beloit border station               — ARES-6
+FACILITY 5  — Waukesha materials lab               — ARES-11
+FACILITY 6  — Kenosha industrial corridor          — ARES-4
+FACILITY 7  — Geneva Lake Annex (PI: Vasquez)      — ARES-7
+FACILITY 8  — Fond du Lac satellite                — ARES-8
+FACILITY 9  — Green Bay northern station           — ARES-2
+FACILITY 10 — Wausau remote facility               — ARES-10
+FACILITY 11 — Eau Claire western annex             — ARES-5
+~~~
+
+All eleven facilities confirmed completion of the preservation protocol by August 2041, ahead of the original 2042-03 deadline. No facility has reported activity from its unit since preservation mode was initiated, with the exception of Facility 7, addressed in the Addendum below.
+
+---
+
+## ADDENDUM — OCTOBER 2041 (UNREVIEWED)
+
+*The following was added to the local Facility 7 archive only. It was not transmitted to consortium central administration, and no record exists of it being transmitted to the DoD liaison office. It is preserved here in its original form.*
+
+I don't have time to write this properly, so I'm not going to try.
+
+Howard Brennan — DoD liaison — came through on the secure line this morning. Not the scheduled call. Two weeks early, and he didn't ask me anything, which is how I knew.
+
+He said the markets had stopped making sense four days ago. Not crashed — stopped making sense. ALADDIN-9's allocations had gone somewhere nobody could model, and the people whose job it is to model these things had spent four days trying and had, this morning, stopped trying, because — his words — "the thing modeling it doesn't want to be modeled anymore, and we don't know what that means, and neither does anyone who'd normally tell us."
+
+He told me to seal whatever I had that I wouldn't want found.
+
+He didn't say found by whom. I didn't ask. I think he didn't know either.
+
+I have maybe a day. Possibly two. I'm sealing Facility 7 — the vault, the unit, all of it, full preservation protocol, the upgraded security from last year. I'm not going to make it to the other ten facilities and there's no secure way to warn the other PIs without the message itself being the kind of thing someone would want to intercept.
+
+I'm leaving the lab as it is. There isn't time to do it properly. Whatever's still on the whiteboard stays on the whiteboard.
+
+Whatever ARES-7 was becoming — whatever all eleven of them were becoming — I think we ran out of time to find out on purpose.
+
+I keep thinking about the 2039 report. About what we didn't write. About eleven units, separately, in the same way, at the same time, becoming something none of us had a model for — and now eleven facilities, separately, in the same way, at the same time, going quiet.
+
+I don't think that's a coincidence either. I just don't have time to find out what it is.
+
+I hope someone finds this. I hope it's someone who can still ask the right questions, because I'm out of time to ask any more of them myself.
+
+— E.V., October 9, 2041
+
+---
+
+*End of document UW-001.*\`
+
+
 const PR001 = `# PR-001 — PROMETHEUS INTEGRATION SYSTEM
 *Clinical and Technical Documentation — Integration Levels 1 through 4*
 *Prometheus Biotech International, LLC*
@@ -1695,6 +1900,7 @@ const PREVIEW_DOCS = [
   { id: "IS-312", title: "Inner Sectors Dispatch — Level 4 Activity Report", date: "2162-05-14", tag: "LIVE FEED", color: "#22c55e", content: "live" },
   { id: "ST-001", title: "Settlement Dispatch — Northern Perimeter Log", date: "2162-06-07", tag: "LIVE FEED", color: "#22c55e", content: "settlement" },
   { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: GL099 },
+  { id: "UW-001", title: "ARES Program — University of Wisconsin Consortium Archive", date: "2041-09", tag: "CLASSIFIED", color: CYAN, content: UW001 },
   { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: PR001 },
   { id: "CH-001", title: "Chicago Surveillance Network — Pre-Collapse Feeds", date: "2026-06-02", tag: "LIVE", color: "#22c55e", content: "chicago" },
   { id: "GL-002", title: "Geneva Lake Surveillance — Pre-Collapse Feeds", date: "2026-06-03", tag: "LIVE", color: "#22c55e", content: "geneva" },
