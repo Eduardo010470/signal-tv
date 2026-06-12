@@ -767,240 +767,308 @@ function Camera({ label, coords, type, docId }) {
 
       // UW-001 — ARES-7 in alcove (preservation mode)
       if (type === "uw_ares") {
-        ctx.fillStyle = "#04060a"
+        ctx.fillStyle = "#0a1018"
         ctx.fillRect(0, 0, w, h)
-        // Alcove back wall — recessed panel with subtle grid
+        // Alcove back wall — recessed panel with grid, lit
         const wallG = ctx.createLinearGradient(0, 0, 0, h)
-        wallG.addColorStop(0, "#070b12")
-        wallG.addColorStop(1, "#02040a")
+        wallG.addColorStop(0, "#162230")
+        wallG.addColorStop(1, "#0a1018")
         ctx.fillStyle = wallG
-        ctx.fillRect(w*0.18, 0, w*0.64, h*0.92)
-        ctx.strokeStyle = "rgba(0,245,255,0.05)"
+        ctx.fillRect(w*0.12, 0, w*0.76, h*0.92)
+        ctx.strokeStyle = "rgba(0,245,255,0.1)"
         ctx.lineWidth = 0.5
-        for (let x = w*0.18; x < w*0.82; x += 8) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h*0.92); ctx.stroke() }
+        for (let x = w*0.12; x < w*0.88; x += 8) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h*0.92); ctx.stroke() }
+        // Back glow behind the unit
+        const haloG = ctx.createRadialGradient(w/2, h*0.45, 5, w/2, h*0.45, h*0.55)
+        haloG.addColorStop(0, "rgba(0,245,255,0.18)")
+        haloG.addColorStop(1, "rgba(0,245,255,0)")
+        ctx.fillStyle = haloG
+        ctx.fillRect(w*0.12, 0, w*0.76, h*0.92)
         // Floor
-        ctx.fillStyle = "#020305"
+        ctx.fillStyle = "#0d1420"
         ctx.fillRect(0, h*0.92, w, h*0.08)
-        // ARES-7 silhouette — matte chassis, visor glow
+        ctx.strokeStyle = "rgba(0,245,255,0.08)"
+        ctx.beginPath(); ctx.moveTo(0, h*0.92); ctx.lineTo(w, h*0.92); ctx.stroke()
+
         const cx = w * 0.5
-        const topY = h * 0.1
-        const bodyH = h * 0.74
-        // Body — slightly tapered humanoid block
-        const bodyGrad = ctx.createLinearGradient(cx - 20, topY, cx + 20, topY + bodyH)
-        bodyGrad.addColorStop(0, "#11161e")
-        bodyGrad.addColorStop(0.5, "#0a0e14")
-        bodyGrad.addColorStop(1, "#05080c")
+        const topY = h * 0.08
+        // Legs
+        ctx.fillStyle = "#1c2734"
+        ctx.fillRect(cx - 11, h*0.62, 8, h*0.30)
+        ctx.fillRect(cx + 3, h*0.62, 8, h*0.30)
+        // Feet
+        ctx.fillStyle = "#222e3c"
+        ctx.fillRect(cx - 13, h*0.90, 12, 4)
+        ctx.fillRect(cx + 1, h*0.90, 12, 4)
+        // Torso — tapered humanoid block, lit material
+        const bodyGrad = ctx.createLinearGradient(cx - 22, topY, cx + 22, h*0.65)
+        bodyGrad.addColorStop(0, "#2a3848")
+        bodyGrad.addColorStop(0.5, "#1c2734")
+        bodyGrad.addColorStop(1, "#141c26")
         ctx.fillStyle = bodyGrad
         ctx.beginPath()
-        ctx.moveTo(cx - 17, topY + 18)
-        ctx.lineTo(cx + 17, topY + 18)
-        ctx.lineTo(cx + 21, topY + bodyH)
-        ctx.lineTo(cx - 21, topY + bodyH)
+        ctx.moveTo(cx - 18, topY + 16)
+        ctx.lineTo(cx + 18, topY + 16)
+        ctx.lineTo(cx + 22, h*0.64)
+        ctx.lineTo(cx - 22, h*0.64)
         ctx.closePath()
         ctx.fill()
+        // Chassis seam highlights
+        ctx.strokeStyle = "rgba(0,245,255,0.18)"
+        ctx.lineWidth = 0.6
+        ctx.beginPath(); ctx.moveTo(cx - 22, topY + 26); ctx.lineTo(cx + 22, topY + 26); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(cx - 20, h*0.42); ctx.lineTo(cx + 20, h*0.42); ctx.stroke()
         // Head / visor housing
-        ctx.fillStyle = "#0c1118"
-        ctx.fillRect(cx - 13, topY, 26, 20)
-        // Visor — full width, breathing glow
-        const visorPulse = 0.35 + Math.sin(frame * 0.025) * 0.18
-        ctx.fillStyle = `rgba(0,245,255,${visorPulse})`
+        ctx.fillStyle = "#26323f"
+        ctx.fillRect(cx - 13, topY, 26, 18)
+        ctx.strokeStyle = "rgba(0,245,255,0.15)"
+        ctx.strokeRect(cx - 13, topY, 26, 18)
+        // Visor — full width, bright breathing glow
+        const visorPulse = 0.6 + Math.sin(frame * 0.025) * 0.3
+        ctx.fillStyle = `rgba(80,230,255,${visorPulse})`
         ctx.shadowColor = "#00f5ff"
-        ctx.shadowBlur = 6 + Math.sin(frame*0.025)*3
-        ctx.fillRect(cx - 11, topY + 7, 22, 4)
+        ctx.shadowBlur = 10 + Math.sin(frame*0.025)*4
+        ctx.fillRect(cx - 11, topY + 6, 22, 5)
         ctx.shadowBlur = 0
-        // Shoulder seams
-        ctx.strokeStyle = "rgba(0,245,255,0.06)"
-        ctx.lineWidth = 0.5
-        ctx.beginPath(); ctx.moveTo(cx - 21, topY + 28); ctx.lineTo(cx + 21, topY + 28); ctx.stroke()
-        ctx.beginPath(); ctx.moveTo(cx - 19, topY + bodyH*0.55); ctx.lineTo(cx + 19, topY + bodyH*0.55); ctx.stroke()
-        // Arms — at sides, hands open
-        ctx.fillStyle = "#080b10"
-        ctx.fillRect(cx - 25, topY + 30, 5, bodyH * 0.5)
-        ctx.fillRect(cx + 20, topY + 30, 5, bodyH * 0.5)
-        // Hand glints — articulated fingers, faint cyan rim light
+        // Arms — at sides, visible from shoulder to hand
+        ctx.fillStyle = "#1c2734"
+        ctx.fillRect(cx - 27, topY + 18, 6, h*0.40)
+        ctx.fillRect(cx + 21, topY + 18, 6, h*0.40)
+        // Shoulder highlights
+        ctx.fillStyle = "#324252"
+        ctx.fillRect(cx - 27, topY + 18, 6, 5)
+        ctx.fillRect(cx + 21, topY + 18, 6, 5)
+        // Hands — open, articulated fingers, rim-lit
         for (let s = -1; s <= 1; s += 2) {
-          const hx = cx + s * 22.5
-          const hy = topY + 30 + bodyH * 0.5
-          ctx.strokeStyle = "rgba(0,245,255,0.08)"
-          ctx.lineWidth = 0.5
+          const hx = cx + s * 24
+          const hy = topY + 18 + h*0.40
+          ctx.fillStyle = "#222e3c"
+          ctx.fillRect(hx - 4, hy, 8, 7)
+          ctx.strokeStyle = "rgba(0,245,255,0.35)"
+          ctx.lineWidth = 0.6
           for (let f = 0; f < 4; f++) {
             ctx.beginPath()
-            ctx.moveTo(hx - 2 + f*1.3, hy)
-            ctx.lineTo(hx - 2 + f*1.3, hy + 3 + (f%2))
+            ctx.moveTo(hx - 3.5 + f*2.3, hy + 7)
+            ctx.lineTo(hx - 3.5 + f*2.3, hy + 11)
             ctx.stroke()
           }
         }
-        // Connection cable — faint glowing line from wrist port to floor conduit
-        const cablePulse = 0.15 + Math.sin(frame * 0.04) * 0.1
+        // Connection cable — bright glowing line from wrist port to floor conduit
+        const cablePulse = 0.35 + Math.sin(frame * 0.04) * 0.2
         ctx.strokeStyle = `rgba(0,245,255,${cablePulse})`
-        ctx.lineWidth = 1
+        ctx.lineWidth = 1.2
         ctx.beginPath()
-        ctx.moveTo(cx + 23, topY + 30 + bodyH*0.5)
-        ctx.quadraticCurveTo(cx + 30, h*0.85, cx + 14, h*0.92)
+        ctx.moveTo(cx + 28, topY + 18 + h*0.40 + 5)
+        ctx.quadraticCurveTo(cx + 36, h*0.85, cx + 16, h*0.92)
         ctx.stroke()
-        // Charge status particles rising along the cable
-        for (let i = 0; i < 6; i++) {
-          const t = ((frame * 0.6 + i * 22) % 132) / 132
-          const px = cx + 23 + (cx + 14 - (cx+23)) * t
-          const py = (topY + 30 + bodyH*0.5) + (h*0.92 - (topY+30+bodyH*0.5)) * t
-          ctx.fillStyle = `rgba(0,245,255,${0.5*(1-t)})`
-          ctx.beginPath(); ctx.arc(px, py, 1, 0, Math.PI*2); ctx.fill()
+        // Charge particles rising along the cable
+        for (let i = 0; i < 7; i++) {
+          const t = ((frame * 0.6 + i * 19) % 130) / 130
+          const sx = cx + 28, sy = topY + 18 + h*0.40 + 5
+          const ex = cx + 16, ey = h*0.92
+          const px = sx + (ex - sx) * t
+          const py = sy + (ey - sy) * t
+          ctx.fillStyle = `rgba(0,245,255,${0.7*(1-t)})`
+          ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+          ctx.beginPath(); ctx.arc(px, py, 1.3, 0, Math.PI*2); ctx.fill()
+          ctx.shadowBlur = 0
         }
-        // Ambient dust motes
-        for (let i = 0; i < 14; i++) {
+        // Ambient dust motes catching the light
+        for (let i = 0; i < 16; i++) {
           const dx = (i * 37 + frame * 0.05) % w
           const dy = (i * 23) % (h*0.85)
-          ctx.fillStyle = `rgba(0,245,255,${0.05 + Math.sin(frame*0.02+i)*0.03})`
+          ctx.fillStyle = `rgba(150,230,255,${0.08 + Math.sin(frame*0.02+i)*0.05})`
           ctx.fillRect(dx, dy, 1, 1)
         }
         // Charge percentage readout
         const chargePct = (61 + Math.floor((frame * 0.003)) % 3)
-        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
-        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.fillStyle = "rgba(0,0,0,0.65)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(120,235,255,0.95)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 5
         ctx.font = "7px monospace"; ctx.fillText(`PRESERVATION ALCOVE — CHG ${chargePct}%`, 3, h-5); ctx.shadowBlur = 0
       }
 
       // UW-001 — Sealed vault door / facility exterior
       if (type === "uw_vault") {
-        ctx.fillStyle = "#03050a"
+        ctx.fillStyle = "#0c1118"
         ctx.fillRect(0, 0, w, h)
-        // Concrete facade
+        // Concrete facade — lit from above
         const wallG = ctx.createLinearGradient(0, 0, 0, h)
-        wallG.addColorStop(0, "#0c1014")
-        wallG.addColorStop(1, "#06080c")
+        wallG.addColorStop(0, "#222b35")
+        wallG.addColorStop(1, "#10161e")
         ctx.fillStyle = wallG
         ctx.fillRect(0, 0, w, h*0.85)
-        // Concrete texture — subtle noise grid
-        ctx.strokeStyle = "rgba(255,255,255,0.015)"
+        // Concrete texture
+        ctx.strokeStyle = "rgba(255,255,255,0.03)"
         ctx.lineWidth = 0.5
         for (let x = 0; x < w; x += 14) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h*0.85); ctx.stroke() }
         for (let y = 0; y < h*0.85; y += 14) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke() }
         // Floor
-        ctx.fillStyle = "#020305"
+        ctx.fillStyle = "#0a0e14"
         ctx.fillRect(0, h*0.85, w, h*0.15)
-        // Vault door — centered, heavy seams
-        const doorW = w * 0.42
-        const doorH = h * 0.62
+        // Vault door — centered, heavy seams, lit
+        const doorW = w * 0.46
+        const doorH = h * 0.66
         const dx = (w - doorW) / 2
-        const dy = h * 0.16
+        const dy = h * 0.12
         const doorGrad = ctx.createLinearGradient(dx, dy, dx + doorW, dy + doorH)
-        doorGrad.addColorStop(0, "#1a2128")
-        doorGrad.addColorStop(0.5, "#10161c")
-        doorGrad.addColorStop(1, "#0a0f14")
+        doorGrad.addColorStop(0, "#3a4856")
+        doorGrad.addColorStop(0.5, "#283340")
+        doorGrad.addColorStop(1, "#1a222c")
         ctx.fillStyle = doorGrad
         ctx.fillRect(dx, dy, doorW, doorH)
-        // Door seams
-        ctx.strokeStyle = "rgba(0,245,255,0.07)"
-        ctx.lineWidth = 0.5
+        // Door rim highlight
+        ctx.strokeStyle = "rgba(0,245,255,0.2)"
+        ctx.lineWidth = 1
         ctx.strokeRect(dx + 4, dy + 4, doorW - 8, doorH - 8)
         for (let i = 1; i < 4; i++) {
+          ctx.strokeStyle = "rgba(0,245,255,0.1)"
+          ctx.lineWidth = 0.5
           ctx.beginPath()
           ctx.moveTo(dx + 4, dy + 4 + (doorH-8)*(i/4))
           ctx.lineTo(dx + doorW - 4, dy + 4 + (doorH-8)*(i/4))
           ctx.stroke()
         }
-        // Security panel — small, glowing
-        const panelPulse = 0.4 + Math.sin(frame * 0.03) * 0.25
-        ctx.fillStyle = "#0a0e12"
-        ctx.fillRect(dx + doorW*0.72, dy + doorH*0.42, 14, 10)
-        ctx.fillStyle = `rgba(34,197,94,${panelPulse})`
+        // Security panel — bright glowing
+        const panelPulse = 0.6 + Math.sin(frame * 0.03) * 0.3
+        ctx.fillStyle = "#1a2228"
+        ctx.fillRect(dx + doorW*0.68, dy + doorH*0.4, 22, 18)
+        ctx.strokeStyle = "rgba(34,197,94,0.4)"
+        ctx.strokeRect(dx + doorW*0.68, dy + doorH*0.4, 22, 18)
+        ctx.fillStyle = `rgba(80,255,140,${panelPulse})`
         ctx.shadowColor = "#22c55e"
-        ctx.shadowBlur = 5
-        ctx.fillRect(dx + doorW*0.72 + 2, dy + doorH*0.42 + 2, 10, 2)
+        ctx.shadowBlur = 8
+        ctx.fillRect(dx + doorW*0.68 + 3, dy + doorH*0.4 + 3, 16, 4)
         ctx.shadowBlur = 0
-        // LOCKED indicator text on panel
-        ctx.fillStyle = "rgba(34,197,94,0.6)"
-        ctx.font = "5px monospace"
-        ctx.fillText("SEALED", dx + doorW*0.72 - 1, dy + doorH*0.42 + 9)
+        // SEALED label — bright, with backing for contrast
+        ctx.fillStyle = "rgba(0,0,0,0.5)"
+        ctx.fillRect(dx + doorW*0.68 - 1, dy + doorH*0.4 + 9, 24, 9)
+        ctx.fillStyle = "rgba(120,255,170,0.95)"
+        ctx.shadowColor = "#22c55e"; ctx.shadowBlur = 4
+        ctx.font = "6px monospace"
+        ctx.fillText("SEALED", dx + doorW*0.68 + 1, dy + doorH*0.4 + 16)
+        ctx.shadowBlur = 0
         // Geothermal conduit running along the floor into the wall
-        ctx.strokeStyle = "rgba(255,160,0,0.12)"
-        ctx.lineWidth = 2
+        ctx.strokeStyle = "rgba(255,170,40,0.3)"
+        ctx.lineWidth = 2.5
         ctx.beginPath()
         ctx.moveTo(0, h*0.88)
-        ctx.lineTo(w*0.3, h*0.88)
-        ctx.lineTo(w*0.3, h*0.7)
+        ctx.lineTo(w*0.22, h*0.88)
+        ctx.lineTo(w*0.22, h*0.66)
         ctx.stroke()
         // Heat shimmer particles along conduit
         for (let i = 0; i < 10; i++) {
           const t = ((frame*0.8 + i*30) % 150) / 150
-          const px = w*0.3 * Math.min(t*2, 1)
-          const py = t < 0.5 ? h*0.88 : h*0.88 - (h*0.18) * ((t-0.5)*2)
-          ctx.fillStyle = `rgba(255,160,0,${0.4*(1-t)})`
-          ctx.beginPath(); ctx.arc(px, py, 1, 0, Math.PI*2); ctx.fill()
+          const px = w*0.22 * Math.min(t*2, 1)
+          const py = t < 0.5 ? h*0.88 : h*0.88 - (h*0.22) * ((t-0.5)*2)
+          ctx.fillStyle = `rgba(255,180,60,${0.6*(1-t)})`
+          ctx.shadowColor = "#ffaa28"; ctx.shadowBlur = 4
+          ctx.beginPath(); ctx.arc(px, py, 1.4, 0, Math.PI*2); ctx.fill()
+          ctx.shadowBlur = 0
         }
         // Oaks silhouette suggestion at top edge (exterior framing)
         for (let i = 0; i < 6; i++) {
           const tx = (i * 41 + 5)
-          ctx.fillStyle = "rgba(0,0,0,0.5)"
+          ctx.fillStyle = "rgba(5,8,12,0.6)"
           ctx.beginPath()
           ctx.arc(tx, 6, 9, 0, Math.PI*2)
           ctx.fill()
         }
-        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
-        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.fillStyle = "rgba(0,0,0,0.65)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(120,235,255,0.95)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 5
         ctx.font = "7px monospace"; ctx.fillText("FACILITY 7 — GENEVA LAKE ANNEX", 3, h-5); ctx.shadowBlur = 0
       }
 
       // UW-001 — Whiteboard with equations (animated, mid-thought)
       if (type === "uw_whiteboard") {
-        ctx.fillStyle = "#0a0c0e"
+        ctx.fillStyle = "#16191c"
         ctx.fillRect(0, 0, w, h)
-        // Whiteboard surface
+        // Whiteboard surface — bright
         const boardG = ctx.createLinearGradient(0, 0, w, h)
-        boardG.addColorStop(0, "#1c2024")
-        boardG.addColorStop(1, "#15181c")
+        boardG.addColorStop(0, "#3a4248")
+        boardG.addColorStop(1, "#2c3338")
         ctx.fillStyle = boardG
-        ctx.fillRect(w*0.04, h*0.05, w*0.92, h*0.78)
+        ctx.fillRect(w*0.03, h*0.05, w*0.94, h*0.78)
         // Frame
-        ctx.strokeStyle = "rgba(0,245,255,0.06)"
+        ctx.strokeStyle = "rgba(0,245,255,0.15)"
         ctx.lineWidth = 1
-        ctx.strokeRect(w*0.04, h*0.05, w*0.92, h*0.78)
-        // Equations — systems integration notation, written progressively
-        ctx.font = "6px monospace"
-        const lines = [
-          "∂Ψ/∂t = -iĤΨ + Γ(foundation)",
-          "L4: ∫ φ(x,τ) dτ → coherence",
-          "P(orient | freq) = σ(W·x+b)",
-          "δ(network) ≈ Σ nodes · e^-λt",
-          "847.3 MHz — carrier, pre-virus",
-          "[unfinished — see attached]",
+        ctx.strokeRect(w*0.03, h*0.05, w*0.94, h*0.78)
+
+        // Two-column equation layout — fills the board
+        ctx.font = "8px monospace"
+        const colL = [
+          "dY/dt = -iHY",
+          "  + G(found.)",
+          "",
+          "L4: I f(x,t)dt",
+          "  -> coherence",
+          "",
+          "d(net) ~",
+          "  S nodes*e^-lt",
+        ]
+        const colR = [
+          "P(orient|f)",
+          "  = s(W.x+b)",
+          "",
+          "847.3 MHz",
+          "carrier freq",
+          "pre-virus",
+          "",
+          "[unfinished --",
+          " see attached]",
         ]
         const cycle = frame % 480
-        const visibleChars = Math.floor(cycle / 2)
-        let charCount = 0
-        lines.forEach((line, i) => {
+        const totalChars = colL.join("\n").length + colR.join("\n").length
+        const visibleChars = Math.floor((cycle / 440) * totalChars)
+
+        let count = 0
+        colL.forEach((line, i) => {
           const y = h*0.16 + i * 11
-          const remaining = Math.max(0, Math.min(line.length, visibleChars - charCount))
-          const shown = line.slice(0, remaining)
-          charCount += line.length
-          ctx.fillStyle = i === lines.length - 1 ? "rgba(255,160,0,0.5)" : "rgba(0,245,255,0.55)"
-          ctx.fillText(shown, w*0.08, y)
-          // Cursor on the actively-writing line
-          if (remaining < line.length && remaining > 0 && Math.floor(frame/15)%2===0) {
-            const cw = ctx.measureText(shown).width
-            ctx.fillStyle = "rgba(0,245,255,0.7)"
-            ctx.fillRect(w*0.08 + cw + 1, y - 5, 3, 6)
+          const remain = Math.max(0, Math.min(line.length, visibleChars - count))
+          count += line.length
+          ctx.fillStyle = "rgba(120,235,255,0.95)"
+          ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 2
+          ctx.fillText(line.slice(0, remain), w*0.06, y)
+          ctx.shadowBlur = 0
+          if (remain < line.length && remain > 0 && Math.floor(frame/15)%2===0) {
+            const cw = ctx.measureText(line.slice(0, remain)).width
+            ctx.fillStyle = "rgba(120,235,255,0.9)"
+            ctx.fillRect(w*0.06 + cw + 1, y - 6, 3, 7)
           }
         })
+        colR.forEach((line, i) => {
+          const y = h*0.16 + i * 10
+          const remain = Math.max(0, Math.min(line.length, visibleChars - count))
+          count += line.length
+          const isLast = i >= colR.length - 2
+          ctx.fillStyle = isLast ? "rgba(255,180,60,0.95)" : "rgba(120,235,255,0.95)"
+          ctx.shadowColor = isLast ? "#ffaa28" : "#00f5ff"; ctx.shadowBlur = 2
+          ctx.fillText(line.slice(0, remain), w*0.54, y)
+          ctx.shadowBlur = 0
+          if (remain < line.length && remain > 0 && Math.floor(frame/15)%2===0) {
+            const cw = ctx.measureText(line.slice(0, remain)).width
+            ctx.fillStyle = isLast ? "rgba(255,180,60,0.9)" : "rgba(120,235,255,0.9)"
+            ctx.fillRect(w*0.54 + cw + 1, y - 6, 3, 7)
+          }
+        })
+
         // Marker tray with dried markers
-        ctx.fillStyle = "#0c0e10"
-        ctx.fillRect(w*0.04, h*0.83, w*0.92, h*0.05)
+        ctx.fillStyle = "#1c2024"
+        ctx.fillRect(w*0.03, h*0.83, w*0.94, h*0.05)
         for (let i = 0; i < 4; i++) {
-          ctx.fillStyle = i === 1 ? "rgba(255,160,0,0.3)" : "rgba(120,130,140,0.3)"
-          ctx.fillRect(w*0.1 + i*16, h*0.835, 10, 3)
+          ctx.fillStyle = i === 1 ? "rgba(255,170,40,0.5)" : "rgba(180,190,200,0.4)"
+          ctx.fillRect(w*0.08 + i*16, h*0.835, 10, 3)
         }
-        // Loop the writing animation by clearing toward the end of the cycle
+        // Loop fade-out near end of cycle
         if (cycle > 440) {
-          const fadeA = (cycle - 440) / 40
-          ctx.fillStyle = `rgba(28,32,36,${fadeA})`
-          ctx.fillRect(w*0.04, h*0.05, w*0.92, h*0.78)
+          const fadeA = (cycle - 440) / 40 * 0.7
+          ctx.fillStyle = `rgba(44,51,56,${fadeA})`
+          ctx.fillRect(w*0.03, h*0.05, w*0.94, h*0.78)
         }
-        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
-        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.fillStyle = "rgba(0,0,0,0.65)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(120,235,255,0.95)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 5
         ctx.font = "7px monospace"; ctx.fillText("DR. VASQUEZ — LAST ENTRY 2041-10-09", 3, h-5); ctx.shadowBlur = 0
       }
 
-      // ST-001 — Cow in field
       // ST-001 — Cow in field
       if (type === "st_cow") {
         ctx.fillStyle = "#0a0f08"
