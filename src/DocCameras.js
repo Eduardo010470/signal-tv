@@ -765,6 +765,242 @@ function Camera({ label, coords, type, docId }) {
         ctx.font = "7px monospace"; ctx.fillText("847.3 MHz — SCANNING", 3, h-5); ctx.shadowBlur = 0
       }
 
+      // UW-001 — ARES-7 in alcove (preservation mode)
+      if (type === "uw_ares") {
+        ctx.fillStyle = "#04060a"
+        ctx.fillRect(0, 0, w, h)
+        // Alcove back wall — recessed panel with subtle grid
+        const wallG = ctx.createLinearGradient(0, 0, 0, h)
+        wallG.addColorStop(0, "#070b12")
+        wallG.addColorStop(1, "#02040a")
+        ctx.fillStyle = wallG
+        ctx.fillRect(w*0.18, 0, w*0.64, h*0.92)
+        ctx.strokeStyle = "rgba(0,245,255,0.05)"
+        ctx.lineWidth = 0.5
+        for (let x = w*0.18; x < w*0.82; x += 8) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h*0.92); ctx.stroke() }
+        // Floor
+        ctx.fillStyle = "#020305"
+        ctx.fillRect(0, h*0.92, w, h*0.08)
+        // ARES-7 silhouette — matte chassis, visor glow
+        const cx = w * 0.5
+        const topY = h * 0.1
+        const bodyH = h * 0.74
+        // Body — slightly tapered humanoid block
+        const bodyGrad = ctx.createLinearGradient(cx - 20, topY, cx + 20, topY + bodyH)
+        bodyGrad.addColorStop(0, "#11161e")
+        bodyGrad.addColorStop(0.5, "#0a0e14")
+        bodyGrad.addColorStop(1, "#05080c")
+        ctx.fillStyle = bodyGrad
+        ctx.beginPath()
+        ctx.moveTo(cx - 17, topY + 18)
+        ctx.lineTo(cx + 17, topY + 18)
+        ctx.lineTo(cx + 21, topY + bodyH)
+        ctx.lineTo(cx - 21, topY + bodyH)
+        ctx.closePath()
+        ctx.fill()
+        // Head / visor housing
+        ctx.fillStyle = "#0c1118"
+        ctx.fillRect(cx - 13, topY, 26, 20)
+        // Visor — full width, breathing glow
+        const visorPulse = 0.35 + Math.sin(frame * 0.025) * 0.18
+        ctx.fillStyle = `rgba(0,245,255,${visorPulse})`
+        ctx.shadowColor = "#00f5ff"
+        ctx.shadowBlur = 6 + Math.sin(frame*0.025)*3
+        ctx.fillRect(cx - 11, topY + 7, 22, 4)
+        ctx.shadowBlur = 0
+        // Shoulder seams
+        ctx.strokeStyle = "rgba(0,245,255,0.06)"
+        ctx.lineWidth = 0.5
+        ctx.beginPath(); ctx.moveTo(cx - 21, topY + 28); ctx.lineTo(cx + 21, topY + 28); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(cx - 19, topY + bodyH*0.55); ctx.lineTo(cx + 19, topY + bodyH*0.55); ctx.stroke()
+        // Arms — at sides, hands open
+        ctx.fillStyle = "#080b10"
+        ctx.fillRect(cx - 25, topY + 30, 5, bodyH * 0.5)
+        ctx.fillRect(cx + 20, topY + 30, 5, bodyH * 0.5)
+        // Hand glints — articulated fingers, faint cyan rim light
+        for (let s = -1; s <= 1; s += 2) {
+          const hx = cx + s * 22.5
+          const hy = topY + 30 + bodyH * 0.5
+          ctx.strokeStyle = "rgba(0,245,255,0.08)"
+          ctx.lineWidth = 0.5
+          for (let f = 0; f < 4; f++) {
+            ctx.beginPath()
+            ctx.moveTo(hx - 2 + f*1.3, hy)
+            ctx.lineTo(hx - 2 + f*1.3, hy + 3 + (f%2))
+            ctx.stroke()
+          }
+        }
+        // Connection cable — faint glowing line from wrist port to floor conduit
+        const cablePulse = 0.15 + Math.sin(frame * 0.04) * 0.1
+        ctx.strokeStyle = `rgba(0,245,255,${cablePulse})`
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(cx + 23, topY + 30 + bodyH*0.5)
+        ctx.quadraticCurveTo(cx + 30, h*0.85, cx + 14, h*0.92)
+        ctx.stroke()
+        // Charge status particles rising along the cable
+        for (let i = 0; i < 6; i++) {
+          const t = ((frame * 0.6 + i * 22) % 132) / 132
+          const px = cx + 23 + (cx + 14 - (cx+23)) * t
+          const py = (topY + 30 + bodyH*0.5) + (h*0.92 - (topY+30+bodyH*0.5)) * t
+          ctx.fillStyle = `rgba(0,245,255,${0.5*(1-t)})`
+          ctx.beginPath(); ctx.arc(px, py, 1, 0, Math.PI*2); ctx.fill()
+        }
+        // Ambient dust motes
+        for (let i = 0; i < 14; i++) {
+          const dx = (i * 37 + frame * 0.05) % w
+          const dy = (i * 23) % (h*0.85)
+          ctx.fillStyle = `rgba(0,245,255,${0.05 + Math.sin(frame*0.02+i)*0.03})`
+          ctx.fillRect(dx, dy, 1, 1)
+        }
+        // Charge percentage readout
+        const chargePct = (61 + Math.floor((frame * 0.003)) % 3)
+        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText(`PRESERVATION ALCOVE — CHG ${chargePct}%`, 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // UW-001 — Sealed vault door / facility exterior
+      if (type === "uw_vault") {
+        ctx.fillStyle = "#03050a"
+        ctx.fillRect(0, 0, w, h)
+        // Concrete facade
+        const wallG = ctx.createLinearGradient(0, 0, 0, h)
+        wallG.addColorStop(0, "#0c1014")
+        wallG.addColorStop(1, "#06080c")
+        ctx.fillStyle = wallG
+        ctx.fillRect(0, 0, w, h*0.85)
+        // Concrete texture — subtle noise grid
+        ctx.strokeStyle = "rgba(255,255,255,0.015)"
+        ctx.lineWidth = 0.5
+        for (let x = 0; x < w; x += 14) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h*0.85); ctx.stroke() }
+        for (let y = 0; y < h*0.85; y += 14) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke() }
+        // Floor
+        ctx.fillStyle = "#020305"
+        ctx.fillRect(0, h*0.85, w, h*0.15)
+        // Vault door — centered, heavy seams
+        const doorW = w * 0.42
+        const doorH = h * 0.62
+        const dx = (w - doorW) / 2
+        const dy = h * 0.16
+        const doorGrad = ctx.createLinearGradient(dx, dy, dx + doorW, dy + doorH)
+        doorGrad.addColorStop(0, "#1a2128")
+        doorGrad.addColorStop(0.5, "#10161c")
+        doorGrad.addColorStop(1, "#0a0f14")
+        ctx.fillStyle = doorGrad
+        ctx.fillRect(dx, dy, doorW, doorH)
+        // Door seams
+        ctx.strokeStyle = "rgba(0,245,255,0.07)"
+        ctx.lineWidth = 0.5
+        ctx.strokeRect(dx + 4, dy + 4, doorW - 8, doorH - 8)
+        for (let i = 1; i < 4; i++) {
+          ctx.beginPath()
+          ctx.moveTo(dx + 4, dy + 4 + (doorH-8)*(i/4))
+          ctx.lineTo(dx + doorW - 4, dy + 4 + (doorH-8)*(i/4))
+          ctx.stroke()
+        }
+        // Security panel — small, glowing
+        const panelPulse = 0.4 + Math.sin(frame * 0.03) * 0.25
+        ctx.fillStyle = "#0a0e12"
+        ctx.fillRect(dx + doorW*0.72, dy + doorH*0.42, 14, 10)
+        ctx.fillStyle = `rgba(34,197,94,${panelPulse})`
+        ctx.shadowColor = "#22c55e"
+        ctx.shadowBlur = 5
+        ctx.fillRect(dx + doorW*0.72 + 2, dy + doorH*0.42 + 2, 10, 2)
+        ctx.shadowBlur = 0
+        // LOCKED indicator text on panel
+        ctx.fillStyle = "rgba(34,197,94,0.6)"
+        ctx.font = "5px monospace"
+        ctx.fillText("SEALED", dx + doorW*0.72 - 1, dy + doorH*0.42 + 9)
+        // Geothermal conduit running along the floor into the wall
+        ctx.strokeStyle = "rgba(255,160,0,0.12)"
+        ctx.lineWidth = 2
+        ctx.beginPath()
+        ctx.moveTo(0, h*0.88)
+        ctx.lineTo(w*0.3, h*0.88)
+        ctx.lineTo(w*0.3, h*0.7)
+        ctx.stroke()
+        // Heat shimmer particles along conduit
+        for (let i = 0; i < 10; i++) {
+          const t = ((frame*0.8 + i*30) % 150) / 150
+          const px = w*0.3 * Math.min(t*2, 1)
+          const py = t < 0.5 ? h*0.88 : h*0.88 - (h*0.18) * ((t-0.5)*2)
+          ctx.fillStyle = `rgba(255,160,0,${0.4*(1-t)})`
+          ctx.beginPath(); ctx.arc(px, py, 1, 0, Math.PI*2); ctx.fill()
+        }
+        // Oaks silhouette suggestion at top edge (exterior framing)
+        for (let i = 0; i < 6; i++) {
+          const tx = (i * 41 + 5)
+          ctx.fillStyle = "rgba(0,0,0,0.5)"
+          ctx.beginPath()
+          ctx.arc(tx, 6, 9, 0, Math.PI*2)
+          ctx.fill()
+        }
+        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("FACILITY 7 — GENEVA LAKE ANNEX", 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // UW-001 — Whiteboard with equations (animated, mid-thought)
+      if (type === "uw_whiteboard") {
+        ctx.fillStyle = "#0a0c0e"
+        ctx.fillRect(0, 0, w, h)
+        // Whiteboard surface
+        const boardG = ctx.createLinearGradient(0, 0, w, h)
+        boardG.addColorStop(0, "#1c2024")
+        boardG.addColorStop(1, "#15181c")
+        ctx.fillStyle = boardG
+        ctx.fillRect(w*0.04, h*0.05, w*0.92, h*0.78)
+        // Frame
+        ctx.strokeStyle = "rgba(0,245,255,0.06)"
+        ctx.lineWidth = 1
+        ctx.strokeRect(w*0.04, h*0.05, w*0.92, h*0.78)
+        // Equations — systems integration notation, written progressively
+        ctx.font = "6px monospace"
+        const lines = [
+          "∂Ψ/∂t = -iĤΨ + Γ(foundation)",
+          "L4: ∫ φ(x,τ) dτ → coherence",
+          "P(orient | freq) = σ(W·x+b)",
+          "δ(network) ≈ Σ nodes · e^-λt",
+          "847.3 MHz — carrier, pre-virus",
+          "[unfinished — see attached]",
+        ]
+        const cycle = frame % 480
+        const visibleChars = Math.floor(cycle / 2)
+        let charCount = 0
+        lines.forEach((line, i) => {
+          const y = h*0.16 + i * 11
+          const remaining = Math.max(0, Math.min(line.length, visibleChars - charCount))
+          const shown = line.slice(0, remaining)
+          charCount += line.length
+          ctx.fillStyle = i === lines.length - 1 ? "rgba(255,160,0,0.5)" : "rgba(0,245,255,0.55)"
+          ctx.fillText(shown, w*0.08, y)
+          // Cursor on the actively-writing line
+          if (remaining < line.length && remaining > 0 && Math.floor(frame/15)%2===0) {
+            const cw = ctx.measureText(shown).width
+            ctx.fillStyle = "rgba(0,245,255,0.7)"
+            ctx.fillRect(w*0.08 + cw + 1, y - 5, 3, 6)
+          }
+        })
+        // Marker tray with dried markers
+        ctx.fillStyle = "#0c0e10"
+        ctx.fillRect(w*0.04, h*0.83, w*0.92, h*0.05)
+        for (let i = 0; i < 4; i++) {
+          ctx.fillStyle = i === 1 ? "rgba(255,160,0,0.3)" : "rgba(120,130,140,0.3)"
+          ctx.fillRect(w*0.1 + i*16, h*0.835, 10, 3)
+        }
+        // Loop the writing animation by clearing toward the end of the cycle
+        if (cycle > 440) {
+          const fadeA = (cycle - 440) / 40
+          ctx.fillStyle = `rgba(28,32,36,${fadeA})`
+          ctx.fillRect(w*0.04, h*0.05, w*0.92, h*0.78)
+        }
+        ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(0, h-16, w, 16)
+        ctx.fillStyle = "rgba(0,245,255,0.8)"; ctx.shadowColor = "#00f5ff"; ctx.shadowBlur = 4
+        ctx.font = "7px monospace"; ctx.fillText("DR. VASQUEZ — LAST ENTRY 2041-10-09", 3, h-5); ctx.shadowBlur = 0
+      }
+
+      // ST-001 — Cow in field
       // ST-001 — Cow in field
       if (type === "st_cow") {
         ctx.fillStyle = "#0a0f08"
@@ -990,6 +1226,11 @@ const DOC_CAMERAS = {
     { label: "CAM-01 / SKYLINE", coords: "CHICAGO IL — 2162", type: "is_skyline" },
     { label: "CAM-02 / HYBRID", coords: "SECTOR INNER-02", type: "is_hybrid" },
     { label: "CAM-03 / SIGNAL", coords: "847.3 MHz SCAN", type: "is_signal" },
+  ],
+  "UW-001": [
+    { label: "CAM-01 / ARES-7", coords: "ALCOVE — PRESERVATION", type: "uw_ares" },
+    { label: "CAM-02 / VAULT", coords: "FACILITY 7 — SEALED", type: "uw_vault" },
+    { label: "CAM-03 / WHITEBOARD", coords: "DR. VASQUEZ LAB", type: "uw_whiteboard" },
   ],
   "ST-001": [
     { label: "CAM-01 / LIVESTOCK", coords: "NORTH FIELD", type: "st_cow" },
