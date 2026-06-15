@@ -1923,6 +1923,19 @@ export default function App() {
   const [radioText, setRadioText] = useState('')
   const [radioAudio, setRadioAudio] = useState(null)
   const [radioLoading, setRadioLoading] = useState(false)
+
+  const fetchRadioFeed = async () => {
+    setRadioLoading(true)
+    setRadioText('')
+    setRadioAudio(null)
+    try {
+      const r = await fetch('https://etf-api-production-093e.up.railway.app/radio-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+      const data = await r.json()
+      if (data.text) setRadioText(data.text)
+      if (data.audio) setRadioAudio('data:audio/mp3;base64,' + data.audio)
+    } catch(e) { setRadioText('Signal lost. Retry transmission.') }
+    setRadioLoading(false)
+  }
   const [activeFeedId, setActiveFeedId] = useState(null)
   const [page, setPage] = useState("landing")
 
@@ -2213,19 +2226,6 @@ function LiveFeedComponent({ feedId }) {
     return () => { clearInterval(si); clearInterval(gi) }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const fetchRadioFeed = async () => {
-    setRadioLoading(true)
-    setRadioText('')
-    setRadioAudio(null)
-    try {
-      const r = await fetch('https://etf-api-production-093e.up.railway.app/radio-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
-      const data = await r.json()
-      if (data.text) setRadioText(data.text)
-      if (data.audio) setRadioAudio('data:audio/mp3;base64,' + data.audio)
-    } catch(e) { setRadioText('Signal lost. Retry transmission.') }
-    setRadioLoading(false)
-  }
 
   async function generateFeed() {
     setIsLoading(true)
