@@ -1898,6 +1898,7 @@ const PREVIEW_DOCS = [
   { id: "VX-047", title: "Voss Internal Memo — ALADDIN-9 Merger Protocol", date: "2128-11-02", tag: "TOP SECRET", color: MAGENTA, content: VX047 },
   { id: "CL-000", title: "C.L.A.W. Boot Sequence — First Contact", date: "2036-03-14", tag: "ARCHIVED", color: CYAN, content: CL000 },
   { id: "IS-312", title: "Inner Sectors Dispatch — Level 4 Activity Report", date: "2162-05-14", tag: "LIVE FEED", color: "#22c55e", content: "live" },
+  { id: "RADIO-847", title: "847.3 MHz — Intercepted Transmission", date: "2162", tag: "LIVE FEED", color: "#f97316", content: "radio" },
   { id: "ST-001", title: "Settlement Dispatch — Northern Perimeter Log", date: "2162-06-07", tag: "LIVE FEED", color: "#22c55e", content: "settlement" },
   { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: GL099 },
   { id: "UW-001", title: "ARES Program — University of Wisconsin Consortium Archive", date: "2041-09", tag: "CLASSIFIED", color: CYAN, content: UW001 },
@@ -1918,6 +1919,10 @@ export default function App() {
   const [authLoading, setAuthLoading] = useState(false)
   const [selectedDoc, setSelectedDoc] = useState(null)
   const [showLiveFeed, setShowLiveFeed] = useState(false)
+  const [showRadioFeed, setShowRadioFeed] = useState(false)
+  const [radioText, setRadioText] = useState('')
+  const [radioAudio, setRadioAudio] = useState(null)
+  const [radioLoading, setRadioLoading] = useState(false)
   const [activeFeedId, setActiveFeedId] = useState(null)
   const [page, setPage] = useState("landing")
 
@@ -2059,7 +2064,44 @@ export default function App() {
           </div>
         )}
 
-        {page === "archive" && user && !selectedDoc && !showLiveFeed && (
+        {page === "archive" && user && showRadioFeed && (
+          <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
+            <div onClick={() => { setShowRadioFeed(false); setRadioText(''); setRadioAudio(null) }} style={{ fontSize: 12, color: "#f97316", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
+            <div style={{ background: "rgba(0,10,20,0.95)", border: "1px solid rgba(249,115,22,0.3)", padding: 24 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: radioLoading ? "#f97316" : "#ef4444", boxShadow: "0 0 8px " + (radioLoading ? "#f97316" : "#ef4444") }} />
+                <span style={{ fontSize: 11, color: "#f97316", letterSpacing: 3, fontFamily: "monospace" }}>847.3 MHz — INTERCEPTED TRANSMISSION</span>
+              </div>
+              {radioLoading && (
+                <div style={{ fontFamily: "monospace", fontSize: 12, color: "#f97316", letterSpacing: 1 }}>
+                  <div style={{ marginBottom: 4 }}>Tuning frequency...</div>
+                  <div style={{ marginBottom: 4 }}>847.3 MHz...</div>
+                  <div style={{ marginBottom: 4 }}>Signal acquired...</div>
+                </div>
+              )}
+              {radioText && !radioLoading && (
+                <div style={{ fontFamily: "monospace", fontSize: 13, color: "#e2e8f0", lineHeight: 1.8, marginBottom: 20, borderLeft: "2px solid #f97316", paddingLeft: 16 }}>
+                  {radioText}
+                </div>
+              )}
+              {radioAudio && !radioLoading && (
+                <div style={{ marginBottom: 16 }}>
+                  <audio controls autoPlay src={radioAudio} style={{ width: "100%" }} />
+                </div>
+              )}
+              {!radioLoading && (
+                <button onClick={fetchRadioFeed} style={{ background: "transparent", border: "1px solid #f97316", color: "#f97316", padding: "8px 16px", cursor: "pointer", fontSize: 11, letterSpacing: 2, fontFamily: "monospace" }}>
+                  ↻ NEW TRANSMISSION
+                </button>
+              )}
+              <div style={{ marginTop: 20, fontSize: 10, color: "#4a5568", fontFamily: "monospace", letterSpacing: 1 }}>
+                FREQUENCY: 847.3 MHz | SOURCE: UNKNOWN | CHICAGO INNER SECTORS 2162
+              </div>
+            </div>
+          </div>
+        )}
+
+        {page === "archive" && user && !selectedDoc && !showLiveFeed && !showRadioFeed && (
           <div style={{ padding: "40px 20px", maxWidth: 760, margin: "0 auto" }}>
             <div style={{ fontSize: 12, letterSpacing: 2, color: "#7090a8", marginBottom: 4 }}>AUTHENTICATED</div>
             <div style={{ fontSize: 12, color: CYAN, marginBottom: 24 }}>{user.email}</div>
@@ -2079,6 +2121,7 @@ export default function App() {
                 <div key={a.id} onClick={() => {
                   if (!isPremium) return
                   if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
+                  else if (a.id === "RADIO-847") { setShowRadioFeed(true); fetchRadioFeed() }
                   else if (a.content && a.content !== "chicago" && a.content !== "geneva") { setSelectedDoc(a) }
                   else if (a.content === "chicago" || a.content === "geneva") { setSelectedDoc(a) }
                 }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
@@ -2170,6 +2213,19 @@ function LiveFeedComponent({ feedId }) {
     return () => { clearInterval(si); clearInterval(gi) }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const fetchRadioFeed = async () => {
+    setRadioLoading(true)
+    setRadioText('')
+    setRadioAudio(null)
+    try {
+      const r = await fetch('https://etf-api-production-093e.up.railway.app/radio-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+      const data = await r.json()
+      if (data.text) setRadioText(data.text)
+      if (data.audio) setRadioAudio('data:audio/mp3;base64,' + data.audio)
+    } catch(e) { setRadioText('Signal lost. Retry transmission.') }
+    setRadioLoading(false)
+  }
 
   async function generateFeed() {
     setIsLoading(true)
