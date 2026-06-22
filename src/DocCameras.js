@@ -1304,6 +1304,11 @@ const DOC_CAMERAS = {
     { label: "CAM-01 / LIVESTOCK", coords: "NORTH FIELD", type: "st_cow" },
     { label: "CAM-02 / WEATHER", coords: "ALON'S STATION", type: "st_weather" },
     { label: "CAM-03 / PERIMETER", coords: "SOUTH FENCE", type: "st_fence" },
+  ],
+  "MH-001": [
+    { label: "CAM-01 / TERMINAL", coords: "40.7580°N 73.9855°W", type: "mh_times_sq" },
+    { label: "CAM-02 / SKYLINE", coords: "MANHATTAN 2026", type: "mh_aerial" },
+    { label: "CAM-03 / CORRIDOR", coords: "HIGH LINE SECTOR", type: "mh_highline" },
   ]
 }
 

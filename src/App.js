@@ -1905,6 +1905,7 @@ const PREVIEW_DOCS = [
   { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: PR001 },
   { id: "CH-001", title: "Chicago Surveillance Network — Pre-Collapse Feeds", date: "2026-06-02", tag: "LIVE", color: "#22c55e", content: "chicago" },
   { id: "GL-002", title: "Geneva Lake Surveillance — Pre-Collapse Feeds", date: "2026-06-03", tag: "LIVE", color: "#22c55e", content: "geneva" },
+  { id: "MH-001", title: "Manhattan Surveillance — High Line & Hudson Corridor", date: "2026-06-22", tag: "LIVE", color: "#22c55e", content: "manhattan" },
 ]
 
 export default function App() {
@@ -2135,8 +2136,8 @@ export default function App() {
                   if (!isPremium) return
                   if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
                   else if (a.id === "RADIO-847") { setShowRadioFeed(true); fetchRadioFeed() }
-                  else if (a.content && a.content !== "chicago" && a.content !== "geneva") { setSelectedDoc(a) }
-                  else if (a.content === "chicago" || a.content === "geneva") { setSelectedDoc(a) }
+                  else if (a.content && a.content !== "chicago" && a.content !== "geneva" && a.content !== "manhattan") { setSelectedDoc(a) }
+                  else if (a.content === "chicago" || a.content === "geneva" || a.content === "manhattan") { setSelectedDoc(a) }
                 }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
@@ -2156,7 +2157,7 @@ export default function App() {
           </div>
         )}
 
-        {page === "archive" && user && selectedDoc && selectedDoc.content !== "chicago" && selectedDoc.content !== "geneva" && (
+        {page === "archive" && user && selectedDoc && selectedDoc.content !== "chicago" && selectedDoc.content !== "geneva" && selectedDoc.content !== "manhattan" && (
           <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
             <div onClick={() => setSelectedDoc(null)} style={{ fontSize: 12, color: CYAN, cursor: "pointer", marginBottom: 24, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
             <div style={{ background: "rgba(0,20,35,0.4)", border: `1px solid rgba(0,245,255,0.08)`, padding: "24px 20px", fontSize: 13, lineHeight: 1.9, color: "#c8e0e8" }}>
@@ -2185,6 +2186,9 @@ export default function App() {
 
         {page === "archive" && user && selectedDoc && selectedDoc.content === "geneva" && (
           <GenevaLiveComponent onBack={() => setSelectedDoc(null)} />
+        )}
+        {page === "archive" && user && selectedDoc && selectedDoc.content === "manhattan" && (
+          <ManhattanLiveComponent onBack={() => setSelectedDoc(null)} />
         )}
       </div>
 
@@ -2290,6 +2294,48 @@ function LiveFeedComponent({ feedId }) {
       </div>
       </div>
     </div>  )
+}
+
+function ManhattanLiveComponent({ onBack }) {
+  const cameras = [
+    { id: "cam01", label: "CAM-01 / TIMES SQUARE — CROSSROADS", coords: "40.7580°N 73.9855°W — BROADWAY", desc: "EarthCam — Times Square street level.", embed: "https://www.youtube-nocookie.com/embed/z-jYdOIKcTQ?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+    { id: "cam02", label: "CAM-02 / TIMES SQUARE — 4K AERIAL", coords: "40.7580°N 73.9855°W — MIDTOWN", desc: "Times Square aerial panoramic view.", embed: "https://www.youtube-nocookie.com/embed/VjSIXFwB_WQ?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+    { id: "cam03", label: "CAM-03 / MANHATTAN MULTI-VIEW", coords: "40.7128°N 74.0060°W — NYC", desc: "Manhattan multi-cam — skyline, streets, WTC.", embed: "https://www.youtube-nocookie.com/embed/VGnFLdQW39A?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+  ]
+  return (
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
+      <div onClick={onBack} style={{ fontSize: 12, color: "#00f5ff", cursor: "pointer", marginBottom: 16, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
+      <div style={{ background: "rgba(0,245,255,0.04)", border: "1px solid rgba(0,245,255,0.15)", padding: "12px 16px", marginBottom: 16 }}>
+        <div style={{ fontSize: 12, color: "#00f5ff", letterSpacing: 3, fontFamily: "monospace" }}>● LIVE — MANHATTAN SURVEILLANCE NETWORK</div>
+        <div style={{ fontSize: 12, color: "#7090a8", fontFamily: "monospace", marginTop: 4 }}>MANHATTAN, NEW YORK — 40.7128°N 74.0060°W — {new Date().getFullYear()} CE</div>
+      </div>
+      <div style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)", padding: "8px 12px", marginBottom: 16, fontFamily: "monospace", fontSize: 12, color: "rgba(239,68,68,0.7)", letterSpacing: 1 }}>
+        ARCHIVE NOTE: These feeds originate from 2026 CE — 15 years before the Prometheus Collapse. The High Line corridor and Hudson waterfront are now designated Outer Sectors. Some structures remain standing in 2162.
+      </div>
+      {cameras.map(cam => (
+        <div key={cam.id} style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
+          <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.1)", padding: "6px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
+              <span style={{ fontSize: 12, color: "#22c55e", letterSpacing: 2, fontFamily: "monospace" }}>● LIVE</span>
+            </div>
+            <span style={{ fontSize: 12, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{cam.label}</span>
+            <span style={{ fontSize: 12, color: "#7090a8", fontFamily: "monospace" }}>{cam.coords}</span>
+          </div>
+          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+            <iframe title={cam.label} src={cam.embed} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", filter: "saturate(0.4) hue-rotate(160deg) brightness(0.85) contrast(1.1)" }} allow="autoplay; encrypted-media" allowFullScreen />
+            <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)", pointerEvents: "none", zIndex: 10 }} />
+            <div style={{ position: "absolute", top: 8, left: 8, fontSize: 12, color: "rgba(239,68,68,0.8)", fontFamily: "monospace", zIndex: 11 }}>● REC</div>
+            <div style={{ position: "absolute", top: 8, right: 8, fontSize: 12, color: "rgba(0,245,255,0.7)", fontFamily: "monospace", zIndex: 11 }}>2026 CE</div>
+          </div>
+          <div style={{ padding: "8px 12px", borderTop: "1px solid rgba(0,245,255,0.08)", background: "rgba(0,0,0,0.5)" }}>
+            <div style={{ fontSize: 12, color: "#6a8090", fontFamily: "monospace", letterSpacing: 1 }}>{cam.desc}</div>
+          </div>
+        </div>
+      ))}
+      <div style={{ fontSize: 12, color: "#7090a8", textAlign: "center", fontFamily: "monospace", letterSpacing: 1, marginTop: 8 }}>SIGNAL.tv — MANHATTAN SURVEILLANCE ARCHIVE — PRE-COLLAPSE DOCUMENTATION</div>
+    </div>
+  )
 }
 
 function ChicagoLiveComponent({ onBack }) {
