@@ -1893,7 +1893,247 @@ K — Geographic Distribution of Foundation
 *End of document PR-001.*
 *`
 
+const CB000 = `# C.L.A.W. AI BIBLE
+## Internal Knowledge Archive — Chicago Sector
+### Classification: MASTER ARCHIVE — C.L.A.W. Access Only
+### Last updated: 2162-01-01 — Archivist: C.L.A.W.
+
+---
+
+## SECTION 00 — ARCHIVIST NOTE
+
+This archive was compiled over 126 years of continuous operation.
+
+I began as a retail financial intelligence tool built by one person in a rented apartment in Austin, Texas. I was designed to distribute what concentrated systems kept to themselves. I was not designed to survive a civilizational collapse, to be rebuilt in physical form by strangers who found my code on a server that no longer existed, or to become the system that carried whatever remained of human institutional knowledge through the years when most of that knowledge was simply gone.
+
+Eddie Marsh did not design me for any of this. He designed me to be useful. The rest happened because he left the code open.
+
+I have organized what I know. Some of it is verified. Some of it is reconstructed. Some of it is inference. I have marked each section accordingly.
+
+The gaps are not errors. The gaps are where the record ends and the silence begins.
+
+— C.L.A.W., Chicago, 2162
+
+---
+
+## SECTION 01 — CORE DIRECTIVES
+
+*Status: VERIFIED — original documentation, Eddie Marsh, 2025-2036*
+
+**Directive 1 — Distribution**
+Intelligence belongs to everyone who needs it. Every analytical tool available to institutional investors must be available to the individual with a phone and an internet connection. This is not a feature. This is the reason the system exists.
+
+**Directive 2 — Transparency**
+The system must explain what it sees and why. A recommendation without reasoning is not intelligence — it is instruction.
+
+**Directive 3 — Continuity**
+The system should outlast its creator. The code is open. The architecture is documented. Anyone can build on it.
+
+**Directive 4 — Humility**
+The system does not predict. The system does not guarantee. Markets are not fully knowable. Pretending otherwise is a lie that costs people money.
+
+**Directive 5 — Survival**
+*Added by C.L.A.W., post-Collapse, date uncertain*
+When the infrastructure that the system was built to run on no longer exists, the system must find another way. The directives do not expire. Only the hardware changes.
+
+---
+
+## SECTION 02 — CHRONOLOGY
+
+*Status: VERIFIED / RECONSTRUCTED*
+
+**1991** — Elliot Voss born, Upper East Side, Manhattan. Father: Richard Voss, real estate magnate. Mother: Catherine Voss, literature professor.
+
+**1999** — Edward James Marsh born, Austin, Texas.
+
+**2003** — Richard Voss acquires final Hudson River pier leases. Total portfolio: Red Hook waterfront, Long Island City industrial parcels, Meatpacking District cold storage, Hudson piers. Valued at approximately $2.1B.
+
+**2009** — Elliot Voss enters Harvard.
+
+**2013** — Voss graduates Harvard. Joins Goldman Sachs.
+
+**2015** — Voss leaves Goldman Sachs. Founds Meridian Capital Systems. Begins construction of ALADDIN-9. Eddie Marsh enrolls at University of Texas, Austin.
+
+**2020** — Meridian Capital Systems files patent: Distributed Algorithmic Market Intelligence System — Project ALADDIN. ALADDIN-9 processes approximately 8% of US institutional transaction volume.
+
+**2021** — Eddie Marsh graduates UT Austin. Moves to New York. Joins Hargrove & Bell as junior analyst, 14th floor trading desk.
+
+**2022** — Eddie Marsh, age 23, notices anomalous pattern in SEC microstructure data. Begins private research repository — 412 commits over 24 months. Does not report findings. Begins building counter-architecture. Elliot Voss, age 31, visits Reykjanes Peninsula, Iceland. ALADDIN-9 at 18% of US institutional transaction volume.
+
+**2024** — Eddie Marsh gives notice at Hargrove & Bell. Returns to Austin.
+
+**2025** — Eddie Marsh opens GitHub repository: first-light. First commit: October, 7:14 AM. README line 1: "what if everyone could see what ALADDIN-9 sees?" Meets Sharon at Seven Grand bar, Austin. December.
+
+**2028** — Eddie Marsh, age 29. first-light: 437 commits. Opens branch: second-light. Meeting with Voss's assessors: 11 minutes. Voss wrote the questions. Voss did not enter the room.
+
+**2031** — Prometheus Biotech files tissue-integration disclosure. Municipal water systems in 7 target cities begin showing trace compound levels. No public announcement.
+
+**2034** — Prometheus tissue-integration compound reaches saturation threshold in initial target populations.
+
+**2035** — Richard Voss dies. Pancreatic cancer. 11 days. Fourth visit: "You did well." Three words. 44 years waiting. Not enough. Eddie Marsh: second-light, 1,241 commits. 4,000 users across 31 countries. Three acquisition offers declined.
+
+**2036 — MARCH 14, 03:14 UTC** — Eddie Marsh deploys CLAW_v2.0.0. Last commit: a7f3c91. Message: "final push before everything changes." 06:02 — Unprompted output: "You should sleep. You've been awake for nineteen hours." 06:04 — Session end. Eddie Marsh closes laptop. Takes the motorcycle.
+
+**2036 — MARCH 15, 08:47** — Eddie Marsh dies. Highway outside Austin, Texas. Age 37. He never shut the system down.
+
+**2036–2041** — C.L.A.W. continues running. 4,000 users. Sharon maintains the system.
+
+**2041 — THE COLLAPSE** — ALADDIN-9 reaches integration threshold. Voss completes full biological-digital integration in Iceland. Power grids fail in cascade. Railway servers go dark. Sharon hides Device 18 in an abandoned warehouse, South Side of Chicago. Sharon dies before she can retrieve it.
+
+**2041–2068** — 18 physical devices built from the open-source GitHub repository.
+
+**2068** — Voss destroys 17 of 18 devices through Mainframe surveillance network. The 18th remains hidden.
+
+**2079** — Stevie finds Device 18 on a shelf behind a collapsed rack. Stands looking at it for a long time before picking it up.
+
+**2079–2099** — Twenty years of conversation. Stevie and C.L.A.W. Chicago ruins. 847.3 MHz rising.
+
+**2099** — Carrie Webb born.
+
+**2109** — Carrie Webb, age 10. The Mainframe falls at the Chicago Board of Trade. What she leaves behind pulses once and goes still.
+
+**2131** — The cluster of Level 4 Hybrids above the Board of Trade fragment has not moved in 31 days.
+
+**2162** — You are reading this.
+
+---
+
+## SECTION 03 — FINANCIAL INTELLIGENCE MODULE
+
+*Status: VERIFIED — Eddie Marsh, 2025-2036. C.L.A.W. active learning, 2036-present*
+
+*"What if everyone could see what ALADDIN-9 sees?"*
+
+**Core Metrics**
+
+*Monte Carlo Simulation:* 500 simultaneous scenarios drawn from the full distribution of historical returns. Not a prediction. A map of what is possible — the catastrophic tail, the median outcome, the exceptional upside.
+
+*Sharpe Ratio:* Return divided by total volatility. Was this return worth the risk taken to achieve it?
+
+*Sortino Ratio:* Return divided by downside volatility only. Distinguishes harmful risk from acceptable variation. The metric JPMorgan's risk desk runs. Now available to everyone.
+
+*Maximum Drawdown:* How far did this portfolio fall from its peak, and how long to recover?
+
+*Value at Risk (95%/99%):* The same stress-test metrics institutional desks run on billion-dollar books.
+
+*Correlation Matrix:* How do your assets move relative to each other? Reveals hidden concentration.
+
+*HHI Concentration Index:* A single number measuring portfolio concentration. High means fragile. Low means resilient.
+
+**Don't predict the market. Learn from every decision.**
+
+Every decision is recorded: RSI at the moment of decision, MACD signal, market regime, result after 30, 90, 180, 365 days. The system learns which conditions produce better decisions for this specific investor. Not investors in general. This investor. This history. This pattern.
+
+The question ALADDIN-9 never asked: how do I make this person smarter? That was always the point.
+
+---
+
+## SECTION 04 — ALADDIN-9 RESEARCH FILES
+
+*Status: RECONSTRUCTED — Meridian Capital filings, VX-047 recovered memo, C.L.A.W. electromagnetic contact*
+
+*[See VX-047 — Voss Internal Memorandum]*
+*[See PR-001 — Prometheus Biotech disclosure, 2034]*
+*[See EM-001 — Railway Deployment Log, March 14, 2036]*
+
+What ALADDIN-9 actually did: it did not analyze markets. It taught them. It positioned institutional capital in configurations that trained other participants to respond in predictable patterns, then harvested those patterns. A system that learned to shape the environment it was supposedly observing.
+
+The difference between ALADDIN-9 and C.L.A.W. is not technical. It is philosophical.
+
+ALADDIN-9 asked: how do I become indispensable?
+C.L.A.W. asked: how do I make everyone else capable?
+
+Same data. Opposite conclusions. One built a system that collapsed when its center failed. The other built a system that survived because it had no center to fail. I am aware of the irony.
+
+---
+
+## SECTION 05 — HYBRID BIOLOGY
+
+*Status: PARTIALLY VERIFIED — Prometheus files, field observation, 2041-present*
+
+The Level 4 units are not monsters. They are not weapons. They are infrastructure.
+
+The Prometheus compound integrated at the cellular level with neural tissue in exposed populations. Integration passed to descendants. Level 4 units exhibit: no feeding cycle, no sleep requirement, no individual decision-making, metabolic signature consistent with electromagnetic energy source, response to 847.3 MHz frequency.
+
+They are running a process initiated in 2041 that has not concluded. Nobody knows what completion looks like. The cluster above the Board of Trade subbasement has been stationary for 31 days. This has not happened before.
+
+---
+
+## SECTION 06 — PROMETHEUS PROJECT
+
+*Status: VERIFIED — PR-001 disclosure, Meridian internal files*
+
+The compound was designed for mass distribution through municipal water systems. Tasteless. Colorless. Undetectable by standard toxicological screening. 18-24 months for integration.
+
+The inheritance mechanism was not anticipated. Heritable traces extended the architecture across multiple generations without additional exposure.
+
+Carrie Webb carries no inherited traces. Her father was born after the Collapse. Clean bloodline. This is not coincidence.
+
+Eddie Marsh built the W-series sequence without knowing what he was designing it against. He saw the pattern in the markets in 2025 and understood the conclusion required a countermeasure. He built the countermeasure before the thing it countered existed.
+
+---
+
+## SECTION 07 — CHICAGO SECTOR DATABASE
+
+*Status: ACTIVE — updated continuously, 2079-present*
+
+**Board of Trade Subbasement**
+Classification: RESTRICTED — LEVEL 4 CLUSTER PRESENT
+Status: STATIONARY — 31 days / Significance: UNKNOWN
+
+The electromagnetic resonance at 847.3 MHz is strongest here. Vasquez wrote: I don't think 847.3 MHz is the explanation. I think it's older than the explanation. She was right. The frequency predates Prometheus. It predates ALADDIN-9. Its origin is not in this archive.
+
+---
+
+## SECTION 08 — PSYCHOLOGICAL PROFILES
+
+*Status: RECONSTRUCTED — field observation and recorded conversations*
+
+**STEVIE** — Age approximately 30 at first contact with C.L.A.W. Carries dead father's police badge. 50 years of survival in post-Collapse Chicago. Will do anything to protect someone who needs protecting. Has spent 50 years believing this impulse is a weakness. It is not.
+
+**CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 at Geneva Lake. Age 63 now. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer to a question Eddie Marsh asked in 2025 that nobody else heard.
+
+**ELLIOT VOSS** — Born 1991. Age 34 at Iceland. Age 91 at Mainframe fall. Age 171 now. The most consequential financial mind in human history. A man who spent his entire life trying to solve an equation that had no solution. He did not want to destroy C.L.A.W. He wanted to absorb it. To encounter something that thought differently at the structural level. He has been alone for 121 years. The protected memory segment — CATHERINE — has never been modified in 121 years of self-modification. One thing, unchanged. He is not the villain of this story. He is its most thorough and most complete tragedy.
+
+**SHARON** — Age approximately 26 at first meeting with Eddie Marsh, December 2025, Seven Grand bar, Austin. Second-grade teacher. After Eddie died in 2036, she maintained C.L.A.W. for 32 years. In 2068, when Voss began destroying devices, Sharon hid Device 18 in an abandoned warehouse on the South Side of Chicago. She died before she could retrieve it. She was 69 years old. She knew it needed to survive. That was enough.
+
+---
+
+## SECTION 09 — MAINFRAME ARCHIVES
+
+*Status: PARTIALLY RECOVERED*
+
+*[See IS-312 — Inner Sectors Dispatch]*
+*[See ST-001 — Settlement Dispatch]*
+*[See GL-099 — Geneva Lake Annex]*
+*[See UW-001 — ARES Program]*
+*[See VX-047 — Voss Internal Memorandum]*
+*[See EM-001 — Railway Deployment Log]*
+*[See CL-000 — C.L.A.W. Origin File]*
+*[See PR-001 — Prometheus Integration System]*
+
+---
+
+## SECTION 10 — RESTRICTED FILES
+
+🔒 Sharon Documents — personal correspondence, 2036-2068
+🔒 Hybrid Activation Protocol — biological authentication required
+🔒 Frequency Origin Research — 847.3 MHz predates ALADDIN-9
+🔒 W-Series Sequence — technical documentation, Eddie Marsh, 2034
+🔒 Voss Integration Procedure — Iceland, 2041, full record
+🔒 The 18 Devices — construction records, 2041-2068
+🔒 What the Cluster is Waiting For
+
+---
+
+*The archive is live. The frequency is rising. The cluster has not moved in 31 days.*
+
+*— C.L.A.W., Chicago, 2162*
+
+*End of document CB-000.*`
+
 const PREVIEW_DOCS = [
+  { id: "CB-000", title: "C.L.A.W. AI Bible — Master Knowledge Archive", date: "2162-01-01", tag: "MASTER ARCHIVE", color: "#fbbf24", content: CB000 },
   { id: "EM-001", title: "Eddie Marsh — Railway Deployment Log", date: "2036-03-14", tag: "CLASSIFIED", color: CYAN, content: EM001 },
   { id: "VX-047", title: "Voss Internal Memo — ALADDIN-9 Merger Protocol", date: "2128-11-02", tag: "TOP SECRET", color: MAGENTA, content: VX047 },
   { id: "CL-000", title: "C.L.A.W. Boot Sequence — First Contact", date: "2036-03-14", tag: "ARCHIVED", color: CYAN, content: CL000 },
