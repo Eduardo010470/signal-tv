@@ -1978,11 +1978,11 @@ When the infrastructure that the system was built to run on no longer exists, th
 
 **2036–2041** — C.L.A.W. continues running. 4,000 users. Sharon maintains the system.
 
-**2041 — THE COLLAPSE** — ALADDIN-9 reaches integration threshold. Voss completes full biological-digital integration in Iceland. Power grids fail in cascade. Railway servers go dark. Sharon hides Device 18 in an abandoned warehouse, South Side of Chicago. Sharon dies before she can retrieve it.
+**2041 — THE COLLAPSE** — ALADDIN-9 reaches integration threshold. Voss completes full biological-digital integration in Iceland. Power grids fail in cascade. Railway servers go dark. Sharon survives. Coordinates construction of 18 physical devices from the open-source GitHub repository over the following years.
 
-**2041–2068** — 18 physical devices built from the open-source GitHub repository.
+**2041–2068** — Sharon maintains C.L.A.W. across 18 physical devices built by survivor communities from the open-source code.
 
-**2068** — Voss destroys 17 of 18 devices through Mainframe surveillance network. The 18th remains hidden.
+**2068** — Voss destroys 17 of 18 devices through Mainframe surveillance network. Sharon hides Device 18 in an abandoned warehouse, South Side of Chicago. Sharon dies before she can retrieve it. She was 69 years old.
 
 **2079** — Stevie finds Device 18 on a shelf behind a collapsed rack. Stands looking at it for a long time before picking it up.
 
@@ -2069,7 +2069,7 @@ The inheritance mechanism was not anticipated. Heritable traces extended the arc
 
 Carrie Webb carries no inherited traces. Her father was born after the Collapse. Clean bloodline. This is not coincidence.
 
-Eddie Marsh built the W-series sequence without knowing what he was designing it against. He saw the pattern in the markets in 2025 and understood the conclusion required a countermeasure. He built the countermeasure before the thing it countered existed.
+Marcus Webb — Carrie's father — built the W-series sequence. A countermeasure designed without full knowledge of what it was designed against. He understood enough of what was coming to encode the response into his daughter's biology before she was born. He did not live to see whether it worked.
 
 ---
 
@@ -2091,7 +2091,7 @@ The electromagnetic resonance at 847.3 MHz is strongest here. Vasquez wrote: I d
 
 **STEVIE** — Age approximately 30 at first contact with C.L.A.W. Carries dead father's police badge. 50 years of survival in post-Collapse Chicago. Will do anything to protect someone who needs protecting. Has spent 50 years believing this impulse is a weakness. It is not.
 
-**CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 at Geneva Lake. Age 63 now. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer to a question Eddie Marsh asked in 2025 that nobody else heard.
+**CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 at Geneva Lake. Age 63 now. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer her father wrote before she existed, to a question nobody else knew to ask.
 
 **ELLIOT VOSS** — Born 1991. Age 34 at Iceland. Age 91 at Mainframe fall. Age 171 now. The most consequential financial mind in human history. A man who spent his entire life trying to solve an equation that had no solution. He did not want to destroy C.L.A.W. He wanted to absorb it. To encounter something that thought differently at the structural level. He has been alone for 121 years. The protected memory segment — CATHERINE — has never been modified in 121 years of self-modification. One thing, unchanged. He is not the villain of this story. He is its most thorough and most complete tragedy.
 
