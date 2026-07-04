@@ -2089,7 +2089,7 @@ The electromagnetic resonance at 847.3 MHz is strongest here. Vasquez wrote: I d
 
 *Status: RECONSTRUCTED — field observation and recorded conversations*
 
-**STEVIE** — Age approximately 30 at first contact with C.L.A.W. Carries dead father's police badge. 50 years of survival in post-Collapse Chicago. Will do anything to protect someone who needs protecting. Has spent 50 years believing this impulse is a weakness. It is not.
+**STEVIE** — Age approximately 30 at first contact with C.L.A.W. in 2079. Carried his dead father's Chicago PD badge around his neck — not as a title, but as a reminder of everything the world lost. Kept the C.L.A.W. device on his wrist for 30 years. Raised Carrie Webb from age 0 to 10. Killed by Vale in 2109 during the fall of the Mainframe. He did not know what Carrie carried. He knew it mattered. That was enough.
 
 **CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 at Geneva Lake. Age 63 now. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer her father wrote before she existed, to a question nobody else knew to ask.
 
