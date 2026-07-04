@@ -1986,7 +1986,7 @@ When the infrastructure that the system was built to run on no longer exists, th
 
 **2079** — Stevie finds Device 18 on a shelf behind a collapsed rack. Stands looking at it for a long time before picking it up.
 
-**2079–2131** — Fifty years with the device. Stevie and C.L.A.W. Chicago ruins. 847.3 MHz rising.
+**2111–2131** — Twenty years with the device. Stevie and C.L.A.W. Chicago ruins. 847.3 MHz rising.
 
 **2121** — Carrie Webb born.
 
@@ -2089,7 +2089,7 @@ The electromagnetic resonance at 847.3 MHz is strongest here. Vasquez wrote: I d
 
 *Status: RECONSTRUCTED — field observation and recorded conversations*
 
-**STEVIE** — Age approximately 30 at first contact with C.L.A.W. in 2079. Carried his dead father's Chicago PD badge around his neck — not as a title, but as a reminder of everything the world lost. Kept the C.L.A.W. device on his wrist for 30 years. Raised Carrie Webb from age 0 to 10. Killed by Vale in 2131 during the fall of the Mainframe. He did not know what Carrie carried. He knew it mattered. That was enough.
+**STEVIE** — Age approximately 30 when he found the C.L.A.W. device in an abandoned warehouse on the South Side of Chicago in 2111. Born ~2081. Carried his dead father's Chicago PD badge around his neck — not as a title, but as a reminder of everything the world lost. Kept the device on his wrist for 20 years. Killed by Vale in 2131 during the fall of the Mainframe. He was approximately 50 years old. He did not know what Carrie carried. He knew it mattered. That was enough.
 
 **CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 at Geneva Lake. Age 63 now. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer her father wrote before she existed, to a question nobody else knew to ask.
 
