@@ -2377,7 +2377,7 @@ export default function App() {
                   if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
                   else if (a.id === "RADIO-847") { setShowRadioFeed(true); fetchRadioFeed() }
                   else if (a.content && a.content !== "chicago" && a.content !== "geneva" && a.content !== "manhattan") { setSelectedDoc(a) }
-                  else if (a.content === "chicago" || a.content === "geneva" || a.content === "manhattan") { setSelectedDoc(a) }
+                  else if (isPremium && (a.content === "chicago" || a.content === "geneva" || a.content === "manhattan")) { setSelectedDoc(a) }
                 }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
