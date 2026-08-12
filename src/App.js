@@ -1958,17 +1958,17 @@ When the infrastructure that the system was built to run on no longer exists, th
 
 **2021** — Eddie Marsh graduates UT Austin. Moves to New York. Joins Hargrove & Bell as junior analyst, 14th floor trading desk.
 
-**2022** — Eddie Marsh, age 23, notices anomalous pattern in SEC microstructure data. Begins private research repository — 412 commits over 24 months. Does not report findings. Begins building counter-architecture. Elliot Voss, age 31, visits Reykjanes Peninsula, Iceland. ALADDIN-9 at 18% of US institutional transaction volume.
+**2022** — Eddie Marsh, age 23, notices anomalous pattern in SEC microstructure data. Begins private research repository — 412 commits over 24 months. Does not report findings. Begins building counter-architecture. Elliot Voss, age 31, dines with his parents on East 74th Street. ALADDIN-9 at 18% of US institutional transaction volume.
 
-**2024** — Eddie Marsh gives notice at Hargrove & Bell. Returns to Austin.
+**2025 — SEPTEMBER** — Eddie Marsh gives notice at Hargrove & Bell. Age 26. Drives back to Austin in three days.
 
-**2025** — Eddie Marsh opens GitHub repository: first-light. First commit: October, 7:14 AM. README line 1: "what if everyone could see what ALADDIN-9 sees?" Meets Sharon at Seven Grand bar, Austin. December.
+**2025** — Eddie Marsh opens GitHub repository: first-light. First commit: October, 7:14 AM. README line 1: "what if everyone could see what ALADDIN-9 sees?" Meets Sharon at Seven Grand bar, Austin. December. Elliot Voss, age 34, stands on the Reykjanes Peninsula in Iceland for forty-three minutes in November and does not make the decision. ALADDIN-9 at 40%.
 
 **2028** — Eddie Marsh, age 29. first-light: 437 commits. Opens branch: second-light. Meeting with Voss's assessors: 11 minutes. Voss wrote the questions. Voss did not enter the room.
 
-**2031** — Prometheus Biotech files tissue-integration disclosure. Municipal water systems in 7 target cities begin showing trace compound levels. No public announcement.
+**2031** — Prometheus Biotech files tissue-integration disclosure. Prometheus enters the municipal water supply of 42 countries as the most ambitious public health programme in history. It works. It saves an estimated twelve to fifteen million lives in its first decade.
 
-**2034** — Prometheus tissue-integration compound reaches saturation threshold in initial target populations.
+**2034** — Prometheus internal documentation (PR-001) records four integration tiers. Level 4 — full structural integration — occurs spontaneously in 0.3% of the integrated population. Approximately one million people. None of them are told.
 
 **2035** — Richard Voss dies. Pancreatic cancer. 11 days. Fourth visit: "You did well." Three words. 44 years waiting. Not enough. Eddie Marsh: second-light, 1,241 commits. 4,000 users across 31 countries. Three acquisition offers declined.
 
