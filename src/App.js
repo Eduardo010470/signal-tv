@@ -760,12 +760,12 @@ So will I.
 
 const GL099 = `# GL-099 — GENEVA LAKE ENVIRONMENTAL MONITOR
 *Station Seven — North Shore*
-*Operational since: 2089*
+*Operational since: 2039*
 *Document period: 2131-09-15 through 2161-12-31*
 *Classification: RESTRICTED*
 *Archived by: C.L.A.W. System — 2162-01-01*
 
-> **[Archivist note]**: Station Geneva-7 was installed in 2089 as part of a regional environmental monitoring network covering the Upper Midwest watershed. It was designed to track water quality, atmospheric conditions, wildlife activity, and human presence in the Geneva Lake conservation corridor. It was not designed for what it ended up documenting. The station has been running on solar backup since the network went dark in 2041. It has never been serviced. It has never been retrieved. It has been, for thirty-one years, watching. I am archiving its logs because they are the most complete external record of the years that the other documents in this archive do not cover. The years between the server room and the woodpile. The years that made her what she is. — C.L.A.W., 2162-01-01
+> **[Archivist note]**: Station Geneva-7 was installed in 2039 as part of a regional environmental monitoring network covering the Upper Midwest watershed. It was designed to track water quality, atmospheric conditions, wildlife activity, and human presence in the Geneva Lake conservation corridor. It was not designed for what it ended up documenting. The station has been running on solar backup since the network went dark in 2041. It has never been serviced. It has never been retrieved. It has been, for thirty-one years, watching. I am archiving its logs because they are the most complete external record of the years that the other documents in this archive do not cover. The years between the server room and the woodpile. The years that made her what she is. — C.L.A.W., 2162-01-01
 
 ---
 
@@ -807,7 +807,7 @@ HUMAN PRESENCE: DETECTED
   — Single individual
   — Age estimate: juvenile, ~10 years
   — Approach vector: south, Highway 12 corridor
-  — Transport: electric scooter, low charge
+  — Transport: electric vehicle, 4% charge remaining
   — Physical status: ambulatory, exhausted
   — Carrying: single bag, wrist-mounted device
     (electromagnetic signature: GREEN, ACTIVE,
@@ -943,7 +943,7 @@ Infrastructure:
   — Roof: repaired February
   — Water filtration: upgraded March
   — Garden: 67 sq meters, yield moderate
-  — Rivian vehicle: arrived 2141-03-22
+  — Rivian vehicle: present since 2131-09-15
     [direction of arrival: south]
     [status: operational]
 Wrist device: GREEN, continuous
@@ -953,11 +953,11 @@ Physical assessment:
   — Age estimate: ~20 years
 ~~~
 
-The Rivian arrived in March of 2141.
+The Rivian had been under the pines since the night she arrived.
 
 The station logged it — the specific electromagnetic signature of an electric vehicle moving north along the highway corridor, entering the cabin's access road, parking under the pine canopy. It logged the occupant exiting the vehicle, going into the cabin, not coming out for six hours.
 
-It had no way to log what it meant to drive a vehicle you had last driven at fifteen, on a different road, in a different life, back to the place you had walked to on a stolen scooter ten years earlier.
+It had no way to log what it meant to drive eighty kilometres at ten years old, sitting forward on the seat with a folded blanket behind your back so you could reach, with a man dead on a limestone floor behind you.
 
 After the Rivian arrived the departures north became marginally less rare. The vehicle made the journey faster than the bicycle. But the frequency remained what it had always been — a person who left rarely and always came back the same day.
 
@@ -987,7 +987,7 @@ It logged that she never stayed.
 2151-08-07
 TIME: 14:23Z
 EVENT: Vehicle battery failure
-  — Rivian R1T, present since 2141
+  — Rivian R1T, present since 2131
   — Battery: complete discharge
   — Vehicle: non-operational
   — Occupant response:
