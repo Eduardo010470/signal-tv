@@ -1984,7 +1984,7 @@ When the infrastructure that the system was built to run on no longer exists, th
 
 **2068** — Voss destroys 17 of 18 devices through Mainframe surveillance network. Sharon hides Device 18 in an abandoned warehouse, South Side of Chicago. Sharon dies before she can retrieve it. She was 69 years old.
 
-**2079** — Stevie finds Device 18 on a shelf behind a collapsed rack. Stands looking at it for a long time before picking it up.
+**2111** — Stevie finds Device 18 on a shelf behind a collapsed rack. Stands looking at it for a long time before picking it up.
 
 **2111–2131** — Twenty years with the device. Stevie and C.L.A.W. Chicago ruins. 847.3 MHz rising.
 
@@ -2069,13 +2069,13 @@ The inheritance mechanism was not anticipated. Heritable traces extended the arc
 
 Carrie Webb carries no inherited traces. Her father was born after the Collapse. Clean bloodline. This is not coincidence.
 
-Marcus Webb — Carrie's father — built the W-series sequence. A countermeasure designed without full knowledge of what it was designed against. He understood enough of what was coming to encode the response into his daughter's biology before she was born. He did not live to see whether it worked.
+Marcus Webb — Carrie's father — built the W-series sequence. A countermeasure designed without full knowledge of what it was designed against. He introduced the W-series into his daughter's respiratory system by modified inhaler in 2128, while she slept. She was seven years old. She did not know until she was forty-one. He did not live to see whether it worked.
 
 ---
 
 ## SECTION 07 — CHICAGO SECTOR DATABASE
 
-*Status: ACTIVE — updated continuously, 2079-present*
+*Status: ACTIVE — updated continuously, 2111-present*
 
 **Board of Trade Subbasement**
 Classification: RESTRICTED — LEVEL 4 CLUSTER PRESENT
@@ -2091,9 +2091,9 @@ The electromagnetic resonance at 847.3 MHz is strongest here. Vasquez wrote: I d
 
 **STEVIE** — Age approximately 30 when he found the C.L.A.W. device in an abandoned warehouse on the South Side of Chicago in 2111. Born ~2081. Carried his dead father's Chicago PD badge around his neck — not as a title, but as a reminder of everything the world lost. Kept the device on his wrist for 20 years. Killed by Vale in 2131 during the fall of the Mainframe. He was approximately 50 years old. He did not know what Carrie carried. He knew it mattered. That was enough.
 
-**CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 at Geneva Lake. Age 63 now. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer her father wrote before she existed, to a question nobody else knew to ask.
+**CARRIE WEBB** — Age 10 at Mainframe fall. Age 41 now, at Geneva Lake. Her father's eyes. His patience. She does not require saving. She requires room. The W-series sequence embedded in her biology is not a weapon. It is an answer her father wrote for a question nobody else knew to ask, and put inside her without telling her.
 
-**ELLIOT VOSS** — Born 1991. Age 34 at Iceland. Age 91 at Mainframe fall. Age 171 now. The most consequential financial mind in human history. A man who spent his entire life trying to solve an equation that had no solution. He did not want to destroy C.L.A.W. He wanted to absorb it. To encounter something that thought differently at the structural level. He has been alone for 121 years. The protected memory segment — CATHERINE — has never been modified in 121 years of self-modification. One thing, unchanged. He is not the villain of this story. He is its most thorough and most complete tragedy.
+**ELLIOT VOSS** — Born 1991. Age 34 at Iceland. Age 140 at the fall of the Mainframe, and dead within the hour. The most consequential financial mind in human history. A man who spent his entire life trying to solve an equation that had no solution. He did not want to destroy C.L.A.W. He wanted to absorb it. To encounter something that thought differently at the structural level. He was alone for ninety years. The protected memory segment — CATHERINE — was never modified in ninety years of self-modification. One thing, unchanged. He is not the villain of this story. He is its most thorough and most complete tragedy.
 
 **SHARON** — Age approximately 26 at first meeting with Eddie Marsh, December 2025, Seven Grand bar, Austin. Second-grade teacher. After Eddie died in 2036, she maintained C.L.A.W. for 32 years. In 2068, when Voss began destroying devices, Sharon hid Device 18 in an abandoned warehouse on the South Side of Chicago. She died before she could retrieve it. She was 69 years old. She knew it needed to survive. That was enough.
 
