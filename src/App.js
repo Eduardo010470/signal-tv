@@ -1952,9 +1952,9 @@ When the infrastructure that the system was built to run on no longer exists, th
 
 **2013** — Voss graduates Harvard. Joins Goldman Sachs.
 
-**2015** — Voss leaves Goldman Sachs. Founds Meridian Capital Systems. Begins construction of ALADDIN-9. Eddie Marsh enrolls at University of Texas, Austin.
+**2015** — Voss leaves Goldman Sachs. Eddie Marsh enrolls at University of Texas, Austin.
 
-**2020** — Meridian Capital Systems files patent: Distributed Algorithmic Market Intelligence System — Project ALADDIN. ALADDIN-9 processes approximately 8% of US institutional transaction volume.
+**2020** — Meridian Capital Systems files a patent for a signal-timing architecture: Project ALADDIN. Three named inventors. Elliot Voss is the third. He did the work; two men who did not fully understand it signed above him. He buys what he can of the firm and rebuilds the rest.
 
 **2021** — Eddie Marsh graduates UT Austin. Moves to New York. Joins Hargrove & Bell as junior analyst, 14th floor trading desk.
 
