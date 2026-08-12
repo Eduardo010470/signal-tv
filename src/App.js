@@ -778,7 +778,7 @@ STATUS: Autonomous operation — solar backup
 LAST MAINTENANCE: 2039-08-14
 LAST NETWORK SYNC: 2041-10-03T07:14:22Z
 CURRENT DATE: 2161-12-31
-OPERATIONAL YEARS: 72
+OPERATIONAL YEARS: 123
 DATA LOGS: 26,297 days
 ANOMALOUS ENTRIES: 11,474
 PRIMARY ANOMALY: PERSISTENT HUMAN OCCUPANCY
@@ -1169,7 +1169,7 @@ STATUS: nominal
 
 *Standard protocol: no applicable protocol.*
 
-*The network has been offline for twenty years. This data has not been transmitted. These logs exist in local storage only — seventy-two years of environmental data and thirty years of something the station was not built to document but documented anyway because it was there and documenting things is what the station does.*
+*The network has been offline for a hundred and twenty-one years. This data has not been transmitted. These logs exist in local storage only — a hundred and twenty-three years of environmental data, and thirty years of something the station was not built to document but documented anyway because it was there and documenting things is what the station does.*
 
 *Station Geneva-7 operational status: functional.*
 
