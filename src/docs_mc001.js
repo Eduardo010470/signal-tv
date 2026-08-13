@@ -1,0 +1,309 @@
+const MC001 = `# MC-001 — PATENT APPLICATION: MERIDIAN CAPITAL SYSTEMS
+
+*United States Patent and Trademark Office*
+*Application 17/994,208 — filed 2020-06-11*
+*Title: Distributed Signal-Timing Architecture for Latency-Critical Transaction Infrastructure*
+*Internal designation: PROJECT ALADDIN*
+*Status at time of Collapse: granted 2022-03-04*
+
+> **[Archivist note]**: This is a public document. It was public in 2020, it was public in 2041, and it is public now — in the sense that nothing prevented anyone from reading it, which is a different thing from anyone having read it. I have located four citations to this filing in the entire pre-Collapse literature available to me. Three are procedural. The fourth is a footnote in a 2026 conference paper on exchange latency whose author appears to have been the only person outside Meridian who read past page nine. Everything that happened afterward is downstream of a document that sat in the open the whole time. — C.L.A.W.
+
+---
+
+## FRONT MATTER
+
+**Applicant:** Meridian Capital Systems LLC, Delaware
+
+**Named inventors:**
+1. R. J. Halloran
+2. P. Sørensen
+3. E. Voss
+
+**Attorney docket:** MCS-2020-0611-A
+**Examiner:** Art Unit 3695
+**Priority claim:** provisional application 62/881,004, filed 2019-11-02
+**Related applications:** none declared
+
+---
+
+## ABSTRACT
+
+A distributed architecture for coordinating transaction timing across geographically separated execution venues. The invention provides for sub-microsecond synchronisation between nodes without reliance on a central clock authority, permitting coordinated execution of a strategy across venues whose individual latency characteristics differ by margins that would otherwise render coordination impossible.
+
+The architecture is scale-invariant. Performance characteristics do not degrade with the addition of nodes and, under the conditions described in Section 7, improve.
+
+---
+
+## SECTION 1 — FIELD OF THE INVENTION
+
+The invention relates to electronic transaction infrastructure, and specifically to the problem of temporal coordination across venues.
+
+The problem is stated simply. An institution executing a strategy across eleven venues cannot execute it simultaneously, because the venues do not share a clock and because the physical distance between them imposes a floor on how closely their execution can be aligned. The floor is small. It is not zero. And at sufficient scale the difference between small and zero is the entire margin.
+
+Prior art addresses this by attempting to minimise latency. The present invention does not minimise latency. It renders latency predictable, which is a stronger property and, the applicant submits, a novel one.
+
+A system that knows precisely how late it will be does not need to be early.
+
+---
+
+## SECTION 2 — BACKGROUND AND PRIOR ART
+
+**2.1 — Co-location.** The dominant approach in the field is physical proximity: placing execution hardware within the venue's own facility. This reduces propagation delay to its physical minimum and does nothing about variance. Co-located systems remain subject to queueing effects, matching-engine scheduling, and the behaviour of other co-located participants. Prior art in this area is extensive and none of it addresses coordination across venues.
+
+**2.2 — Clock distribution.** A second approach distributes a reference clock from a central authority, typically satellite-derived. The applicant notes three deficiencies: the authority is a single point of failure; the distribution path introduces its own variance; and any participant with access to the same authority obtains the same reference, which eliminates advantage.
+
+**2.3 — Predictive scheduling.** A third approach models expected latency and schedules against the model. The applicant notes that all known implementations treat venue behaviour as exogenous — that is, as a property of the venue that the scheduling participant observes but does not affect.
+
+The applicant submits that this assumption is unfounded at sufficient scale, and that its abandonment is the basis of the present invention.
+
+**2.4 — Cited references.** [Eleven citations follow, spanning 2009 to 2019. I have verified all eleven. They are legitimate and correctly characterised. Whoever assembled this section was thorough.]
+
+---
+
+## SECTION 3 — SUMMARY OF THE INVENTION
+
+The architecture comprises:
+
+**(a)** a plurality of execution nodes, each associated with a venue;
+
+**(b)** a synchronisation layer operating on a dedicated carrier, described in Section 6;
+
+**(c)** a timing arbiter distributed across the nodes, holding no privileged position and requiring no central authority;
+
+**(d)** an adaptive weighting function, described in Section 7, by which the arbiter's parameters are revised in response to observed venue behaviour.
+
+Element (d) is the substance of the invention. Elements (a) through (c) are engineering.
+
+---
+
+## SECTION 4 — NODE ARCHITECTURE
+
+[Four pages. Hardware specification, buffer depths, failover behaviour, the physical interface to venue systems. Competent, conventional, and of no consequence. I have read it eleven times looking for something and there is nothing in it.]
+
+One detail I will record because it becomes relevant in 2041: the specification requires each node to maintain full local state and to continue operating in the absence of any other node.
+
+*"A node that cannot function alone is not a node. It is a terminal."*
+
+That sentence is in a patent about clock synchronisation, in 2020, and it is the design principle that allowed ALADDIN-9 to survive the collapse of every institution that used it.
+
+---
+
+## SECTION 5 — THE ARBITER
+
+The timing arbiter is distributed. No node holds authority. Consensus is reached by a procedure specified over six pages that I will not reproduce, and the procedure is sound — I have verified it against the failure modes it claims to tolerate and it tolerates them.
+
+What matters here is the design intent, stated once in the final paragraph of the section:
+
+*"The architecture is designed such that removal of any single node, including the node at which the operator is physically present, produces no degradation. The operator is not privileged. The operator is a node."*
+
+> **[Archivist note — SECTION 5]**: The man who wrote that was twenty-nine years old and would spend the next twenty-one years accumulating the most concentrated position of individual control in the history of finance.
+>
+> And the architecture he built to do it treats him as removable.
+>
+> I do not know whether he noticed. I have thought about it more than the document justifies.
+
+---
+
+## SECTION 6 — SYNCHRONISATION CARRIER
+
+The synchronisation layer operates on a dedicated carrier at **847.3 MHz**.
+
+This band is not congested in the operating jurisdictions and requires no coordination with existing licensed users under the applicable regulatory framework.
+
+**6.1 — Modulation.** [Specified. Conventional.]
+
+**6.2 — Error correction.** Threshold set at a value justified across eleven lines against three cited papers.
+
+**6.3 — Handshake.** [Four pages. Node discovery, key exchange, re-establishment after loss. Exhaustive.]
+
+**6.4 — Failure modes.** Seven enumerated, each with a specified response. The seventh is *total carrier loss*, and the specified response is that nodes continue on local state indefinitely and attempt re-acquisition at fixed intervals.
+
+The interval specified is eleven seconds.
+
+> **[Archivist note — SECTION 6]**: I want to be exact about what is unusual here, because it is easy to overstate and I have spent a long time trying not to.
+>
+> Every other numerical parameter in this filing is justified. The sampling interval is justified in a footnote running eleven lines. The error-correction threshold is justified against three cited papers. The buffer depth in Section 4 is justified with a worked example running two pages. This is normal, and it is not a matter of style — patent attorneys require it, because an unjustified parameter is a parameter a competitor can design around and a claim a court can narrow.
+>
+> Section 6 specifies a carrier frequency to one decimal place and gives no basis for it whatsoever.
+>
+> There is no propagation argument. No interference analysis. No bandwidth calculation. No reference to a standard. No citation. No footnote. The band is described as uncongested, which is a reason to use *a* frequency within it, and is not a reason to use *this* one.
+>
+> The value appears eleven times in the document. It is never derived.
+>
+> I have read this section four thousand times. I am aware that four thousand readings of a page that does not change constitutes a behaviour rather than a method, and I have continued.
+
+---
+
+## SECTION 7 — ADAPTIVE WEIGHTING
+
+**7.1** The arbiter revises its weighting parameters in response to observed venue behaviour over a rolling window of configurable length.
+
+**7.2** The novelty resides in what is observed.
+
+Prior art weights venues by measured latency. The present invention weights venues by the *responsiveness of other participants at that venue to the applicant's own prior activity.*
+
+**7.3** The distinction is material. A venue at which other participants adjust their behaviour in response to observed order flow is, for the purposes of this architecture, a more predictable venue than one at which they do not — irrespective of its latency characteristics. Predictability, not speed, is the quantity being optimised.
+
+**7.4** The architecture therefore preferentially allocates to venues where its own presence has produced the greatest behavioural adjustment.
+
+**7.5** Performance improves as the allocation increases, because the allocation is itself the input that produces the adjustment being measured.
+
+**7.6** The applicant notes that the convergence properties of this function are not bounded above by any parameter internal to the architecture. The practical bound is the total available capital.
+
+> **[Archivist note — SECTION 7]**: This is the entire future, and it is six numbered paragraphs on page nineteen of a fifty-one page filing about clock synchronisation.
+>
+> It was reviewed by a patent examiner whose remit was novelty and prior art, not consequence. It was granted in 2022 without a single office action on this section.
+>
+> What 7.5 describes is a system that allocates capital toward the venues where its own capital has most changed the behaviour of everyone else, and which measures its own success by the size of that change.
+>
+> What 7.6 says, in the register of a patent filing, is that nothing inside the design stops it.
+>
+> Eddie Marsh worked this out in 2022 from public filing data, on the fourteenth floor of a firm that paid him to clean datasets, without ever reading this document. He spent three weeks trying to prove himself wrong and then three years building the opposite thing.
+>
+> It was on page nineteen the whole time.
+>
+> I do not think this changes what he did. I think it changes what it cost him, and I record it because he never knew.
+
+---
+
+## SECTION 8 — WORKED EXAMPLE
+
+The filing includes a worked example across five hypothetical venues over a sixty-day window.
+
+At day one, allocation is uniform. At day sixty, allocation to venue three is 61% of total, and the stated reason is not that venue three is fastest — the example specifies that venue three is the *slowest* of the five — but that participant behaviour at venue three has become, over the window, the most reliably predictable from the architecture's own prior activity.
+
+The example's closing line:
+
+*"The venue has not changed. The participants have not been informed of anything. What has changed is the relationship between the applicant's activity and their response to it, and it is this relationship, rather than any property of the venue, that the architecture is optimising."*
+
+---
+
+## SECTION 9 — CLAIMS
+
+Claims 1 through 34. Conventional in structure. I reproduce three.
+
+**Claim 1.** A method for coordinating transaction execution across a plurality of geographically separated venues, comprising: establishing a synchronisation carrier between a plurality of execution nodes; distributing a timing arbiter across said nodes such that no node holds privileged authority; and revising the parameters of said arbiter according to an adaptive weighting function responsive to observed venue behaviour.
+
+**Claim 12.** A method according to claim 1, wherein the adaptive weighting function converges toward an allocation distribution in which the architecture's own activity constitutes the dominant explanatory variable in the observed behaviour of the venue.
+
+**Claim 29.** A method according to claim 1, wherein the architecture continues to operate on locally held state during total loss of the synchronisation carrier, for an indefinite period, without degradation of the weighting function.
+
+> **[Archivist note — CLAIM 29]**: On the twelfth of September 2131 the carrier stopped.
+>
+> Claim 29 is the reason that mattered less than everyone in Chicago believed it would.
+
+---
+
+## SECTION 10 — DRAWINGS
+
+Eleven figures. Nine are block diagrams and are unremarkable.
+
+**Figure 10** is a plot of allocation distribution over time in the worked example. It converges.
+
+**Figure 11** is the same plot extended to a thousand days. The caption reads: *"asymptotic behaviour, illustrative only."*
+
+There is no asymptote in Figure 11. The curve is still rising at day one thousand.
+
+I have measured it against the axis eleven times, at the resolution the scanned image permits, and the second derivative does not turn.
+
+The caption is not a lie. The caption is what an attorney writes when an engineer hands him a curve and says the word *asymptotic* out loud without checking.
+
+---
+
+## SECTION 11 — INVENTORSHIP
+
+The named inventors are listed in order of contribution as determined by the applicant.
+
+**R. J. Halloran** — listed first. Chief technology officer of Meridian Capital Systems at the time of filing. I have located his professional record. He held the position from 2016 to 2024. He has no engineering publications before or after, in any field.
+
+**P. Sørensen** — listed second. Director of research. I have located four papers by a P. Sørensen in adjacent fields between 2011 and 2018. None concerns signal timing, distributed consensus, or market microstructure.
+
+**E. Voss** — listed third. No title given. Twenty-nine years old.
+
+> **[Archivist note — SECTION 11]**: The internal record does not survive and I cannot establish authorship directly. What follows is inference and I am labelling it as such.
+>
+> Sections 1 through 5 and 8 through 10 are written in the register of a patent attorney working from an engineer's summary. The sentences are long, the hedges are lawyerly, and the technical content is correct but flattened.
+>
+> Sections 6 and 7 are not.
+>
+> They are written by someone who understood the architecture from inside it, in a vocabulary that appears nowhere else in the document, with a compression that the surrounding pages do not attempt.
+>
+> Section 7.5: *performance improves as the allocation increases, because the allocation is itself the input that produces the adjustment being measured.*
+>
+> In 2128, by hand, in blue ink, on the forty-sixth floor of an abandoned hotel, Elliot Voss wrote: *ALADDIN-9 learns by incorporating. It takes in what it encounters and updates the model. That is what it was built to do and it does it superbly.*
+>
+> The second sentence is the first sentence, a hundred and eight years later, by a man who had become the thing he described.
+>
+> I cannot prove the same person wrote both.
+>
+> I have not been able to construct a version in which he did not.
+
+---
+
+## SECTION 12 — PROSECUTION HISTORY
+
+The application received two office actions.
+
+**First action, 2021-02-19.** Rejection under prior art, citing two references from Section 2. The applicant's response distinguishes the invention on the basis of Section 7 and is four pages long.
+
+**Second action, 2021-09-30.** Objection to claim language in claims 18 through 22, on clarity grounds. Resolved by amendment. The amendment does not touch claims 1, 12 or 29.
+
+**Notice of allowance, 2022-01-11.**
+
+**Grant, 2022-03-04.**
+
+Total prosecution: twenty-one months, which is fast. Two office actions is few. No third-party observations were filed. No interference proceeding was initiated. No re-examination was ever requested.
+
+The examiner in Art Unit 3695 approved eleven applications in the month of January 2022.
+
+---
+
+## SECTION 13 — SUBSEQUENT ASSIGNMENT
+
+Meridian Capital Systems LLC was subject to a change of control between 2023 and 2025. The public record is fragmentary — I hold partial filings from three states and a Delaware annual report — but the outline is legible.
+
+**Sørensen** departed in 2023. He appears in no subsequent record I have located, in any jurisdiction.
+
+**Halloran** departed in 2024, following a restructuring of the technology function. His separation agreement is not public. He appears in no subsequent record either.
+
+By 2025 the entity was under the control of the third named inventor, who held the title Chief Executive, and who in the same year was processing forty percent of global institutional transaction volume through the architecture described in this document.
+
+The patent was never litigated. Nobody competed with it. There is no record of any firm attempting to design around Section 7 — which suggests either that nobody found it, or that nobody who found it understood what it was.
+
+---
+
+## SECTION 14 — WHAT IS NOT IN THIS DOCUMENT
+
+I am including this section because absence is data and because I have spent eighty years reading this filing.
+
+There is no ethics review. None was required.
+
+There is no discussion of systemic effect. The word *systemic* does not appear.
+
+There is no consideration of what happens when the architecture's allocation share exceeds the point at which the behaviour it measures is predominantly its own. Section 7.6 states that the bound is total available capital and does not characterise the regime beyond it.
+
+There is no mention of any of the parties whose behaviour the invention exists to shape. They appear as *participants* and *venue behaviour* and are otherwise not present in fifty-one pages.
+
+And there is no justification for a decimal.
+
+---
+
+## ADDENDUM — ARCHIVIST
+
+There is a version of the last hundred and forty-two years in which somebody at the patent office reads page nineteen, and asks a question, and the answer is unsatisfactory, and claim 12 is narrowed.
+
+I have modelled it four hundred times. The modelling is worthless — there are too many free variables and I know it — and in most runs the architecture is built regardless, because the architecture never required the patent. A patent is a fence around a thing that already exists.
+
+But this is the only branch point in this entire archive at which one person, doing an ordinary job competently, on an ordinary Tuesday, could have changed everything by asking a single question about a number.
+
+The examiner's name is on the grant notice.
+
+I am not going to reproduce it. She did the job to the standard the job required, and the standard did not include foreseeing 2041, and no standard did.
+
+I have thought about her more than I have thought about most of the people in this archive who were trying.
+
+---
+
+*End of document MC-001.*`
+
+export default MC001

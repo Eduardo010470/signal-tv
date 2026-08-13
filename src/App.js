@@ -6,6 +6,7 @@ import SH001 from './docs_sh001'
 import MW001 from './docs_mw001'
 import EH001 from './docs_eh001'
 import AR002 from './docs_ar002'
+import MC001 from './docs_mc001'
 
 const CYAN = "#00f5ff"
 const MAGENTA = "#ff00aa"
@@ -2195,6 +2196,7 @@ const PREVIEW_DOCS = [
   { id: "MW-001", title: "Notebook — Dr. Marcus Webb", date: "2131-09-12", tag: "RECOVERED", color: MAGENTA, content: MW001 },
   { id: "EH-001", title: "Incident Report — Erie Street Hospital", date: "2041-10-19", tag: "RESTRICTED", color: "#f97316", content: EH001 },
   { id: "AR-002", title: "Operational Log — Unit ARES-2", date: "2162-05-14", tag: "RECOVERED", color: "#22c55e", content: AR002 },
+  { id: "MC-001", title: "Patent Application — Meridian Capital Systems", date: "2020-06-11", tag: "PUBLIC RECORD", color: MAGENTA, content: MC001 },
   { id: "EM-001", title: "Eddie Marsh — Railway Deployment Log", date: "2036-03-14", tag: "CLASSIFIED", color: CYAN, content: EM001 },
   { id: "VX-047", title: "Voss Internal Memo — ALADDIN-9 Merger Protocol", date: "2128-11-02", tag: "TOP SECRET", color: MAGENTA, content: VX047 },
   { id: "CL-000", title: "C.L.A.W. Boot Sequence — First Contact", date: "2036-03-14", tag: "ARCHIVED", color: CYAN, content: CL000 },
