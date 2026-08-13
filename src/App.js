@@ -2452,7 +2452,7 @@ export default function App() {
           </div>
         )}
 
-        {page === "archive" && user && selectedDoc && selectedDoc.content !== "chicago" && selectedDoc.content !== "geneva" && selectedDoc.content !== "manhattan" && (
+        {page === "archive" && (user || (selectedDoc && selectedDoc.id === "CL-000")) && selectedDoc && selectedDoc.content !== "chicago" && selectedDoc.content !== "geneva" && selectedDoc.content !== "manhattan" && (
           <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
             <div onClick={() => setSelectedDoc(null)} style={{ fontSize: 12, color: CYAN, cursor: "pointer", marginBottom: 24, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
             <div style={{ background: "rgba(0,20,35,0.4)", border: `1px solid rgba(0,245,255,0.08)`, padding: "24px 20px", fontSize: 13, lineHeight: 1.9, color: "#c8e0e8" }}>
