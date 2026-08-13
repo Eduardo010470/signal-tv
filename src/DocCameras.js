@@ -92,19 +92,19 @@ function Camera({ label, coords, type, docId }) {
           for (let c = 0; c < 5; c++) {
             const x = 12 + c * (w - 24) / 5
             const y = 26 + r * (h - 40) / 4
-            ctx.fillStyle = "rgba(200,180,140,0.13)"
+            ctx.fillStyle = "rgba(220,205,170,0.42)"
             ctx.fillRect(x, y, 12, 7)
-            ctx.fillStyle = "rgba(200,180,140,0.06)"
+            ctx.fillStyle = "rgba(220,205,170,0.22)"
             ctx.fillRect(x + 2, y + 7, 8, 4)
           }
         }
-        ctx.fillStyle = "rgba(180,200,190,0.10)"
+        ctx.fillStyle = "rgba(190,215,205,0.30)"
         ctx.fillRect(10, 8, w - 20, 12)
-        const flick = 0.18 + 0.06 * Math.sin(frame / 30)
+        const flick = 0.34 + 0.10 * Math.sin(frame / 30)
         ctx.fillStyle = "rgba(255,240,200," + flick + ")"
         ctx.fillRect(0, 0, w, 3)
         ctx.font = "7px monospace"
-        ctx.fillStyle = "rgba(200,180,140,0.4)"
+        ctx.fillStyle = "rgba(220,205,170,0.7)"
         ctx.fillText("ZAVALA ELEM — RM 14", 10, h - 6)
       }
 
@@ -116,10 +116,12 @@ function Camera({ label, coords, type, docId }) {
         const total = 67
         const shown = Math.min(Math.floor(frame / 3) % (total + 30), total)
         for (let i = 0; i < shown; i++) {
-          const col = i % 12
-          const row = Math.floor(i / 12)
-          const x = 8 + col * (w - 20) / 12
-          const y = 24 + row * 11
+          const cols = 12
+          const rows = Math.ceil(total / cols)
+          const col = i % cols
+          const row = Math.floor(i / cols)
+          const x = 8 + col * (w - 20) / cols
+          const y = 24 + row * (h - 40) / (rows - 1)
           ctx.fillStyle = "rgba(0,245,255,0.5)"
           ctx.fillRect(x, y, 5, 5)
         }
