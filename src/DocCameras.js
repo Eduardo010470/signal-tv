@@ -158,6 +158,96 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(251,191,36,0.3)"
         ctx.fillText("1,100 M SHORT", w * 0.40, h - 6)
       }
+      // MW-001 — Flooded basement lab
+      if (type === "mw_lab") {
+        ctx.fillStyle = "#080a0c"
+        ctx.fillRect(0, 0, w, h)
+        const waterY = h * 0.68 + 2 * Math.sin(frame / 40)
+        ctx.fillStyle = "rgba(30,60,70,0.5)"
+        ctx.fillRect(0, waterY, w, h - waterY)
+        for (let i = 0; i < 5; i++) {
+          const bx = 10 + i * (w - 30) / 4
+          ctx.fillStyle = "rgba(150,190,200,0.30)"
+          ctx.fillRect(bx, waterY - 22, 14, 22)
+          ctx.fillStyle = "rgba(0,245,255,0.35)"
+          ctx.fillRect(bx + 3, waterY - 18, 8, 3)
+        }
+        ctx.strokeStyle = "rgba(150,190,200,0.18)"
+        for (let i = 0; i < 3; i++) {
+          const ry = waterY + 6 + i * 7
+          ctx.beginPath(); ctx.moveTo(0, ry); ctx.lineTo(w, ry); ctx.stroke()
+        }
+        const drip = (frame % 100) / 100
+        ctx.fillStyle = "rgba(180,220,230,0.6)"
+        ctx.fillRect(w * 0.72, 6 + drip * (waterY - 10), 1.5, 4)
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.55)"
+        ctx.fillText("WEST SIDE — SUB-LEVEL", 8, 12)
+      }
+
+      // MW-001 — The silences
+      if (type === "mw_silences") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const cols = 16
+        const rows = 8
+        const mx = 8, my = 22
+        const gw = (w - mx * 2) / (cols - 1)
+        const gh = (h - my - 14) / (rows - 1)
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const x = mx + c * gw
+            const y = my + r * gh
+            const cluster = (c > 4 && c < 10 && r > 2 && r < 6)
+            const phase = Math.sin(frame / 30 + c * 0.4 + r * 0.3)
+            if (cluster) {
+              ctx.fillStyle = "rgba(255,60,90," + (0.35 + 0.25 * phase) + ")"
+              ctx.fillRect(x - 1.5, y - 1.5, 3.5, 3.5)
+            } else {
+              ctx.fillStyle = "rgba(0,245,255,0.20)"
+              ctx.fillRect(x - 1, y - 1, 2, 2)
+            }
+          }
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("QUERY RESPONSE MAP", 8, 12)
+        ctx.fillStyle = "rgba(255,60,90,0.7)"
+        ctx.fillText("NO RESPONSE", w - 62, h - 5)
+      }
+
+      // MW-001 — The fourteen caches
+      if (type === "mw_caches") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        ctx.strokeStyle = "rgba(255,255,255,0.05)"
+        for (let i = 1; i < 4; i++) {
+          ctx.beginPath(); ctx.moveTo(0, i * h / 4); ctx.lineTo(w, i * h / 4); ctx.stroke()
+          ctx.beginPath(); ctx.moveTo(i * w / 4, 0); ctx.lineTo(i * w / 4, h); ctx.stroke()
+        }
+        const pts = [[0.10,0.22],[0.24,0.15],[0.38,0.30],[0.15,0.45],[0.30,0.55],[0.46,0.44],
+                     [0.58,0.24],[0.66,0.52],[0.52,0.68],[0.34,0.76],[0.20,0.66],[0.72,0.38],
+                     [0.80,0.62],[0.62,0.82]]
+        const shown = Math.min(Math.floor(frame / 12) % (pts.length + 10), pts.length)
+        pts.forEach((pt, i) => {
+          if (i >= shown) return
+          const x = 10 + pt[0] * (w - 20)
+          const y = 20 + pt[1] * (h - 34)
+          const found = i < 11
+          ctx.fillStyle = found ? "rgba(251,191,36,0.85)" : "rgba(255,60,90,0.7)"
+          ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill()
+          if (!found) {
+            const rr = (frame % 70) / 70
+            ctx.strokeStyle = "rgba(255,60,90," + (0.5 - 0.5 * rr) + ")"
+            ctx.beginPath(); ctx.arc(x, y, 3 + rr * 9, 0, Math.PI * 2); ctx.stroke()
+          }
+        })
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(251,191,36,0.6)"
+        ctx.fillText("RESEARCH WALK — 14 SITES", 8, 12)
+        ctx.fillStyle = "rgba(251,191,36,0.35)"
+        ctx.fillText("11 RECOVERED", 8, h - 5)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1404,6 +1494,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "MW-001": [
+    { label: "CAM-01 / LAB", coords: "WEST SIDE — SUB-LEVEL", type: "mw_lab" },
+    { label: "CAM-02 / SILENCES", coords: "QUERY MAP — 11 YEARS", type: "mw_silences" },
+    { label: "CAM-03 / CACHES", coords: "14 SITES — 11 FOUND", type: "mw_caches" },
+  ],
   "SH-001": [
     { label: "CAM-01 / CLASSROOM", coords: "ZAVALA ELEM — AUSTIN", type: "sh_classroom" },
     { label: "CAM-02 / TRANSFERS", coords: "2036 — 2041", type: "sh_transfers" },
