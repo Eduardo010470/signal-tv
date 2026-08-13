@@ -2223,7 +2223,7 @@ export default function App() {
     setRadioText('')
     setRadioAudio(null)
     try {
-      const r = await fetch('https://etf-api-production-093e.up.railway.app/radio-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+      const r = await fetch('https://web-production-6b9df.up.railway.app/radio-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
       const data = await r.json()
       if (data.text) setRadioText(data.text)
       if (data.audio) setRadioAudio('data:audio/mp3;base64,' + data.audio)
