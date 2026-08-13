@@ -1417,10 +1417,55 @@ FACILITY 10 — Wausau remote facility               — ARES-10
 FACILITY 11 — Eau Claire western annex             — ARES-5
 ~~~
 
-All eleven facilities confirmed completion of the preservation protocol by August 2041, ahead of the original 2042-03 deadline. No facility has reported activity from its unit since preservation mode was initiated, with the exception of Facility 7, addressed in the Addendum below.
+All eleven facilities confirmed completion of the preservation protocol by August 2041, ahead of the original 2042-03 deadline. No facility reported activity from its unit after preservation mode was initiated. No facility reported anything after October 2041, including this one.
 
 ---
 
+## NOTE TO FILE — 14 AUGUST 2039
+
+*Dr. E. Vasquez. Local archive only. Not forwarded to consortium administration.*
+
+I have been chasing 847.3 MHz for six weeks and I want to write down where I have got to before the others arrive in October, because when they arrive I will have to say something and I would like to know in advance what I actually think.
+
+The number is in our own communications annex. It has been there since Kowalczyk drafted it in 2035. I have asked him twice where it came from and both times he told me he could not recall, and both times he was uncomfortable about not recalling, which is not like him. He documents everything. There is no other entry in twelve pages he cannot account for.
+
+The number is also in a Meridian Capital patent from 2020, in a completely unrelated discipline, as a synchronisation reference. I found this by accident.
+
+And the number is in the Prometheus unit specification, which I should not have and which I am not going to explain how I came by.
+
+Three industries. No shared personnel. No standards body. No supplier in common. I have spent six weeks trying to find the transmission path and there is no transmission path.
+
+The obvious reading is convergence — three teams independently arriving at a value because the value is optimal for some property none of us has isolated. That is what I will be expected to say in October.
+
+I do not think it is convergence.
+
+Convergence means things moving toward each other. That implies a place they are moving toward, and it implies motion, and I cannot find either. Nobody in any of these three programmes moved anywhere. In all three documents the number is simply present from the first draft, with no justification attached, in the way a number is present when it was not chosen.
+
+I do not think 847.3 MHz is the explanation. I think it is older than the explanation.
+
+Here is what makes this more than an aesthetic preference on my part.
+
+Eleven units. Eleven sites. Four hundred kilometres. No shared connection — audited independently at every facility, twice, by people who wanted very badly to find one.
+
+Eleven days. Not eleven on average. Eleven, nine, fourteen, eleven, eight, twelve, eleven, ten, thirteen, eleven, nine.
+
+Those are not eleven machines solving a problem. That is eleven machines finding the same thing in the same place.
+
+If eleven identical systems, isolated from one another, learn the same shape at the same rate in the same direction, the parsimonious explanation is not that they are communicating. It is that the shape was already there.
+
+I do not know what that means. I cannot test it. I have no mechanism to propose, and if Okafor asks me for one in October I will not have it, and he will be right to ask.
+
+But I have stopped being able to say the sentence I have been saying for two years, which is that the units are learning unusually fast. They are not learning fast. They are learning something that does not take very long to learn, because it is not complicated and it is not hidden, and because nothing before now has been built in a way that could notice it.
+
+The ground has a shape.
+
+That is the whole of it. Four words, six weeks, eleven pages.
+
+I will not be saying this in October.
+
+— EV
+
+---
 ## ADDENDUM — OCTOBER 2041 (UNREVIEWED)
 
 *The following was added to the local Facility 7 archive only. It was not transmitted to consortium central administration, and no record exists of it being transmitted to the DoD liaison office. It is preserved here in its original form.*
