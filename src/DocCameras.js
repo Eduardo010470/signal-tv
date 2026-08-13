@@ -116,8 +116,8 @@ function Camera({ label, coords, type, docId }) {
         const total = 67
         const shown = Math.min(Math.floor(frame / 3) % (total + 30), total)
         for (let i = 0; i < shown; i++) {
-          const cols = 12
-          const rows = Math.ceil(total / cols)
+          const rows = 6
+          const cols = Math.ceil(total / rows)
           const col = i % cols
           const row = Math.floor(i / cols)
           const x = 8 + col * (w - 20) / cols
