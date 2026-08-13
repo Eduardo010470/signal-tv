@@ -1747,7 +1747,7 @@ Selection: Biological — not administered
 
 Level 4 integration is rare.
 
-In eight years of distribution across forty-two countries and more than 340 million integrated individuals, Level 4 has been confirmed in approximately 0.3% of the integrated population — roughly one million individuals globally. There is no reliable predictor of Level 4 progression. Every effort to identify a genetic or neurological marker for Level 4 susceptibility has failed to produce a clinically actionable result.
+In eight years of distribution across forty-two countries and more than 340 million integrated individuals, Level 4 has been confirmed in approximately 0.3% of the integrated population — roughly one million individuals globally. There is no reliable predictor of Level 4 progression. Every effort to identify a genetic or neurological marker for Level 4 susceptibility has failed to produce a clinically actionable result. The one confirmed case of complete iris presentation is a Level 4 individual with a nanobot density substantially above the cohort ceiling, referred to in this document by subject code only.
 
 Level 4 individuals are identified retrospectively, after the progression has occurred, through the specific clinical and behavioral markers described in this section.
 
@@ -1772,7 +1772,11 @@ Physical changes: Present
   Eye: Electromagnetic sensitivity
     detected in 78% of Level 4 cohort
 Physical profile:
-  Eye color: Amber-gold iris (100%)
+  Eye color: Amber flecking in 41% of the cohort,
+    typically peripheral and detectable only
+    under direct examination. Full amber-gold
+    iris presentation: 1 confirmed case.
+  [cosmetic only — no clinical significance]
   High EM activity: Orange-red iris
   [cosmetic only — no clinical significance]
   Physical strength: Enhanced (avg 18%)
