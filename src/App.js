@@ -2475,7 +2475,7 @@ function LiveFeedComponent({ feedId }) {
     setIsLoading(true)
     try {
       const endpoint = feedId === "ST-001" ? "settlement-feed" : "signal-feed"
-      const r = await fetch(`https://etf-api-production-093e.up.railway.app/${endpoint}`, { method: "POST", headers: { "Content-Type": "application/json" } })
+      const r = await fetch(`https://web-production-6b9df.up.railway.app/${endpoint}`, { method: "POST", headers: { "Content-Type": "application/json" } })
       const d = await r.json()
       const text = d.text || "TRANSMISSION ERROR — SIGNAL LOST"
       const newLines = text.split("\n").filter(l => l.trim())
