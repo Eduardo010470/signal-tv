@@ -31,9 +31,9 @@ function Camera({ label, coords, type, docId }) {
         const shown = Math.min(cyc, docs.length)
         docs.slice(0, shown).forEach((d, i) => {
           ctx.fillStyle = "rgba(251,191,36,0.85)"
-          ctx.fillText(d, 6, 24 + i * (h - 30) / docs.length)
+          ctx.fillText(d, 6, 24 + i * (h - 28) / (docs.length - 1))
           ctx.fillStyle = "rgba(251,191,36,0.25)"
-          ctx.fillText("........ INDEXED", 52, 24 + i * (h - 30) / docs.length)
+          ctx.fillText("........ INDEXED", 52, 24 + i * (h - 28) / (docs.length - 1))
         })
         ctx.shadowBlur = 0
         ctx.fillStyle = "rgba(251,191,36,0.5)"
