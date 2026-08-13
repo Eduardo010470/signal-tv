@@ -2334,7 +2334,7 @@ export default function App() {
               </h1>
               <p style={{ fontSize: 14, color: "#607888", maxWidth: 500, lineHeight: 1.8, marginBottom: 8 }}>Classified documents. C.L.A.W. logs. Inner Sectors transmissions.</p>
               <p style={{ fontSize: 13, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36 }}>The universe of <span style={{ color: CYAN }}>CLAW AI</span> continues here — Eddie Marsh's files, Voss dossiers, Chicago 2162 dispatches.</p>
-              <p style={{ fontSize: 12, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36, textAlign: "center" }}>The documents here are primary sources for two novels available free on Wattpad: <a href="https://www.wattpad.com/story/410514034" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>CLAW AI</a> and <a href="https://www.wattpad.com/story/410854794" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>The Book of Carrie</a>. Read the story. Then read what happened before — and what is happening now.</p>
+              <p style={{ fontSize: 12, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36, textAlign: "center" }}>Chicago fell in 2041. These are the documents that survived — the deployment log of the man who built the machine, the memoranda of the man who spent ninety years trying to take it, and dispatches still arriving on 847.3 MHz from a city nobody has left. Thirteen files. Four of them update themselves. Primary sources for the novels, free on Wattpad: <a href="https://www.wattpad.com/story/410514034" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>CLAW AI</a> and <a href="https://www.wattpad.com/story/410854794" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>The Book of Carrie</a>. Read the story. Then read what happened before — and what is happening now.</p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 16 }}>
                 <a href={STRIPE_USD} target="_blank" rel="noreferrer" style={{ background: CYAN, color: BG, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACCESS — $4.99/mo</a>
                 <a href={STRIPE_BRL} target="_blank" rel="noreferrer" style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACESSO — R$12,90/mês</a>
@@ -2426,12 +2426,13 @@ export default function App() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {PREVIEW_DOCS.map(a => (
                 <div key={a.id} onClick={() => {
+                  if (a.id === "CL-000") { setSelectedDoc(a); return }
                   if (!isPremium) return
                   if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
                   else if (a.id === "RADIO-847") { setShowRadioFeed(true); fetchRadioFeed() }
                   else if (a.content && a.content !== "chicago" && a.content !== "geneva" && a.content !== "manhattan") { setSelectedDoc(a) }
                   else if (isPremium && (a.content === "chicago" || a.content === "geneva" || a.content === "manhattan")) { setSelectedDoc(a) }
-                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "pointer" : "default", opacity: isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" ? 0.5 : 1 }}>
+                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: (a.id === "CL-000" || (isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001"))) ? "pointer" : "default", opacity: (a.id !== "CL-000" && isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001") ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
                       <span style={{ fontSize: 12, color: "#7090a8", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
@@ -2440,7 +2441,7 @@ export default function App() {
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
                       <span style={{ fontSize: 12, letterSpacing: 1, color: a.color, border: `1px solid ${a.color}`, padding: "2px 6px", whiteSpace: "nowrap" }}>{a.tag}</span>
                       <span style={{ fontSize: 12, color: "#7090a8" }}>{a.date}</span>
-                      <span style={{ fontSize: 12 }}>{isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001") ? "🔓" : "🔒"}</span>
+                      <span style={{ fontSize: 12 }}>{(a.id === "CL-000" || (isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001"))) ? "🔓" : "🔒"}</span>
                     </div>
                   </div>
                   {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && <div style={{ fontSize: 12, color: "#7090a8", marginTop: 6 }}>— Coming soon —</div>}
