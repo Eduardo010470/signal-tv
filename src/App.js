@@ -2324,7 +2324,7 @@ export default function App() {
       </nav>
 
       <div style={{ paddingTop: 52 }}>
-        {page === "landing" && (
+        {page === "landing" && !selectedDoc && (
           <div>
             <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "100px 20px 60px" }}>
               <div style={{ fontSize: 12, letterSpacing: 5, color: MAGENTA, marginBottom: 16 }}>TRANSMISSION ACTIVE — CHICAGO 2162</div>
@@ -2452,7 +2452,7 @@ export default function App() {
           </div>
         )}
 
-        {page === "archive" && (user || (selectedDoc && selectedDoc.id === "CL-000")) && selectedDoc && selectedDoc.content !== "chicago" && selectedDoc.content !== "geneva" && selectedDoc.content !== "manhattan" && (
+        {(page === "archive" || (page === "landing" && selectedDoc && selectedDoc.id === "CL-000")) && selectedDoc && selectedDoc.content !== "chicago" && selectedDoc.content !== "geneva" && selectedDoc.content !== "manhattan" && (
           <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
             <div onClick={() => setSelectedDoc(null)} style={{ fontSize: 12, color: CYAN, cursor: "pointer", marginBottom: 24, letterSpacing: 2 }}>← BACK TO ARCHIVE</div>
             <div style={{ background: "rgba(0,20,35,0.4)", border: `1px solid rgba(0,245,255,0.08)`, padding: "24px 20px", fontSize: 13, lineHeight: 1.9, color: "#c8e0e8" }}>
