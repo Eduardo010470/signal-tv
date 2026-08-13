@@ -1537,6 +1537,10 @@ Status: ACTIVE
 
 The Prometheus Integration System represents the single most significant advance in human performance optimization in the history of biomedical science.
 
+A note on terminology, for recipients unfamiliar with internal classification. Publicly, and in every jurisdiction where distribution has been authorised, Prometheus is a preventive health programme. That description is accurate. Early detection outcomes across the integrated population exceed every projection filed with regulators in 2029, and the twelve to fifteen million lives the programme is estimated to have preserved in its first decade are not a marketing figure — they are the reason forty-two governments approved municipal distribution, and they are why they will continue to.
+
+This document concerns the architecture underneath that outcome. Circulation outside Level 3 clearance is prohibited, not because the second function is improper, but because it is not what the public was asked about.
+
 This is not marketing language. It is the considered assessment of eight years of longitudinal data collected across forty-two countries and more than 340 million successfully integrated individuals. The Prometheus nanobot architecture has, since the initiation of Phase 1 distribution in 2031, demonstrated safety, tolerability, and efficacy profiles that exceed every pre-deployment projection by a factor that the original modeling teams have described, without exception, as extraordinary.
 
 The human species has always been defined by its capacity to extend itself — to build tools that amplify what individual biology cannot achieve alone. Fire. Language. Writing. The printing press. The internet. Each of these technologies represented a qualitative shift in what it meant to be human, not merely a quantitative improvement on what existed before. Each was, at the time of its introduction, controversial. Each is now so thoroughly integrated into the fabric of human civilization that its absence is unimaginable.
