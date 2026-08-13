@@ -431,7 +431,6 @@ function Camera({ label, coords, type, docId }) {
         })
         ctx.strokeStyle = "rgba(0,245,255,0.28)"
         ctx.setLineDash([2, 3])
-        const projY = my + bh - (180 / maxv) * bh
         ctx.beginPath(); ctx.moveTo(mx, my + 2); ctx.lineTo(mx + bw, my + 2); ctx.stroke()
         ctx.setLineDash([])
         ctx.font = "7px monospace"
