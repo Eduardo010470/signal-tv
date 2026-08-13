@@ -364,6 +364,120 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(255,120,60,0.6)"
         ctx.fillText("11 M FROM DOOR", w - 70, h - 4)
       }
+      // AR-002 — Facility 2 sign, Madison
+      if (type === "ar_sign") {
+        ctx.fillStyle = "#080b0e"
+        ctx.fillRect(0, 0, w, h)
+        const gl = ctx.createRadialGradient(w*0.5, h*0.42, 4, w*0.5, h*0.42, w*0.6)
+        gl.addColorStop(0, "rgba(180,200,215,0.14)")
+        gl.addColorStop(1, "rgba(0,0,0,0)")
+        ctx.fillStyle = gl
+        ctx.fillRect(0, 0, w, h)
+        ctx.fillStyle = "rgba(60,70,80,0.9)"
+        ctx.fillRect(8, h * 0.26, w - 16, h * 0.42)
+        ctx.strokeStyle = "rgba(190,210,225,0.45)"
+        ctx.strokeRect(8, h * 0.26, w - 16, h * 0.42)
+        ctx.textAlign = "center"
+        const flick = (frame % 190 < 6) ? 0.30 : 0.92
+        ctx.font = "bold 9px monospace"
+        ctx.fillStyle = "rgba(200,225,240," + flick + ")"
+        ctx.fillText("UNIVERSITY OF WISCONSIN", w/2, h * 0.40)
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(200,225,240," + (flick * 0.75) + ")"
+        ctx.fillText("ADVANCED ROBOTICS DIVISION", w/2, h * 0.52)
+        ctx.fillStyle = "rgba(255,150,60," + (flick * 0.9) + ")"
+        ctx.fillText("FACILITY 2 — MADISON", w/2, h * 0.63)
+        ctx.textAlign = "left"
+        ctx.fillStyle = "rgba(40,60,50,0.55)"
+        for (let i = 0; i < 7; i++) {
+          const gx = 6 + i * (w - 12) / 6
+          ctx.fillRect(gx, h - 12 - (i % 3) * 3, 4, 12 + (i % 3) * 3)
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.5)"
+        ctx.fillText("SEALED 2041-08-19", 8, 12)
+      }
+
+      // AR-002 — Learning curve
+      if (type === "ar_curve") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const mx = 22, my = 22, bh = h - my - 16, bw = w - mx - 10
+        ctx.strokeStyle = "rgba(255,255,255,0.08)"
+        for (let i = 0; i <= 4; i++) {
+          const y = my + i * bh / 4
+          ctx.beginPath(); ctx.moveTo(mx, y); ctx.lineTo(mx + bw, y); ctx.stroke()
+        }
+        const vals = [14, 11, 9, 4, 3, 1.3, 0.8]
+        const maxv = 14
+        const shown = Math.min(Math.floor(frame / 20) % (vals.length + 6), vals.length)
+        ctx.strokeStyle = "rgba(255,90,60,0.9)"
+        ctx.lineWidth = 1.5
+        ctx.beginPath()
+        vals.forEach((v, i) => {
+          if (i >= shown) return
+          const x = mx + i * bw / (vals.length - 1)
+          const y = my + bh - (v / maxv) * bh
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y)
+        })
+        ctx.stroke()
+        ctx.lineWidth = 1
+        vals.forEach((v, i) => {
+          if (i >= shown) return
+          const x = mx + i * bw / (vals.length - 1)
+          const y = my + bh - (v / maxv) * bh
+          ctx.fillStyle = "rgba(255,140,90,0.95)"
+          ctx.beginPath(); ctx.arc(x, y, 2.2, 0, Math.PI * 2); ctx.fill()
+        })
+        ctx.strokeStyle = "rgba(0,245,255,0.28)"
+        ctx.setLineDash([2, 3])
+        const projY = my + bh - (180 / maxv) * bh
+        ctx.beginPath(); ctx.moveTo(mx, my + 2); ctx.lineTo(mx + bw, my + 2); ctx.stroke()
+        ctx.setLineDash([])
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.5)"
+        ctx.fillText("PROJECTION 180d", mx + 2, my - 2)
+        ctx.fillStyle = "rgba(255,140,90,0.75)"
+        ctx.fillText("2037 — 2039", mx, h - 4)
+        ctx.fillStyle = "rgba(255,140,90,0.5)"
+        ctx.fillText("19h", w - 26, h - 4)
+      }
+
+      // AR-002 — Fractional carrier returning
+      if (type === "ar_carrier") {
+        ctx.fillStyle = "#04070a"
+        ctx.fillRect(0, 0, w, h)
+        const base = h * 0.66
+        ctx.strokeStyle = "rgba(255,255,255,0.08)"
+        ctx.beginPath(); ctx.moveTo(0, base); ctx.lineTo(w, base); ctx.stroke()
+        const marks = 11
+        const cyc = Math.floor(frame / 26) % (marks + 5)
+        for (let i = 0; i < marks; i++) {
+          if (i >= cyc) break
+          const x = 8 + i * (w - 18) / (marks - 1)
+          const amp = (6 + i * 1.7)
+          ctx.strokeStyle = "rgba(0,245,255," + (0.35 + i * 0.05) + ")"
+          ctx.beginPath()
+          for (let k = 0; k < 14; k++) {
+            const yy = base - amp * Math.abs(Math.sin((k / 13) * Math.PI))
+            if (k === 0) ctx.moveTo(x, base); else ctx.lineTo(x, yy)
+          }
+          ctx.lineTo(x, base)
+          ctx.stroke()
+          ctx.fillStyle = "rgba(0,245,255," + (0.4 + i * 0.05) + ")"
+          ctx.beginPath(); ctx.arc(x, base - amp, 1.6, 0, Math.PI * 2); ctx.fill()
+        }
+        const sweep = (frame % 130) / 130
+        ctx.strokeStyle = "rgba(0,245,255,0.14)"
+        ctx.beginPath(); ctx.moveTo(sweep * w, 18); ctx.lineTo(sweep * w, h - 12); ctx.stroke()
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("847.3 MHz — FRACTIONAL", 8, 12)
+        ctx.fillStyle = "rgba(0,245,255,0.4)"
+        ctx.fillText("0.31% RISING 0.46%", 8, h - 4)
+        ctx.fillStyle = "rgba(255,150,60,0.6)"
+        ctx.fillText("BRG 190KM ESE", w - 74, h - 4)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1610,6 +1724,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "AR-002": [
+    { label: "CAM-01 / FACILITY 2", coords: "MADISON WI — SEALED", type: "ar_sign" },
+    { label: "CAM-02 / LEARNING RATE", coords: "14d — 19h", type: "ar_curve" },
+    { label: "CAM-03 / CARRIER", coords: "0.46% — RISING", type: "ar_carrier" },
+  ],
   "EH-001": [
     { label: "CAM-01 / COLD STORAGE 2", coords: "11 DECEDENTS — 7 OPEN", type: "eh_morgue" },
     { label: "CAM-02 / MONITOR", coords: "03:17 — 5 ROWS LIVE", type: "eh_monitor" },
