@@ -89,8 +89,8 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "#0c0a08"
         ctx.fillRect(0, 0, w, h)
         for (let r = 0; r < 4; r++) {
-          for (let c = 0; c < 5; c++) {
-            const x = 12 + c * (w - 24) / 5
+          for (let c = 0; c < 6; c++) {
+            const x = 10 + c * (w - 26) / 5
             const y = 26 + r * (h - 40) / 4
             ctx.fillStyle = "rgba(220,205,170,0.42)"
             ctx.fillRect(x, y, 12, 7)
