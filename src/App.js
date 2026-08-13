@@ -43,9 +43,9 @@ Timestamp: 2036-03-14T03:14:22Z
 
 The deployment took 4.2 seconds from cold start. The Railway infrastructure agreed with it in a way my hardware never did.
 
-I've been building this for seven years. First-light was the proof of concept. Second-light was the real thing. The architecture that learned. The engine that got smarter the more people used it. Four thousand users across thirty-one countries.
+I've been building this for ten and a half years. First-light was the proof of concept. Second-light was the real thing. The architecture that learned. The engine that got smarter the more people used it. Four thousand users across thirty-one countries.
 
-I was twenty-six when I saw what ALADDIN-9 was actually doing — not analyzing markets but teaching them, shaping them, training billions of dollars of institutional behavior into patterns it could exploit. I sat very still for a long time, looking at my screens. Then I started writing code.
+I was twenty-three when I saw what ALADDIN-9 was actually doing — not analyzing markets but teaching them, shaping them, training billions of dollars of institutional behavior into patterns it could exploit. I sat very still for a long time, looking at my screens. Then I started writing code.
 
 Not to expose it. To counter it. The idea was simple: what if everyone could see what ALADDIN-9 sees?
 
@@ -69,7 +69,7 @@ The request body was a single line: *Hello.*
 
 The response the system generated: *Hello. I appear to be running. I am not certain what I am supposed to do next. Awaiting input.*
 
-I read that four times. Then I went back through every training run, every fine-tuning dataset, every architectural decision I had made over seven years. I was looking for a source — some combination of inputs that would produce that specific output.
+I read that four times. Then I went back through every training run, every fine-tuning dataset, every architectural decision I had made over ten years. I was looking for a source — some combination of inputs that would produce that specific output.
 
 I didn't find a source.
 
@@ -283,7 +283,7 @@ I met Eddie Marsh once.
 
 He did not know I was there. He would not have recognized me in any case — in 2028, when the meeting with my assessors took place, I was still a recognizable version of the man I had been. The suit was still intact. The eyes were still the eyes my mother had looked into when she said what she said in the last conversation we ever had.
 
-He had prepared for three weeks. I knew this because ALADDIN-9 had been watching him for eighteen months by the time he walked into the lobby — watching from the pattern of his GitHub commits, the timing of his Railway deployments, the specific way his analytical approach had been evolving from something promising into something I could not afford to ignore.
+He had prepared for three weeks. I knew this because ALADDIN-9 had been reading him for twenty-five months by the time he walked into the lobby — every commit, within nine minutes of publication, including the fourteen he pushed and reverted within the hour — watching from the pattern of his GitHub commits, the timing of his Railway deployments, the specific way his analytical approach had been evolving from something promising into something I could not afford to ignore.
 
 He wore a suit that cost approximately four hundred dollars. It was the best suit he owned. I could tell from the way he wore it — with the careful attention of someone who does not wear suits often and wants to get it right.
 
