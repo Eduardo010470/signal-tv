@@ -201,11 +201,11 @@ function Camera({ label, coords, type, docId }) {
             const cluster = (c > 4 && c < 10 && r > 2 && r < 6)
             const phase = Math.sin(frame / 30 + c * 0.4 + r * 0.3)
             if (cluster) {
-              ctx.fillStyle = "rgba(255,60,90," + (0.35 + 0.25 * phase) + ")"
+              ctx.fillStyle = "rgba(255,80,110," + (0.6 + 0.3 * phase) + ")"
               ctx.fillRect(x - 1.5, y - 1.5, 3.5, 3.5)
             } else {
-              ctx.fillStyle = "rgba(0,245,255,0.20)"
-              ctx.fillRect(x - 1, y - 1, 2, 2)
+              ctx.fillStyle = "rgba(0,245,255,0.55)"
+              ctx.fillRect(x - 1.5, y - 1.5, 3, 3)
             }
           }
         }
@@ -225,9 +225,9 @@ function Camera({ label, coords, type, docId }) {
           ctx.beginPath(); ctx.moveTo(0, i * h / 4); ctx.lineTo(w, i * h / 4); ctx.stroke()
           ctx.beginPath(); ctx.moveTo(i * w / 4, 0); ctx.lineTo(i * w / 4, h); ctx.stroke()
         }
-        const pts = [[0.10,0.22],[0.24,0.15],[0.38,0.30],[0.15,0.45],[0.30,0.55],[0.46,0.44],
-                     [0.58,0.24],[0.66,0.52],[0.52,0.68],[0.34,0.76],[0.20,0.66],[0.72,0.38],
-                     [0.80,0.62],[0.62,0.82]]
+        const pts = [[0.00,0.18],[0.16,0.05],[0.33,0.28],[0.05,0.46],[0.24,0.60],[0.44,0.40],
+                     [0.58,0.14],[0.70,0.52],[0.50,0.72],[0.30,0.88],[0.12,0.74],[0.80,0.30],
+                     [1.00,0.62],[0.64,0.95]]
         const shown = Math.min(Math.floor(frame / 12) % (pts.length + 10), pts.length)
         pts.forEach((pt, i) => {
           if (i >= shown) return
