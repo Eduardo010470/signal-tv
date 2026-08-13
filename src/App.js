@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { createClient } from "@supabase/supabase-js"
 import ReactMarkdown from "react-markdown"
 import DocCameras from "./DocCameras"
+import SH001 from './docs_sh001'
 
 const CYAN = "#00f5ff"
 const MAGENTA = "#ff00aa"
@@ -13,8 +14,6 @@ const supabase = createClient(
   process.env.REACT_APP_SUPABASE_URL,
   process.env.REACT_APP_SUPABASE_ANON_KEY
 )
-
-import SH001 from './docs_sh001'
 
 const EM001 = `# EM-001 — RAILWAY DEPLOYMENT LOG
 *March 14, 2036 — 03:14:22 UTC*
