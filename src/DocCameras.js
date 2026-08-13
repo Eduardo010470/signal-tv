@@ -248,6 +248,117 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(251,191,36,0.35)"
         ctx.fillText("11 RECOVERED", 8, h - 5)
       }
+      // EH-001 — Cold Storage 2, drawers
+      if (type === "eh_morgue") {
+        ctx.fillStyle = "#070809"
+        ctx.fillRect(0, 0, w, h)
+        const cols = 3, rows = 4
+        const mx = 10, my = 20
+        const cw = (w - mx * 2) / cols
+        const ch = (h - my - 12) / rows
+        let n = 0
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            n++
+            if (n > 11) break
+            const x = mx + c * cw
+            const y = my + r * ch
+            const open = [2,4,7,1,5,9,10].indexOf(n) !== -1
+            ctx.strokeStyle = "rgba(150,170,180,0.30)"
+            ctx.strokeRect(x + 1, y + 1, cw - 5, ch - 5)
+            if (open) {
+              const ext = 6 + 2 * Math.sin(frame / 50 + n)
+              ctx.fillStyle = "rgba(20,26,30,0.95)"
+              ctx.fillRect(x + 1, y + 1, cw - 5, ch - 5)
+              ctx.fillStyle = "rgba(190,200,205,0.35)"
+              ctx.fillRect(x + 1, y + 3, cw - 5 - ext, ch - 9)
+              ctx.fillStyle = "rgba(160,175,180,0.55)"
+              ctx.fillRect(x + 3, y + 5, cw - 12 - ext, ch - 13)
+              ctx.fillStyle = "rgba(255,220,120,0.85)"
+              ctx.fillRect(x + cw - 10 - ext, y + ch / 2 - 2, 4, 3)
+            } else {
+              ctx.fillStyle = "rgba(120,140,150,0.22)"
+              ctx.fillRect(x + 3, y + 3, cw - 9, ch - 9)
+              ctx.fillStyle = "rgba(180,195,200,0.5)"
+              ctx.fillRect(x + cw / 2 - 6, y + ch / 2 - 1, 12, 2)
+            }
+          }
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("COLD STORAGE 2 — 11 C", 8, 12)
+        ctx.fillStyle = "rgba(255,120,60,0.75)"
+        ctx.fillText("7 OPEN / 4 SEALED", w - 78, h - 4)
+      }
+
+      // EH-001 — Monitoring array
+      if (type === "eh_monitor") {
+        ctx.fillStyle = "#04070a"
+        ctx.fillRect(0, 0, w, h)
+        const rows = 11
+        const my = 20
+        const gh = (h - my - 12) / (rows - 1)
+        const live = [4, 7, 2, 9, 5]
+        const t = frame / 12
+        for (let i = 0; i < rows; i++) {
+          const y = my + i * gh
+          const isLive = live.indexOf(i + 1) !== -1 && t > (live.indexOf(i + 1) + 1) * 8
+          ctx.strokeStyle = isLive ? "rgba(255,70,90,0.85)" : "rgba(0,245,255,0.30)"
+          ctx.beginPath()
+          for (let x = 8; x < w - 8; x += 2) {
+            let yy = y
+            if (isLive) {
+              const ph = (x + frame * 2.2) % (w - 16)
+              if (ph > 20 && ph < 30) yy = y - 7 * Math.sin((ph - 20) / 10 * Math.PI)
+            }
+            if (x === 8) ctx.moveTo(x, yy); else ctx.lineTo(x, yy)
+          }
+          ctx.stroke()
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("CH-UNLABELLED / 03:17", 8, 12)
+        ctx.fillStyle = "rgba(255,70,90,0.8)"
+        ctx.fillText("SIGNAL — 5 ROWS", w - 72, h - 4)
+      }
+
+      // EH-001 — Fourth-floor corridor
+      if (type === "eh_corridor") {
+        ctx.fillStyle = "#08090b"
+        ctx.fillRect(0, 0, w, h)
+        const vx = w * 0.5, vy = h * 0.44
+        ctx.strokeStyle = "rgba(140,160,170,0.22)"
+        ctx.beginPath(); ctx.moveTo(0, h * 0.10); ctx.lineTo(vx, vy); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(w, h * 0.10); ctx.lineTo(vx, vy); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(0, h); ctx.lineTo(vx, vy); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(w, h); ctx.lineTo(vx, vy); ctx.stroke()
+        for (let i = 1; i < 6; i++) {
+          const k = i / 6
+          const yTop = h * 0.10 + (vy - h * 0.10) * k
+          const yBot = h - (h - vy) * k
+          ctx.strokeStyle = "rgba(140,160,170," + (0.16 - k * 0.10) + ")"
+          ctx.beginPath(); ctx.moveTo(vx - (vx) * (1 - k), yTop); ctx.lineTo(vx - (vx) * (1 - k), yBot); ctx.stroke()
+          ctx.beginPath(); ctx.moveTo(vx + (vx) * (1 - k), yTop); ctx.lineTo(vx + (vx) * (1 - k), yBot); ctx.stroke()
+        }
+        const flick = 0.10 + 0.10 * Math.abs(Math.sin(frame / 9))
+        ctx.fillStyle = "rgba(210,225,230," + flick + ")"
+        ctx.fillRect(vx - 26, h * 0.13, 52, 3)
+        const walk = (frame % 300) / 300
+        const dep = 0.10 + walk * 0.72
+        const sx = vx + (w * 0.30) * (1 - dep) * 0
+        const sy = vy + (h - vy) * dep
+        const sc = 0.25 + dep * 0.85
+        ctx.fillStyle = "rgba(30,36,40,0.9)"
+        ctx.fillRect(sx - 4 * sc, sy - 26 * sc, 8 * sc, 26 * sc)
+        ctx.beginPath(); ctx.arc(sx, sy - 30 * sc, 4 * sc, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = "rgba(120,20,30,0.55)"
+        ctx.fillRect(8, h - 14, 34, 5)
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.55)"
+        ctx.fillText("FLOOR 4 — 04:31", 8, 12)
+        ctx.fillStyle = "rgba(255,120,60,0.6)"
+        ctx.fillText("11 M FROM DOOR", w - 70, h - 4)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1494,6 +1605,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "EH-001": [
+    { label: "CAM-01 / COLD STORAGE 2", coords: "11 DECEDENTS — 7 OPEN", type: "eh_morgue" },
+    { label: "CAM-02 / MONITOR", coords: "03:17 — 5 ROWS LIVE", type: "eh_monitor" },
+    { label: "CAM-03 / CORRIDOR", coords: "FLOOR 4 — 04:31", type: "eh_corridor" },
+  ],
   "MW-001": [
     { label: "CAM-01 / LAB", coords: "WEST SIDE — SUB-LEVEL", type: "mw_lab" },
     { label: "CAM-02 / SILENCES", coords: "QUERY MAP — 11 YEARS", type: "mw_silences" },
