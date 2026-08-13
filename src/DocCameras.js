@@ -27,12 +27,13 @@ function Camera({ label, coords, type, docId }) {
         ctx.font = "8px monospace"
         ctx.shadowColor = "#fbbf24"
         ctx.shadowBlur = 6
-        const shown = Math.floor(frame / 14) % (docs.length + 5)
+        const cyc = Math.floor(frame / 14) % (docs.length + 8)
+        const shown = Math.min(cyc, docs.length)
         docs.slice(0, shown).forEach((d, i) => {
           ctx.fillStyle = "rgba(251,191,36,0.85)"
-          ctx.fillText(d, 6, 20 + i * 9)
+          ctx.fillText(d, 6, 18 + i * 8)
           ctx.fillStyle = "rgba(251,191,36,0.25)"
-          ctx.fillText("................ INDEXED", 52, 20 + i * 9)
+          ctx.fillText("........ INDEXED", 52, 18 + i * 8)
         })
         ctx.shadowBlur = 0
         ctx.fillStyle = "rgba(251,191,36,0.5)"
@@ -44,12 +45,13 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "#06080c"
         ctx.fillRect(0, 0, w, h)
         const years = ["2020","2025","2031","2036","2041","2068","2111","2131","2162"]
-        const off = (frame * 0.35) % (years.length * 22)
+        const span = years.length * 18
+        const off = (frame * 0.35) % span
         ctx.font = "9px monospace"
         ctx.strokeStyle = "rgba(251,191,36,0.25)"
         ctx.beginPath(); ctx.moveTo(w*0.32, 0); ctx.lineTo(w*0.32, h); ctx.stroke()
         years.forEach((y, i) => {
-          const yy = h + 14 - ((i * 22 + off) % (years.length * 22 + h))
+          const yy = h + 14 - (((i * 18 - off) % span + span) % span)
           if (yy > -10 && yy < h + 10) {
             ctx.fillStyle = "rgba(251,191,36,0.8)"
             ctx.fillText(y, 6, yy)
