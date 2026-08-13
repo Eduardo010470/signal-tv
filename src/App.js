@@ -2212,11 +2212,31 @@ export default function App() {
   const [authError, setAuthError] = useState("")
   const [authLoading, setAuthLoading] = useState(false)
   const [selectedDoc, setSelectedDoc] = useState(null)
+  const [speaking, setSpeaking] = useState(false)
   const [showLiveFeed, setShowLiveFeed] = useState(false)
   const [showRadioFeed, setShowRadioFeed] = useState(false)
   const [radioText, setRadioText] = useState('')
   const [radioAudio, setRadioAudio] = useState(null)
   const [radioLoading, setRadioLoading] = useState(false)
+
+  const speakRadio = (txt) => {
+    try {
+      window.speechSynthesis.cancel()
+      const u = new window.SpeechSynthesisUtterance(txt.replace(/\*[^*]*\*/g, " "))
+      const vs = window.speechSynthesis.getVoices()
+      const f = vs.find(v => /female|samantha|zira|karen|moira|tessa|serena/i.test(v.name) && /en/i.test(v.lang))
+            || vs.find(v => /en-US|en-GB/i.test(v.lang)) || vs[0]
+      if (f) u.voice = f
+      u.rate = 0.92
+      u.pitch = 1.0
+      u.onend = () => setSpeaking(false)
+      u.onerror = () => setSpeaking(false)
+      setSpeaking(true)
+      window.speechSynthesis.speak(u)
+    } catch (e) { setSpeaking(false) }
+  }
+
+  const stopRadio = () => { try { window.speechSynthesis.cancel() } catch (e) {} ; setSpeaking(false) }
 
   const fetchRadioFeed = async () => {
     setRadioLoading(true)
@@ -2403,7 +2423,7 @@ export default function App() {
                 </button>
               )}
               <div style={{ marginTop: 20, fontSize: 10, color: "#4a5568", fontFamily: "monospace", letterSpacing: 1 }}>
-                FREQUENCY: 847.3 MHz | SOURCE: UNKNOWN | CHICAGO INNER SECTORS 2162
+                FREQUENCY: 847.3 MHz | SOURCE: UNKNOWN | CHICAGO INNER SECTORS 2162 | INTERCEPTED AND RELAYED — ARCHIVE VOICE | INTERCEPTED AND RELAYED — ARCHIVE VOICE
               </div>
             </div>
           </div>
@@ -2605,7 +2625,7 @@ function ManhattanLiveComponent({ onBack }) {
         <div style={{ fontSize: 12, color: "#7090a8", fontFamily: "monospace", marginTop: 4 }}>MANHATTAN, NEW YORK — 40.7128°N 74.0060°W — {new Date().getFullYear()} CE</div>
       </div>
       <div style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)", padding: "8px 12px", marginBottom: 16, fontFamily: "monospace", fontSize: 12, color: "rgba(239,68,68,0.7)", letterSpacing: 1 }}>
-        ARCHIVE NOTE: These feeds originate from 2026 CE — 15 years before the Prometheus Collapse. The High Line corridor and Hudson waterfront are now designated Outer Sectors. Some structures remain standing in 2162.
+        ARCHIVE NOTE: These feeds originate from 2026 CE — 15 years before the Prometheus Collapse. Whether anything in this city is still standing is not known to this archive. Nothing has reached us from the eastern seaboard in a hundred and twenty-one years.
       </div>
       {cameras.map(cam => (
         <div key={cam.id} style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
@@ -2637,7 +2657,7 @@ function ChicagoLiveComponent({ onBack }) {
   const cameras = [
     { id: "skydeck", label: "CAM-A / WILLIS TOWER SKYDECK", coords: "41.8789°N 87.6359°W — 442m", desc: "EarthCam — Willis Tower apex.", embed: "https://www.youtube-nocookie.com/embed/O0UGT7AT3aw?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
     { id: "powerhouse", label: "CAM-B / NORTH WESTERN POWER HOUSE", coords: "41.8858°N 87.6412°W — CANAL ST", desc: "Rail corridor surveillance.", embed: "https://www.youtube-nocookie.com/embed/6M6rK0ssjYg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
-    { id: "lakefront", label: "CAM-C / MILWAUKEE LAKEFRONT — OUTER SECTORS", coords: "43.0389°N 87.9065°W — LAKE MICHIGAN", desc: "Wisconsin outer sectors surveillance.", embed: "https://www.youtube-nocookie.com/embed/7fZ2JLtv_c8?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
+    { id: "lakefront", label: "CAM-C / MILWAUKEE LAKEFRONT — NORTHERN CORRIDOR", coords: "43.0389°N 87.9065°W — LAKE MICHIGAN", desc: "Wisconsin shoreline, north of the settlement corridor.", embed: "https://www.youtube-nocookie.com/embed/7fZ2JLtv_c8?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0" },
   ]
   return (
     <div style={{ maxWidth: 760, margin: "0 auto", padding: "20px" }}>
@@ -2709,7 +2729,7 @@ function GenevaLiveComponent({ onBack }) {
         <div style={{ fontSize: 12, color: "#7090a8", fontFamily: "monospace", marginTop: 4 }}>GENEVA LAKE, WISCONSIN — 42.5847°N 88.4334°W</div>
       </div>
       <div style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", padding: "8px 14px", marginBottom: 16, fontSize: 12, color: "rgba(239,68,68,0.7)", letterSpacing: 1, fontFamily: "monospace" }}>
-        ARCHIVE NOTE: These feeds originate from 2026 CE — 136 years before this transmission. Geneva Lake is 40km north of the Inner Sectors. The cabin on the north shore is still occupied in 2162.
+        ARCHIVE NOTE: These feeds originate from 2026 CE — 136 years before this transmission. Geneva Lake is 80km north of the Inner Sectors. Note that all three of these cameras face south and west. There has never been a camera on the north shore. The cabin there is still occupied in 2162.
       </div>
       {cameras.map(cam => (
         <div key={cam.id} style={{ marginBottom: 20, background: "#000", border: "1px solid rgba(0,245,255,0.15)", overflow: "hidden" }}>
