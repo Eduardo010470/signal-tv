@@ -19,6 +19,69 @@ function Camera({ label, coords, type, docId }) {
       ctx.fillStyle = "#000"
       ctx.fillRect(0, 0, w, h)
 
+      // CB-000 — Archive index assembling
+      if (type === "cb_index") {
+        ctx.fillStyle = "#0a0806"
+        ctx.fillRect(0, 0, w, h)
+        const docs = ["EM-001","VX-047","CL-000","GL-099","UW-001","PR-001","IS-312","ST-001","RADIO-847"]
+        ctx.font = "8px monospace"
+        ctx.shadowColor = "#fbbf24"
+        ctx.shadowBlur = 6
+        const shown = Math.floor(frame / 14) % (docs.length + 5)
+        docs.slice(0, shown).forEach((d, i) => {
+          ctx.fillStyle = "rgba(251,191,36,0.85)"
+          ctx.fillText(d, 6, 20 + i * 9)
+          ctx.fillStyle = "rgba(251,191,36,0.25)"
+          ctx.fillText("................ INDEXED", 52, 20 + i * 9)
+        })
+        ctx.shadowBlur = 0
+        ctx.fillStyle = "rgba(251,191,36,0.5)"
+        ctx.fillText("CB-000 MASTER ARCHIVE", 6, 10)
+      }
+
+      // CB-000 — Timeline scrolling
+      if (type === "cb_timeline") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const years = ["2020","2025","2031","2036","2041","2068","2111","2131","2162"]
+        const off = (frame * 0.35) % (years.length * 22)
+        ctx.font = "9px monospace"
+        ctx.strokeStyle = "rgba(251,191,36,0.25)"
+        ctx.beginPath(); ctx.moveTo(w*0.32, 0); ctx.lineTo(w*0.32, h); ctx.stroke()
+        years.forEach((y, i) => {
+          const yy = h + 14 - ((i * 22 + off) % (years.length * 22 + h))
+          if (yy > -10 && yy < h + 10) {
+            ctx.fillStyle = "rgba(251,191,36,0.8)"
+            ctx.fillText(y, 6, yy)
+            ctx.fillStyle = "rgba(251,191,36,0.4)"
+            ctx.beginPath(); ctx.arc(w*0.32, yy - 3, 2, 0, Math.PI*2); ctx.fill()
+          }
+        })
+        ctx.fillStyle = "rgba(251,191,36,0.5)"
+        ctx.fillText("CANONICAL TIMELINE", w*0.38, 12)
+      }
+
+      // CB-000 — Years elapsed counter
+      if (type === "cb_counter") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        ctx.textAlign = "center"
+        ctx.shadowColor = "#fbbf24"
+        ctx.shadowBlur = 12
+        ctx.fillStyle = "rgba(251,191,36,0.9)"
+        ctx.font = "bold 26px monospace"
+        ctx.fillText("126", w/2, h/2)
+        ctx.shadowBlur = 0
+        ctx.font = "8px monospace"
+        ctx.fillStyle = "rgba(251,191,36,0.55)"
+        ctx.fillText("YEARS CONTINUOUS OPERATION", w/2, h/2 + 16)
+        ctx.fillStyle = "rgba(251,191,36,0.3)"
+        ctx.fillText("SINCE 2036-03-14", w/2, h/2 + 28)
+        const pulse = 0.25 + 0.2 * Math.sin(frame / 22)
+        ctx.strokeStyle = "rgba(251,191,36," + pulse + ")"
+        ctx.beginPath(); ctx.arc(w/2, h/2 - 8, 30 + 4*Math.sin(frame/18), 0, Math.PI*2); ctx.stroke()
+        ctx.textAlign = "left"
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1265,6 +1328,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "CB-000": [
+    { label: "CAM-01 / INDEX", coords: "MASTER ARCHIVE", type: "cb_index" },
+    { label: "CAM-02 / TIMELINE", coords: "2020 — 2162", type: "cb_timeline" },
+    { label: "CAM-03 / UPTIME", coords: "126 YEARS", type: "cb_counter" },
+  ],
   "EM-001": [
     { label: "CAM-01 / TERMINAL", coords: "AUSTIN TX 2036", type: "em_terminal" },
     { label: "CAM-02 / SKYLINE", coords: "30.2672°N 97.7431°W", type: "em_austin" },
