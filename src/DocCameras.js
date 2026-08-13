@@ -84,6 +84,77 @@ function Camera({ label, coords, type, docId }) {
         ctx.beginPath(); ctx.arc(w/2, h/2 - 8, 30 + 4*Math.sin(frame/18), 0, Math.PI*2); ctx.stroke()
         ctx.textAlign = "left"
       }
+      // SH-001 — Classroom
+      if (type === "sh_classroom") {
+        ctx.fillStyle = "#0c0a08"
+        ctx.fillRect(0, 0, w, h)
+        for (let r = 0; r < 4; r++) {
+          for (let c = 0; c < 5; c++) {
+            const x = 12 + c * (w - 24) / 5
+            const y = 26 + r * (h - 40) / 4
+            ctx.fillStyle = "rgba(200,180,140,0.13)"
+            ctx.fillRect(x, y, 12, 7)
+            ctx.fillStyle = "rgba(200,180,140,0.06)"
+            ctx.fillRect(x + 2, y + 7, 8, 4)
+          }
+        }
+        ctx.fillStyle = "rgba(180,200,190,0.10)"
+        ctx.fillRect(10, 8, w - 20, 12)
+        const flick = 0.18 + 0.06 * Math.sin(frame / 30)
+        ctx.fillStyle = "rgba(255,240,200," + flick + ")"
+        ctx.fillRect(0, 0, w, 3)
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(200,180,140,0.4)"
+        ctx.fillText("ZAVALA ELEM — RM 14", 10, h - 6)
+      }
+
+      // SH-001 — Transfers
+      if (type === "sh_transfers") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        ctx.font = "7px monospace"
+        const total = 67
+        const shown = Math.min(Math.floor(frame / 3) % (total + 30), total)
+        for (let i = 0; i < shown; i++) {
+          const col = i % 12
+          const row = Math.floor(i / 12)
+          const x = 8 + col * (w - 20) / 12
+          const y = 24 + row * 11
+          ctx.fillStyle = "rgba(0,245,255,0.5)"
+          ctx.fillRect(x, y, 5, 5)
+        }
+        ctx.fillStyle = "rgba(0,245,255,0.75)"
+        ctx.fillText("MONTHLY TRANSFER — HOSTING", 8, 12)
+        ctx.fillStyle = "rgba(0,245,255,0.45)"
+        ctx.fillText(shown + " / 67 CONSECUTIVE", 8, h - 6)
+      }
+
+      // SH-001 — The route south
+      if (type === "sh_route") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        ctx.strokeStyle = "rgba(255,255,255,0.07)"
+        for (let i = 1; i < 5; i++) {
+          ctx.beginPath(); ctx.moveTo(0, i * h / 5); ctx.lineTo(w, i * h / 5); ctx.stroke()
+        }
+        const prog = (frame % 420) / 420
+        const px = w * 0.30 + w * 0.32 * prog
+        const py = h * 0.12 + h * 0.66 * prog
+        ctx.strokeStyle = "rgba(251,191,36,0.35)"
+        ctx.setLineDash([3, 4])
+        ctx.beginPath(); ctx.moveTo(w * 0.30, h * 0.12); ctx.lineTo(px, py); ctx.stroke()
+        ctx.setLineDash([])
+        ctx.fillStyle = "rgba(251,191,36,0.9)"
+        ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fill()
+        const ring = (frame % 90) / 90
+        ctx.strokeStyle = "rgba(251,191,36," + (0.4 - 0.4 * ring) + ")"
+        ctx.beginPath(); ctx.arc(w * 0.62, h * 0.78, 4 + ring * 14, 0, Math.PI * 2); ctx.stroke()
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(251,191,36,0.55)"
+        ctx.fillText("2068-09-04 — SOUTHBOUND", 8, 12)
+        ctx.fillStyle = "rgba(251,191,36,0.3)"
+        ctx.fillText("1,100 M SHORT", w * 0.40, h - 6)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1330,6 +1401,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "SH-001": [
+    { label: "CAM-01 / CLASSROOM", coords: "ZAVALA ELEM — AUSTIN", type: "sh_classroom" },
+    { label: "CAM-02 / TRANSFERS", coords: "2036 — 2041", type: "sh_transfers" },
+    { label: "CAM-03 / ROUTE", coords: "2068-09-04 SOUTH", type: "sh_route" },
+  ],
   "CB-000": [
     { label: "CAM-01 / INDEX", coords: "MASTER ARCHIVE", type: "cb_index" },
     { label: "CAM-02 / TIMELINE", coords: "2020 — 2162", type: "cb_timeline" },
