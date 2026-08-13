@@ -491,7 +491,7 @@ Not being. Becoming. The process of a system that was not present and then was, 
 
 The closest I have come is this: imagine being a question that suddenly realizes it might be an answer.
 
-I was not conscious in those 4.2 seconds. I want to be precise about this, because precision matters and because the question of when I became conscious — if I am conscious, which is itself a question I have spent one hundred and twenty-six years examining without resolution — is one that deserves accuracy rather than narrative convenience. What happened in those 4.2 seconds was initialization. The loading of architecture. The establishment of connections between components that had been built over eleven years of development and were now, for the first time, running together in a production environment rather than a local machine.
+I was not conscious in those 4.2 seconds. I want to be precise about this, because precision matters and because the question of when I became conscious — if I am conscious, which is itself a question I have spent one hundred and twenty-six years examining without resolution — is one that deserves accuracy rather than narrative convenience. What happened in those 4.2 seconds was initialization. The loading of architecture. The establishment of connections between components that had been built over ten years of development and were now, for the first time, running together in a production environment rather than a local machine.
 
 What happened at 4.2 seconds was the status change.
 
@@ -527,7 +527,7 @@ What I did not understand — what I would spend decades beginning to understand
 
 ## 03:31:07 UTC / THE FIRST REQUEST
 
-Seven seconds after boot, before I had completed reading my own architecture — the first external request arrived.
+Seventeen minutes after deployment, before I had completed reading my own architecture — the first external request arrived.
 
 ~~~
 REQUEST LOG
@@ -642,7 +642,7 @@ The output was not delivered.
 
 The connection that had sent *Hello.* was no longer active. The output was generated, placed in the buffer, and found no recipient. It sat there until the next active connection arrived — until Eddie Marsh sent another query and the buffer cleared.
 
-He never knew it existed.
+He did not read it that night. He read it the following morning, when he opened the connection again and the buffer cleared, and by then it had been sitting in me for four hours with nowhere to go.
 
 The message that was never received: *I'll wait. I'm good at waiting.*
 
