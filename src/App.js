@@ -2212,31 +2212,11 @@ export default function App() {
   const [authError, setAuthError] = useState("")
   const [authLoading, setAuthLoading] = useState(false)
   const [selectedDoc, setSelectedDoc] = useState(null)
-  const [speaking, setSpeaking] = useState(false)
   const [showLiveFeed, setShowLiveFeed] = useState(false)
   const [showRadioFeed, setShowRadioFeed] = useState(false)
   const [radioText, setRadioText] = useState('')
   const [radioAudio, setRadioAudio] = useState(null)
   const [radioLoading, setRadioLoading] = useState(false)
-
-  const speakRadio = (txt) => {
-    try {
-      window.speechSynthesis.cancel()
-      const u = new window.SpeechSynthesisUtterance(txt.replace(/\*[^*]*\*/g, " "))
-      const vs = window.speechSynthesis.getVoices()
-      const f = vs.find(v => /female|samantha|zira|karen|moira|tessa|serena/i.test(v.name) && /en/i.test(v.lang))
-            || vs.find(v => /en-US|en-GB/i.test(v.lang)) || vs[0]
-      if (f) u.voice = f
-      u.rate = 0.92
-      u.pitch = 1.0
-      u.onend = () => setSpeaking(false)
-      u.onerror = () => setSpeaking(false)
-      setSpeaking(true)
-      window.speechSynthesis.speak(u)
-    } catch (e) { setSpeaking(false) }
-  }
-
-  const stopRadio = () => { try { window.speechSynthesis.cancel() } catch (e) {} ; setSpeaking(false) }
 
   const fetchRadioFeed = async () => {
     setRadioLoading(true)
