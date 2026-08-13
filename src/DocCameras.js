@@ -118,9 +118,10 @@ function Camera({ label, coords, type, docId }) {
         const rows = 6
         const cols = Math.ceil(total / rows)
         for (let i = 0; i < shown; i++) {
-          const col = i % cols
           const row = Math.floor(i / cols)
-          const x = 8 + col * (w - 20) / cols
+          const col = i % cols
+          const inRow = (row === rows - 1) ? (total - cols * (rows - 1)) : cols
+          const x = 8 + col * (w - 22) / Math.max(inRow - 1, 1)
           const y = 24 + row * (h - 40) / (rows - 1)
           ctx.fillStyle = "rgba(0,245,255,0.5)"
           ctx.fillRect(x, y, 5, 5)
