@@ -115,9 +115,9 @@ function Camera({ label, coords, type, docId }) {
         ctx.font = "7px monospace"
         const total = 67
         const shown = Math.min(Math.floor(frame / 3) % (total + 30), total)
+        const rows = 6
+        const cols = Math.ceil(total / rows)
         for (let i = 0; i < shown; i++) {
-          const rows = 6
-          const cols = Math.ceil(total / rows)
           const col = i % cols
           const row = Math.floor(i / cols)
           const x = 8 + col * (w - 20) / cols
@@ -139,18 +139,18 @@ function Camera({ label, coords, type, docId }) {
         for (let i = 1; i < 5; i++) {
           ctx.beginPath(); ctx.moveTo(0, i * h / 5); ctx.lineTo(w, i * h / 5); ctx.stroke()
         }
-        const prog = (frame % 420) / 420
-        const px = w * 0.30 + w * 0.32 * prog
-        const py = h * 0.12 + h * 0.66 * prog
+        const prog = Math.min((frame % 480) / 400, 1)
+        const px = w * 0.30 + w * 0.34 * prog
+        const py = h * 0.10 + h * 0.74 * prog
         ctx.strokeStyle = "rgba(251,191,36,0.35)"
         ctx.setLineDash([3, 4])
-        ctx.beginPath(); ctx.moveTo(w * 0.30, h * 0.12); ctx.lineTo(px, py); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(w * 0.30, h * 0.10); ctx.lineTo(px, py); ctx.stroke()
         ctx.setLineDash([])
         ctx.fillStyle = "rgba(251,191,36,0.9)"
         ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fill()
         const ring = (frame % 90) / 90
         ctx.strokeStyle = "rgba(251,191,36," + (0.4 - 0.4 * ring) + ")"
-        ctx.beginPath(); ctx.arc(w * 0.62, h * 0.78, 4 + ring * 14, 0, Math.PI * 2); ctx.stroke()
+        ctx.beginPath(); ctx.arc(w * 0.64, h * 0.84, 4 + ring * 14, 0, Math.PI * 2); ctx.stroke()
         ctx.font = "7px monospace"
         ctx.fillStyle = "rgba(251,191,36,0.55)"
         ctx.fillText("2068-09-04 — SOUTHBOUND", 8, 12)
