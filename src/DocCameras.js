@@ -324,10 +324,15 @@ function Camera({ label, coords, type, docId }) {
 
       // EH-001 — Fourth-floor corridor
       if (type === "eh_corridor") {
-        ctx.fillStyle = "#08090b"
+        ctx.fillStyle = "#0e1114"
+        ctx.fillRect(0, 0, w, h)
+        const gl = ctx.createRadialGradient(w*0.5, h*0.38, 4, w*0.5, h*0.38, w*0.55)
+        gl.addColorStop(0, "rgba(190,215,225,0.18)")
+        gl.addColorStop(1, "rgba(0,0,0,0)")
+        ctx.fillStyle = gl
         ctx.fillRect(0, 0, w, h)
         const vx = w * 0.5, vy = h * 0.44
-        ctx.strokeStyle = "rgba(140,160,170,0.22)"
+        ctx.strokeStyle = "rgba(170,195,205,0.55)"
         ctx.beginPath(); ctx.moveTo(0, h * 0.10); ctx.lineTo(vx, vy); ctx.stroke()
         ctx.beginPath(); ctx.moveTo(w, h * 0.10); ctx.lineTo(vx, vy); ctx.stroke()
         ctx.beginPath(); ctx.moveTo(0, h); ctx.lineTo(vx, vy); ctx.stroke()
@@ -336,11 +341,11 @@ function Camera({ label, coords, type, docId }) {
           const k = i / 6
           const yTop = h * 0.10 + (vy - h * 0.10) * k
           const yBot = h - (h - vy) * k
-          ctx.strokeStyle = "rgba(140,160,170," + (0.16 - k * 0.10) + ")"
+          ctx.strokeStyle = "rgba(170,195,205," + (0.40 - k * 0.22) + ")"
           ctx.beginPath(); ctx.moveTo(vx - (vx) * (1 - k), yTop); ctx.lineTo(vx - (vx) * (1 - k), yBot); ctx.stroke()
           ctx.beginPath(); ctx.moveTo(vx + (vx) * (1 - k), yTop); ctx.lineTo(vx + (vx) * (1 - k), yBot); ctx.stroke()
         }
-        const flick = 0.10 + 0.10 * Math.abs(Math.sin(frame / 9))
+        const flick = 0.45 + 0.30 * Math.abs(Math.sin(frame / 9))
         ctx.fillStyle = "rgba(210,225,230," + flick + ")"
         ctx.fillRect(vx - 26, h * 0.13, 52, 3)
         const walk = (frame % 300) / 300
@@ -348,10 +353,10 @@ function Camera({ label, coords, type, docId }) {
         const sx = vx + (w * 0.30) * (1 - dep) * 0
         const sy = vy + (h - vy) * dep
         const sc = 0.25 + dep * 0.85
-        ctx.fillStyle = "rgba(30,36,40,0.9)"
+        ctx.fillStyle = "rgba(15,18,22,0.95)"
         ctx.fillRect(sx - 4 * sc, sy - 26 * sc, 8 * sc, 26 * sc)
         ctx.beginPath(); ctx.arc(sx, sy - 30 * sc, 4 * sc, 0, Math.PI * 2); ctx.fill()
-        ctx.fillStyle = "rgba(120,20,30,0.55)"
+        ctx.fillStyle = "rgba(150,30,40,0.85)"
         ctx.fillRect(8, h - 14, 34, 5)
         ctx.font = "7px monospace"
         ctx.fillStyle = "rgba(0,245,255,0.55)"
