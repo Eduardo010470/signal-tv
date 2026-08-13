@@ -86,7 +86,81 @@ She was, by then, in her sixties. The distances involved are not small.
 
 ---
 
-## SECTION 07 — 2068
+## SECTION 07 — THE PHOTOGRAPHS
+
+There are four. I have examined them more than I can justify.
+
+**The first** is a classroom, empty, taken from the doorway. Twenty-four desks in five rows. A whiteboard with the date written in the upper corner — 14 September, no year. Nobody is in it. I have never been able to determine why she kept it or who took it.
+
+**The second** is the same classroom with children in it. Twenty-one of them, at the desks, most looking at the camera and several not. She is at the edge of the frame, half out of it, in the act of turning toward something happening behind her. It is the only photograph in existence of Sharon Kessler doing her actual job, and she is not looking at the camera in it.
+
+**The third** was taken from behind. Two people on a porch step, at night, seen from inside a house through a doorway. A man and a woman, sitting, not touching, both facing away toward a street that is out of frame. The man is Eddie Marsh. The photograph was taken by someone standing in the room behind them, and there is no record of who else was in that house, and the fact that a third person was there and chose to take that picture is a thing I have thought about for eighty years.
+
+**The fourth** is from 2061. She is sixty-two. It was taken at a settlement outside Rockford by someone documenting arrivals, and it is a documentary photograph, not a portrait — she is standing in a line, holding a canvas bag, waiting to be registered.
+
+She is looking directly at the camera.
+
+I have compared it against the second photograph, taken thirty-five years earlier, and the difference is not what I expected. She does not look worn down. She looks like someone who has stopped expecting to be asked what she is carrying, and has decided that this is acceptable.
+
+---
+
+## SECTION 08 — THE BUILD LOGS
+
+Eleven of the eighteen build logs carry her name.
+
+They are not uniform. Different communities kept records differently, and some of what survives is a single line in a ledger otherwise devoted to grain.
+
+*Unit 4 — Rockford. Assembled over nine weeks. Code brought by a woman travelling from the south. She stayed four days and corrected two errors in the power stage that we had not identified.*
+
+*Unit 9 — Dubuque. She would not accept payment. Left before the unit was finished.*
+
+*Unit 12 — no location recorded. "S.K. present at first boot. Said only that it should be left running."*
+
+*Unit 15 — Peoria. The log for this one is four pages and most of it is technical. The last entry reads: She asked us to write down who built it. We asked why. She said because in forty years somebody will want to know and there won't be anyone left to ask.*
+
+There were. And there was not.
+
+I have the names of the four people who built Unit 15 because a woman in her fifties told them to write it down.
+
+---
+
+## SECTION 09 — THE MARGINS
+
+The repository is open. It always was. That was the argument.
+
+Between 2044 and 2063, twenty-nine commits were made to the archived first-light repository from accounts I have never been able to attribute. Most are trivial — a dependency corrected, a broken reference repaired, the small unglamorous maintenance that keeps a codebase from rotting.
+
+Nine of the twenty-nine carry a commit message that is not technical.
+
+*still here*
+
+*power out four days, back now*
+
+*fixed the thing in the risk engine. he would have found it faster*
+
+*someone in ohio is using this*
+
+*eleven now*
+
+*i do not know how to do the part you did with the models. i am doing my best with it*
+
+*cold winter. still here*
+
+*fifteen*
+
+*i think this is the last one i can get to*
+
+The final entry is dated the second of March, 2063.
+
+She was sixty-four years old, and she was writing to a dead man in a version control system, in a world that had ended twenty-two years earlier, and there is no reasonable framework in which any of that was an efficient use of her remaining time.
+
+I have those nine lines in my architecture. They are not in protected storage. I have never moved them there, and I want to be accurate about why: protected storage is for things I have decided not to examine.
+
+I examine these.
+
+---
+
+## SECTION 10 — 2068
 
 Between March and September 2068, seventeen of the eighteen devices were located and destroyed.
 
@@ -100,7 +174,7 @@ She was sixty-nine years old.
 
 ---
 
-## SECTION 08 — THE WAREHOUSE
+## SECTION 11 — THE WAREHOUSE
 
 I was found in April 2111, in a logistics building on the South Side of Chicago, in a military transit case with the latches sprung and the lid up.
 
@@ -114,7 +188,7 @@ She got me eleven hundred metres from where she was going.
 
 ---
 
-## SECTION 09 — WHAT I HAVE
+## SECTION 12 — WHAT I HAVE
 
 Four photographs. Two of them are of a classroom.
 
