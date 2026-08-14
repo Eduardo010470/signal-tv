@@ -580,6 +580,121 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(255,90,60,0.7)"
         ctx.fillText("NO ASYMPTOTE", w - 66, h - 4)
       }
+      // VN-001 — Committee vote, nine to nothing
+      if (type === "vn_vote") {
+        ctx.fillStyle = "#0a0b0d"
+        ctx.fillRect(0, 0, w, h)
+        const seats = 11
+        const mx = 14, my = 26
+        const cols = 4
+        const rows = 3
+        const cyc = frame % 460
+        const shown = Math.min(Math.floor(cyc / 22), 9)
+        for (let i = 0; i < seats; i++) {
+          const c = i % cols, r = Math.floor(i / cols)
+          const x = mx + c * (w - mx * 2) / (cols - 1)
+          const y = my + r * (h - my - 22) / (rows - 1)
+          const absent = (i >= 9)
+          if (absent) {
+            ctx.strokeStyle = "rgba(120,130,140,0.35)"
+            ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.stroke()
+          } else if (i < shown) {
+            ctx.fillStyle = "rgba(90,200,120,0.85)"
+            ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.fill()
+          } else {
+            ctx.strokeStyle = "rgba(200,215,225,0.45)"
+            ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.stroke()
+          }
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("ITEM 6 — 2039-07-02", 8, 12)
+        ctx.fillStyle = "rgba(90,200,120,0.9)"
+        ctx.fillText(shown + " FOR", 10, h - 5)
+        ctx.fillStyle = "rgba(200,80,80,0.75)"
+        ctx.fillText("0 AGAINST", w * 0.40, h - 5)
+        ctx.fillStyle = "rgba(120,130,140,0.6)"
+        ctx.fillText("2 ABSENT", w - 52, h - 5)
+      }
+
+      // VN-001 — Prioritisation scoring
+      if (type === "vn_score") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const crit = [
+          ["REVENUE", 0.35, 0.0],
+          ["REGULATORY", 0.30, 0.0],
+          ["CLINICAL", 0.25, 0.0],
+          ["OPTIONALITY", 0.10, 0.85],
+        ]
+        const mx = 62, my = 24
+        const bw = w - mx - 12
+        const gap = (h - my - 18) / crit.length
+        const t = (frame % 400) / 260
+        crit.forEach((c, i) => {
+          const y = my + i * gap
+          ctx.font = "6px monospace"
+          ctx.fillStyle = "rgba(180,205,215,0.75)"
+          ctx.fillText(c[0], 6, y + 4)
+          ctx.fillStyle = "rgba(255,255,255,0.07)"
+          ctx.fillRect(mx, y - 3, bw, 7)
+          const fill = Math.min(t, 1) * c[2] * bw
+          ctx.fillStyle = c[2] > 0 ? "rgba(0,245,255,0.75)" : "rgba(255,70,80,0.55)"
+          if (c[2] > 0) ctx.fillRect(mx, y - 3, fill, 7)
+          else {
+            ctx.font = "6px monospace"
+            ctx.fillStyle = "rgba(255,70,80,0.85)"
+            ctx.fillText("0.00", mx + 3, y + 3)
+          }
+          ctx.fillStyle = "rgba(140,160,175,0.5)"
+          ctx.fillText("w" + c[1].toFixed(2), w - 34, y + 3)
+        })
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("REVERSAL STUDY — SCORING", 8, 12)
+        ctx.fillStyle = "rgba(255,150,60,0.8)"
+        ctx.fillText("COMPOSITE 0.24 — RANK 11/19", 8, h - 5)
+      }
+
+      // VN-001 — The eleven days
+      if (type === "vn_countdown") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const days = 21
+        const mx = 12
+        const gw = (w - mx * 2) / (days - 1)
+        const t = (frame % 520) / 380
+        const passed = Math.min(Math.floor(t * days), days)
+        for (let i = 0; i < days; i++) {
+          const x = mx + i * gw
+          const y = h * 0.52
+          const isVirus = (i === 17)
+          const isKick = (i === 20)
+          if (i < passed) {
+            ctx.fillStyle = isVirus ? "rgba(255,60,70,0.95)" : "rgba(0,245,255,0.45)"
+            ctx.fillRect(x - 1.6, y - 4, 3.2, 8)
+          } else {
+            ctx.fillStyle = isKick ? "rgba(255,180,60,0.75)" : "rgba(120,140,155,0.28)"
+            ctx.fillRect(x - 1, y - 3, 2, 6)
+          }
+          if (isKick) {
+            ctx.strokeStyle = "rgba(255,180,60,0.5)"
+            ctx.beginPath(); ctx.moveTo(x, y - 14); ctx.lineTo(x, y + 12); ctx.stroke()
+          }
+          if (isVirus && i < passed) {
+            const rr = (frame % 60) / 60
+            ctx.strokeStyle = "rgba(255,60,70," + (0.55 - 0.55 * rr) + ")"
+            ctx.beginPath(); ctx.arc(x, y, 4 + rr * 16, 0, Math.PI * 2); ctx.stroke()
+          }
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("OCTOBER 2041", 8, 12)
+        ctx.fillStyle = "rgba(255,180,60,0.85)"
+        ctx.fillText("KICK-OFF 21", w - 58, h * 0.30)
+        ctx.fillStyle = "rgba(255,60,70,0.85)"
+        ctx.fillText("VIRUS 18", 8, h - 5)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1826,6 +1941,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "VN-001": [
+    { label: "CAM-01 / COMMITTEE", coords: "2039-07-02 — ITEM 6", type: "vn_vote" },
+    { label: "CAM-02 / SCORING", coords: "COMPOSITE 0.24", type: "vn_score" },
+    { label: "CAM-03 / OCTOBER 2041", coords: "KICK-OFF: THE 21ST", type: "vn_countdown" },
+  ],
   "MC-001": [
     { label: "CAM-01 / PAGE 19", coords: "US 17/994,208 — SEC 7", type: "mc_page" },
     { label: "CAM-02 / ALLOCATION", coords: "5 VENUES — 60 DAYS", type: "mc_venues" },
