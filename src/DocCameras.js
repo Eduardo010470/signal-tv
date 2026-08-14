@@ -487,14 +487,24 @@ function Camera({ label, coords, type, docId }) {
         ctx.font = "6px monospace"
         ctx.fillText("US 17/994,208", 18, 25)
         const lines = 16
+        const cyc = frame % 460
+        const revealed = Math.min(Math.floor(cyc / 12), lines)
         for (let i = 0; i < lines; i++) {
+          if (i >= revealed) break
           const y = 32 + i * (h - 48) / (lines - 1)
           const hot = (i >= 6 && i <= 10)
           const len = (w - 40) * (0.55 + 0.4 * Math.abs(Math.sin(i * 2.1)))
           ctx.fillStyle = hot ? "rgba(40,40,45,0.85)" : "rgba(70,70,78,0.45)"
           ctx.fillRect(20, y, len, hot ? 2.4 : 1.6)
         }
-        const pulse = 0.10 + 0.16 * Math.abs(Math.sin(frame / 34))
+        if (revealed < lines) {
+          const sy = 32 + revealed * (h - 48) / (lines - 1)
+          ctx.fillStyle = "rgba(0,245,255,0.55)"
+          ctx.fillRect(16, sy - 1, w - 32, 1.5)
+          ctx.fillStyle = "rgba(0,245,255,0.10)"
+          ctx.fillRect(16, sy, w - 32, 10)
+        }
+        const pulse = (revealed >= 11) ? (0.14 + 0.26 * Math.abs(Math.sin(frame / 12))) : 0
         ctx.fillStyle = "rgba(255,90,60," + pulse + ")"
         ctx.fillRect(18, 32 + 6 * (h - 48) / 15 - 3, w - 36, ((h - 48) / 15) * 4.6)
         ctx.strokeStyle = "rgba(255,90,60,0.75)"
