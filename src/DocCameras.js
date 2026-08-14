@@ -631,7 +631,6 @@ function Camera({ label, coords, type, docId }) {
         const bw = w - mx - 12
         const gap = (h - my - 14) / (crit.length - 0.4)
         const t = (frame % 400) / 260
-        const scan = (frame % 400) / 400
         crit.forEach((c, i) => {
           const y = my + i * gap
           ctx.font = "6px monospace"
