@@ -697,6 +697,109 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(255,60,70,0.85)"
         ctx.fillText("VIRUS 18", 8, h - 5)
       }
+      // SD-001 — Foundry pour
+      if (type === "sd_foundry") {
+        ctx.fillStyle = "#0b0806"
+        ctx.fillRect(0, 0, w, h)
+        const gl = ctx.createRadialGradient(w*0.5, h*0.60, 4, w*0.5, h*0.60, w*0.7)
+        gl.addColorStop(0, "rgba(255,150,50,0.30)")
+        gl.addColorStop(1, "rgba(0,0,0,0)")
+        ctx.fillStyle = gl
+        ctx.fillRect(0, 0, w, h)
+        ctx.fillStyle = "rgba(60,52,46,0.9)"
+        ctx.fillRect(w*0.30, 16, w*0.16, 22)
+        ctx.fillStyle = "rgba(70,60,52,0.9)"
+        ctx.fillRect(w*0.24, h*0.72, w*0.52, h*0.16)
+        const pour = 0.55 + 0.45 * Math.abs(Math.sin(frame / 46))
+        const grad = ctx.createLinearGradient(0, 38, 0, h*0.72)
+        grad.addColorStop(0, "rgba(255,235,170," + pour + ")")
+        grad.addColorStop(1, "rgba(255,110,30," + pour + ")")
+        ctx.fillStyle = grad
+        ctx.fillRect(w*0.37, 38, 4 + 1.5*Math.sin(frame/11), h*0.72 - 38)
+        for (let i = 0; i < 9; i++) {
+          const t = (frame * 1.6 + i * 41) % 100
+          const sx = w*0.39 + Math.sin(i * 2.3 + frame/22) * 16
+          const sy = h*0.72 - (t / 100) * h*0.42
+          ctx.fillStyle = "rgba(255,190,90," + (0.75 - t/140) + ")"
+          ctx.fillRect(sx, sy, 1.6, 1.6)
+        }
+        ctx.fillStyle = "rgba(255,180,90,0.55)"
+        ctx.fillRect(w*0.26, h*0.72, w*0.48, 3)
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(255,150,60,0.75)"
+        ctx.fillText("FOUNDRY — POUR 4", 8, 12)
+        ctx.fillStyle = "rgba(255,190,110,0.5)"
+        ctx.fillText("TOL 0.2MM", w - 52, h - 5)
+      }
+
+      // SD-001 — Salvage tonnage ledger
+      if (type === "sd_ledger") {
+        ctx.fillStyle = "#08080a"
+        ctx.fillRect(0, 0, w, h)
+        const rows = 7
+        const mx = 8, my = 22
+        const gh = (h - my - 14) / (rows - 1)
+        const bars = [0.82, 0.61, 0.94, 0.38, 0.72, 0.55, 0.88]
+        const labels = ["CU", "AL", "FE", "PB", "ZN", "SN", "NI"]
+        const t = Math.min((frame % 420) / 260, 1)
+        for (let i = 0; i < rows; i++) {
+          const y = my + i * gh
+          ctx.font = "6px monospace"
+          ctx.fillStyle = "rgba(255,180,110,0.7)"
+          ctx.fillText(labels[i], mx, y + 3)
+          ctx.fillStyle = "rgba(255,255,255,0.06)"
+          ctx.fillRect(mx + 20, y - 3, w - mx - 52, 6)
+          ctx.fillStyle = "rgba(240,140,60,0.75)"
+          ctx.fillRect(mx + 20, y - 3, (w - mx - 52) * bars[i] * t, 6)
+          ctx.fillStyle = "rgba(255,190,130,0.55)"
+          ctx.fillText((bars[i] * 3.1 * t).toFixed(1) + "t", w - 28, y + 3)
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(240,140,60,0.8)"
+        ctx.fillText("SALVAGE LEDGER", 8, 12)
+      }
+
+      // SD-001 — Board of Trade perimeter, 23 held
+      if (type === "sd_perimeter") {
+        ctx.fillStyle = "#06070a"
+        ctx.fillRect(0, 0, w, h)
+        const cx = w * 0.5, cy = h * 0.52
+        ctx.strokeStyle = "rgba(255,255,255,0.05)"
+        for (let i = 1; i < 5; i++) {
+          ctx.beginPath(); ctx.moveTo(0, i*h/5); ctx.lineTo(w, i*h/5); ctx.stroke()
+          ctx.beginPath(); ctx.moveTo(i*w/5, 0); ctx.lineTo(i*w/5, h); ctx.stroke()
+        }
+        ctx.strokeStyle = "rgba(240,140,60,0.35)"
+        ctx.setLineDash([4, 4])
+        ctx.beginPath(); ctx.arc(cx, cy, Math.min(w, h) * 0.40, 0, Math.PI * 2); ctx.stroke()
+        ctx.setLineDash([])
+        for (let i = 0; i < 6; i++) {
+          const a = (i / 6) * Math.PI * 2 + frame / 900
+          const px = cx + Math.cos(a) * Math.min(w, h) * 0.40
+          const py = cy + Math.sin(a) * Math.min(w, h) * 0.40
+          ctx.fillStyle = "rgba(240,140,60,0.85)"
+          ctx.fillRect(px - 1.6, py - 1.6, 3.2, 3.2)
+        }
+        for (let i = 0; i < 23; i++) {
+          const ring = i < 8 ? 0 : (i < 16 ? 1 : 2)
+          const idx = i < 8 ? i : (i < 16 ? i - 8 : i - 16)
+          const cnt = ring === 2 ? 7 : 8
+          const a = (idx / cnt) * Math.PI * 2 + ring * 0.4
+          const r = 5 + ring * 5
+          const px = cx + Math.cos(a) * r
+          const py = cy + Math.sin(a) * r
+          const pl = 0.45 + 0.30 * Math.sin(frame / 40 + i * 0.5)
+          ctx.fillStyle = "rgba(255,60,70," + pl + ")"
+          ctx.beginPath(); ctx.arc(px, py, 1.7, 0, Math.PI * 2); ctx.fill()
+        }
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(240,140,60,0.75)"
+        ctx.fillText("BOARD OF TRADE", 8, 12)
+        ctx.fillStyle = "rgba(255,60,70,0.85)"
+        ctx.fillText("23 STATIONARY", 8, h - 5)
+        ctx.fillStyle = "rgba(240,140,60,0.5)"
+        ctx.fillText("HOLD 3 BLOCKS", w - 74, h - 5)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1943,6 +2046,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "SD-001": [
+    { label: "CAM-01 / FOUNDRY", coords: "SOUTH SIDE — POUR 4", type: "sd_foundry" },
+    { label: "CAM-02 / SALVAGE", coords: "LEDGER — TONNAGE", type: "sd_ledger" },
+    { label: "CAM-03 / PERIMETER", coords: "BOARD OF TRADE — 23", type: "sd_perimeter" },
+  ],
   "VN-001": [
     { label: "CAM-01 / COMMITTEE", coords: "2039-07-02 — ITEM 6", type: "vn_vote" },
     { label: "CAM-02 / SCORING", coords: "COMPOSITE 0.24", type: "vn_score" },
