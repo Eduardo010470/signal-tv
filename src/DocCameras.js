@@ -477,6 +477,99 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(255,150,60,0.6)"
         ctx.fillText("BRG 190KM ESE", w - 74, h - 4)
       }
+      // MC-001 — Patent page 19
+      if (type === "mc_page") {
+        ctx.fillStyle = "#0d0e10"
+        ctx.fillRect(0, 0, w, h)
+        ctx.fillStyle = "rgba(225,225,215,0.88)"
+        ctx.fillRect(14, 16, w - 28, h - 26)
+        ctx.fillStyle = "rgba(40,40,45,0.55)"
+        ctx.font = "6px monospace"
+        ctx.fillText("US 17/994,208", 18, 25)
+        const lines = 16
+        for (let i = 0; i < lines; i++) {
+          const y = 32 + i * (h - 48) / (lines - 1)
+          const hot = (i >= 6 && i <= 10)
+          const len = (w - 40) * (0.55 + 0.4 * Math.abs(Math.sin(i * 2.1)))
+          ctx.fillStyle = hot ? "rgba(40,40,45,0.85)" : "rgba(70,70,78,0.45)"
+          ctx.fillRect(20, y, len, hot ? 2.4 : 1.6)
+        }
+        const pulse = 0.10 + 0.16 * Math.abs(Math.sin(frame / 34))
+        ctx.fillStyle = "rgba(255,90,60," + pulse + ")"
+        ctx.fillRect(18, 32 + 6 * (h - 48) / 15 - 3, w - 36, ((h - 48) / 15) * 4.6)
+        ctx.strokeStyle = "rgba(255,90,60,0.75)"
+        ctx.strokeRect(18, 32 + 6 * (h - 48) / 15 - 3, w - 36, ((h - 48) / 15) * 4.6)
+        ctx.font = "6px monospace"
+        ctx.fillStyle = "rgba(180,40,30,0.9)"
+        ctx.fillText("SEC 7", 22, 32 + 6 * (h - 48) / 15 + 4)
+        ctx.fillStyle = "rgba(40,40,45,0.5)"
+        ctx.fillText("19", w - 26, h - 14)
+      }
+
+      // MC-001 — Venue allocation converging
+      if (type === "mc_venues") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const n = 5
+        const mx = 10, my = 24
+        const bw = (w - mx * 2) / n
+        const bh = h - my - 14
+        const t = (frame % 420) / 420
+        const share = []
+        for (let i = 0; i < n; i++) {
+          const target = (i === 2) ? 0.61 : (0.39 / 4)
+          share.push(0.2 + (target - 0.2) * t)
+        }
+        share.forEach((v, i) => {
+          const x = mx + i * bw
+          const bhh = v * bh * 1.6
+          const dom = (i === 2 && t > 0.55)
+          ctx.fillStyle = dom ? "rgba(255,90,60,0.75)" : "rgba(0,245,255,0.40)"
+          ctx.fillRect(x + 3, my + bh - bhh, bw - 7, bhh)
+          ctx.font = "6px monospace"
+          ctx.fillStyle = "rgba(200,220,230,0.55)"
+          ctx.fillText("V" + (i + 1), x + bw / 2 - 5, h - 4)
+          ctx.fillStyle = dom ? "rgba(255,140,110,0.9)" : "rgba(0,245,255,0.5)"
+          ctx.fillText(Math.round(v * 100) + "%", x + bw / 2 - 8, my + bh - bhh - 3)
+        })
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("ALLOCATION — DAY " + Math.round(t * 60), 8, 12)
+      }
+
+      // MC-001 — Figure 11, no asymptote
+      if (type === "mc_curve") {
+        ctx.fillStyle = "#06080c"
+        ctx.fillRect(0, 0, w, h)
+        const mx = 16, my = 22, gw = w - mx - 10, gh = h - my - 16
+        ctx.strokeStyle = "rgba(255,255,255,0.07)"
+        for (let i = 0; i <= 3; i++) {
+          const y = my + i * gh / 3
+          ctx.beginPath(); ctx.moveTo(mx, y); ctx.lineTo(mx + gw, y); ctx.stroke()
+        }
+        const prog = Math.min((frame % 500) / 380, 1)
+        ctx.strokeStyle = "rgba(0,245,255,0.85)"
+        ctx.lineWidth = 1.6
+        ctx.beginPath()
+        for (let k = 0; k <= 100; k++) {
+          const p = k / 100
+          if (p > prog) break
+          const x = mx + p * gw
+          const y = my + gh - gh * (0.10 + 0.86 * Math.pow(p, 0.62))
+          if (k === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y)
+        }
+        ctx.stroke()
+        ctx.lineWidth = 1
+        ctx.strokeStyle = "rgba(255,90,60,0.30)"
+        ctx.setLineDash([2, 3])
+        ctx.beginPath(); ctx.moveTo(mx, my + 3); ctx.lineTo(mx + gw, my + 3); ctx.stroke()
+        ctx.setLineDash([])
+        ctx.font = "7px monospace"
+        ctx.fillStyle = "rgba(0,245,255,0.6)"
+        ctx.fillText("FIG. 11 — 1000 DAYS", 8, 12)
+        ctx.fillStyle = "rgba(255,90,60,0.7)"
+        ctx.fillText("NO ASYMPTOTE", w - 66, h - 4)
+      }
       // EM-001 — Terminal Austin
       if (type === "em_terminal") {
         ctx.fillStyle = "#061406"
@@ -1723,6 +1816,11 @@ function Camera({ label, coords, type, docId }) {
 }
 
 const DOC_CAMERAS = {
+  "MC-001": [
+    { label: "CAM-01 / PAGE 19", coords: "US 17/994,208 — SEC 7", type: "mc_page" },
+    { label: "CAM-02 / ALLOCATION", coords: "5 VENUES — 60 DAYS", type: "mc_venues" },
+    { label: "CAM-03 / FIG. 11", coords: "1000 DAYS — RISING", type: "mc_curve" },
+  ],
   "AR-002": [
     { label: "CAM-01 / FACILITY 2", coords: "MADISON WI — SEALED", type: "ar_sign" },
     { label: "CAM-02 / LEARNING RATE", coords: "14d — 19h", type: "ar_curve" },
