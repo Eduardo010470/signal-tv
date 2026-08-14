@@ -2402,6 +2402,17 @@ export default function App() {
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: radioLoading ? "#f97316" : "#ef4444", boxShadow: "0 0 8px " + (radioLoading ? "#f97316" : "#ef4444") }} />
                 <span style={{ fontSize: 11, color: "#f97316", letterSpacing: 3, fontFamily: "monospace" }}>847.3 MHz — INTERCEPTED TRANSMISSION</span>
               </div>
+              <div style={{ width: "100%", maxWidth: 300, margin: "0 auto 16px", border: "1px solid rgba(249,115,22,0.25)", background: "#000" }}>
+                <video
+                  src="https://kqkxulsuevfuhmuvhxsp.supabase.co/storage/v1/object/public/signaltv-media/1000145629.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  style={{ width: "100%", display: "block" }}
+                />
+              </div>
               {radioLoading && (
                 <div style={{ fontFamily: "monospace", fontSize: 12, color: "#f97316", letterSpacing: 1 }}>
                   <div style={{ marginBottom: 4 }}>Tuning frequency...</div>
@@ -2424,17 +2435,7 @@ export default function App() {
                   ↻ NEW TRANSMISSION
                 </button>
               )}
-              <div style={{ width: "100%", maxWidth: 300, margin: "0 auto 16px", border: "1px solid rgba(249,115,22,0.25)", background: "#000" }}>
-                <video
-                  src="https://kqkxulsuevfuhmuvhxsp.supabase.co/storage/v1/object/public/signaltv-media/1000145629.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  style={{ width: "100%", display: "block" }}
-                />
-              </div>
+              
               <div style={{ marginTop: 20, fontSize: 10, color: "#4a5568", fontFamily: "monospace", letterSpacing: 1 }}>
                 FREQUENCY: 847.3 MHz | SOURCE: UNKNOWN | CHICAGO INNER SECTORS 2162 | INTERCEPTED AND RELAYED — ARCHIVE VOICE | INTERCEPTED AND RELAYED — ARCHIVE VOICE
               </div>
