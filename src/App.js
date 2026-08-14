@@ -2348,6 +2348,17 @@ export default function App() {
               <p style={{ fontSize: 14, color: "#607888", maxWidth: 500, lineHeight: 1.8, marginBottom: 8 }}>Classified documents. C.L.A.W. logs. Inner Sectors transmissions.</p>
               <p style={{ fontSize: 13, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36 }}>The universe of <span style={{ color: CYAN }}>CLAW AI</span> continues here — Eddie Marsh's files, Voss dossiers, Chicago 2162 dispatches.</p>
               <p style={{ fontSize: 12, color: "#7090a8", maxWidth: 440, lineHeight: 1.7, marginBottom: 36, textAlign: "center" }}>Chicago fell in 2041. These are the documents that survived — the deployment log of the man who built the machine, the memoranda of the man who spent ninety years trying to take it, and dispatches still arriving on 847.3 MHz from a city nobody has left. Thirteen files. Four of them update themselves. Primary sources for the novels, free on Wattpad: <a href="https://www.wattpad.com/story/410514034" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>CLAW AI</a> and <a href="https://www.wattpad.com/story/410854794" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>The Book of Carrie</a>, and the prequel in progress, <a href="https://www.wattpad.com/story/412761631" target="_blank" rel="noreferrer" style={{ color: "#00f5ff", textDecoration: "none" }}>Eddie Marsh</a>. Read the story. Then read what happened before — and what is happening now.</p>
+              <div style={{ width: "100%", maxWidth: 280, margin: "0 auto 32px", border: "1px solid rgba(0,245,255,0.18)", background: "#000" }}>
+                <div style={{ position: "relative", paddingBottom: "177.7%", height: 0 }}>
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/3nhNt8vEsl8?rel=0&modestbranding=1&playsinline=1"
+                    title="CLAW AI"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                  />
+                </div>
+              </div>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 16 }}>
                 <a href={STRIPE_USD} target="_blank" rel="noreferrer" style={{ background: CYAN, color: BG, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACCESS — $4.99/mo</a>
                 <a href={STRIPE_BRL} target="_blank" rel="noreferrer" style={{ background: "transparent", color: CYAN, border: `1px solid ${CYAN}`, padding: "12px 24px", fontWeight: 900, fontSize: 12, letterSpacing: 2, textDecoration: "none", fontFamily: "monospace" }}>ACESSO — R$12,90/mês</a>
