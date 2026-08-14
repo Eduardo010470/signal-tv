@@ -2205,6 +2205,7 @@ const PREVIEW_DOCS = [
   { id: "IS-312", title: "Inner Sectors Dispatch — Level 4 Activity Report", date: "2162-05-14", tag: "LIVE FEED", color: "#22c55e", content: "live" },
   { id: "RADIO-847", title: "847.3 MHz — Intercepted Transmission", date: "2162", tag: "LIVE FEED", color: "#f97316", content: "radio" },
   { id: "ST-001", title: "Settlement Dispatch — Northern Perimeter Log", date: "2162-06-07", tag: "LIVE FEED", color: "#22c55e", content: "settlement" },
+  { id: "SD-001", title: "South Siders — Operations Dispatch", date: "2162", tag: "LIVE FEED", color: "#f97316", content: "siders" },
   { id: "GL-099", title: "Geneva Lake Monitor — 31 Years of Silence", date: "2162-01-01", tag: "RESTRICTED", color: MAGENTA, content: GL099 },
   { id: "UW-001", title: "ARES Program — University of Wisconsin Consortium Archive", date: "2041-09", tag: "CLASSIFIED", color: CYAN, content: UW001 },
   { id: "PR-001", title: "Prometheus Documentation — Integration Levels 1-4", date: "2039-08-22", tag: "CLASSIFIED", color: CYAN, content: PR001 },
@@ -2441,11 +2442,11 @@ export default function App() {
                 <div key={a.id} onClick={() => {
                   if (a.id === "CL-000") { setSelectedDoc(a); return }
                   if (!isPremium) return
-                  if (a.id === "IS-312" || a.id === "ST-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
+                  if (a.id === "IS-312" || a.id === "ST-001" || a.id === "SD-001") { setActiveFeedId(a.id); setShowLiveFeed(true) }
                   else if (a.id === "RADIO-847") { setShowRadioFeed(true); fetchRadioFeed() }
                   else if (a.content && a.content !== "chicago" && a.content !== "geneva" && a.content !== "manhattan") { setSelectedDoc(a) }
                   else if (isPremium && (a.content === "chicago" || a.content === "geneva" || a.content === "manhattan")) { setSelectedDoc(a) }
-                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: (a.id === "CL-000" || (isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001"))) ? "pointer" : "default", opacity: (a.id !== "CL-000" && isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001") ? 0.5 : 1 }}>
+                }} style={{ background: "rgba(0,20,35,0.6)", border: `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: (a.id === "CL-000" || (isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001" || a.id === "SD-001"))) ? "pointer" : "default", opacity: (a.id !== "CL-000" && isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && a.id !== "SD-001") ? 0.5 : 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 10, flex: 1, minWidth: 0 }}>
                       <span style={{ fontSize: 12, color: "#7090a8", minWidth: 50, flexShrink: 0, paddingTop: 2 }}>{a.id}</span>
@@ -2454,10 +2455,10 @@ export default function App() {
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
                       <span style={{ fontSize: 12, letterSpacing: 1, color: a.color, border: `1px solid ${a.color}`, padding: "2px 6px", whiteSpace: "nowrap" }}>{a.tag}</span>
                       <span style={{ fontSize: 12, color: "#7090a8" }}>{a.date}</span>
-                      <span style={{ fontSize: 12 }}>{(a.id === "CL-000" || (isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001"))) ? "🔓" : "🔒"}</span>
+                      <span style={{ fontSize: 12 }}>{(a.id === "CL-000" || (isPremium && (a.content || a.id === "IS-312" || a.id === "ST-001" || a.id === "SD-001"))) ? "🔓" : "🔒"}</span>
                     </div>
                   </div>
-                  {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && <div style={{ fontSize: 12, color: "#7090a8", marginTop: 6 }}>— Coming soon —</div>}
+                  {isPremium && !a.content && a.id !== "IS-312" && a.id !== "ST-001" && a.id !== "SD-001" && <div style={{ fontSize: 12, color: "#7090a8", marginTop: 6 }}>— Coming soon —</div>}
                 </div>
               ))}
             </div>
@@ -2541,7 +2542,7 @@ function LiveFeedComponent({ feedId }) {
   async function generateFeed() {
     setIsLoading(true)
     try {
-      const endpoint = feedId === "ST-001" ? "settlement-feed" : "signal-feed"
+      const endpoint = feedId === "ST-001" ? "settlement-feed" : feedId === "SD-001" ? "siders-feed" : "signal-feed"
       const r = await fetch(`https://web-production-6b9df.up.railway.app/${endpoint}`, { method: "POST", headers: { "Content-Type": "application/json" } })
       const d = await r.json()
       const text = d.text || "TRANSMISSION ERROR — SIGNAL LOST"
@@ -2567,6 +2568,18 @@ function LiveFeedComponent({ feedId }) {
       if (l.match(/^\[/)) return "rgba(0,245,255,0.5)"
       if (l.startsWith("**") || l.startsWith("---")) return "rgba(0,245,255,0.4)"
     }
+    if (id === "SD-001") {
+      if (l.startsWith("---")) return "rgba(240,140,60,0.3)"
+      if (l.startsWith("SOUTH SIDERS")) return "#f97316"
+      if (l.startsWith("SALVAGE") || l.startsWith("PERSONNEL") || l.startsWith("RECOVERY") || l.startsWith("BOARD OF TRADE")) return "#f97316"
+      if (l.startsWith("QUARTERMASTER")) return "#fbbf24"
+      if (l.startsWith("END DISPATCH")) return "rgba(240,140,60,0.6)"
+      if (l.startsWith("CIRCULATION") || l.startsWith("DISPATCHED BY")) return "rgba(240,140,60,0.7)"
+      if (l.startsWith("STATUS:")) return l.includes("ELEVATED") ? "#ef4444" : l.includes("NOTE") || l.includes("MONITOR") || l.includes("DELAYED") ? "#f97316" : "#22c55e"
+      if (l.includes("Cermak") || l.includes("specimen") || l.includes("Processing") || l.includes("processing")) return "#ef4444"
+      if (l.match(/^\d{4}\.\d{2}/)) return "rgba(240,140,60,0.7)"
+      return "#9ca3af"
+    }
     if (id === "ST-001") {
       if (l.startsWith("---")) return "rgba(100,220,80,0.3)"
       if (l.startsWith("OBSERVATION")) return "#00f5ff"
@@ -2585,11 +2598,11 @@ function LiveFeedComponent({ feedId }) {
     <div>
       <DocCameras docId={feedId} />
       <div style={{ position: "relative" }}>
-      {glitch && <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: feedId === "ST-001" ? "rgba(100,220,80,0.03)" : "rgba(0,245,255,0.04)", zIndex: 10, pointerEvents: "none", mixBlendMode: "screen" }}><div style={{ width: "100%", height: "30%", background: "rgba(0,0,0,0.8)", marginTop: `${Math.random()*60}%` }} /></div>}
+      {glitch && <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: feedId === "ST-001" ? "rgba(100,220,80,0.03)" : feedId === "SD-001" ? "rgba(240,140,60,0.04)" : "rgba(0,245,255,0.04)", zIndex: 10, pointerEvents: "none", mixBlendMode: "screen" }}><div style={{ width: "100%", height: "30%", background: "rgba(0,0,0,0.8)", marginTop: `${Math.random()*60}%` }} /></div>}
       <div style={{ background: "#000", border: "2px solid rgba(0,245,255,0.3)", borderRadius: 4, overflow: "hidden" }}>
         <div style={{ background: "rgba(0,245,255,0.06)", borderBottom: "1px solid rgba(0,245,255,0.15)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 12, color: "#22c55e", letterSpacing: 3, fontFamily: "monospace" }}>{isLoading ? "RECEIVING..." : "● LIVE"}</span>
-          <span style={{ fontSize: 12, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{feedId === "ST-001" ? "SETTLEMENT DISPATCH — WISCONSIN 2162" : "INNER SECTORS — CHICAGO 2162"}</span>
+          <span style={{ fontSize: 12, color: "#00f5ff", letterSpacing: 2, fontFamily: "monospace" }}>{feedId === "ST-001" ? "SETTLEMENT DISPATCH — WISCONSIN 2162" : feedId === "SD-001" ? "SOUTH SIDERS — OPERATIONS 2162" : "INNER SECTORS — CHICAGO 2162"}</span>
           <span style={{ fontSize: 12, color: "#7090a8", fontFamily: "monospace" }}>SIG {signalStrength}%</span>
         </div>
         <div style={{ padding: "16px 14px", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, minHeight: 300, maxHeight: 500, overflowY: "auto" }}>
