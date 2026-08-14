@@ -584,17 +584,17 @@ function Camera({ label, coords, type, docId }) {
       if (type === "vn_vote") {
         ctx.fillStyle = "#0a0b0d"
         ctx.fillRect(0, 0, w, h)
-        const seats = 11
+        const seats = 12
         const mx = 14, my = 26
         const cols = 4
         const rows = 3
-        const cyc = frame % 460
-        const shown = Math.min(Math.floor(cyc / 22), 9)
+        const cyc = frame % 560
+        const shown = Math.min(Math.floor(cyc / 22), 12)
         for (let i = 0; i < seats; i++) {
           const c = i % cols, r = Math.floor(i / cols)
           const x = mx + c * (w - mx * 2) / (cols - 1)
           const y = my + r * (h - my - 22) / (rows - 1)
-          const absent = (i >= 9)
+          const absent = false
           if (absent) {
             ctx.strokeStyle = "rgba(120,130,140,0.35)"
             ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.stroke()
@@ -614,7 +614,7 @@ function Camera({ label, coords, type, docId }) {
         ctx.fillStyle = "rgba(200,80,80,0.75)"
         ctx.fillText("0 AGAINST", w * 0.40, h - 5)
         ctx.fillStyle = "rgba(120,130,140,0.6)"
-        ctx.fillText("2 ABSENT", w - 52, h - 5)
+        ctx.fillText("UNANIMOUS", w - 56, h - 5)
       }
 
       // VN-001 — Prioritisation scoring
@@ -629,8 +629,9 @@ function Camera({ label, coords, type, docId }) {
         ]
         const mx = 62, my = 24
         const bw = w - mx - 12
-        const gap = (h - my - 18) / crit.length
+        const gap = (h - my - 14) / (crit.length - 0.4)
         const t = (frame % 400) / 260
+        const scan = (frame % 400) / 400
         crit.forEach((c, i) => {
           const y = my + i * gap
           ctx.font = "6px monospace"
@@ -639,11 +640,13 @@ function Camera({ label, coords, type, docId }) {
           ctx.fillStyle = "rgba(255,255,255,0.07)"
           ctx.fillRect(mx, y - 3, bw, 7)
           const fill = Math.min(t, 1) * c[2] * bw
-          ctx.fillStyle = c[2] > 0 ? "rgba(0,245,255,0.75)" : "rgba(255,70,80,0.55)"
-          if (c[2] > 0) ctx.fillRect(mx, y - 3, fill, 7)
+          if (c[2] > 0) { ctx.fillStyle = "rgba(0,245,255,0.75)"; ctx.fillRect(mx, y - 3, fill, 7) }
           else {
+            const bl = 0.45 + 0.45 * Math.abs(Math.sin(frame / 16 + i))
+            ctx.fillStyle = "rgba(255,70,80," + (bl * 0.30) + ")"
+            ctx.fillRect(mx, y - 3, bw, 7)
             ctx.font = "6px monospace"
-            ctx.fillStyle = "rgba(255,70,80,0.85)"
+            ctx.fillStyle = "rgba(255,70,80," + bl + ")"
             ctx.fillText("0.00", mx + 3, y + 3)
           }
           ctx.fillStyle = "rgba(140,160,175,0.5)"
