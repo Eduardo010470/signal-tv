@@ -2365,7 +2365,7 @@ export default function App() {
             </div>
             <div style={{ padding: "40px 20px", maxWidth: 760, margin: "0 auto" }}>
               <div style={{ fontSize: 12, letterSpacing: 4, color: "#7090a8", marginBottom: 24, textAlign: "center" }}>— RECENT TRANSMISSIONS —</div>
-              <div style={{ fontSize: 12, color: "#00f5ff", marginBottom: 16, textAlign: "center", letterSpacing: 1 }}>CL-000 is unlocked. The other twelve are not.</div>
+              <div style={{ fontSize: 12, color: "#00f5ff", marginBottom: 16, textAlign: "center", letterSpacing: 1 }}>CL-000 is unlocked. The other {PREVIEW_DOCS.length - 1} are not.</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {PREVIEW_DOCS.map(a => (
                   <div key={a.id} onClick={() => { if (a.id === "CL-000") setSelectedDoc(a) }} style={{ background: "rgba(0,20,35,0.6)", border: a.id === "CL-000" ? `1px solid rgba(0,245,255,0.35)` : `1px solid rgba(0,245,255,0.08)`, padding: "12px 14px", cursor: a.id === "CL-000" ? "pointer" : "default" }}>
