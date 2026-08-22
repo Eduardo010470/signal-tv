@@ -2293,9 +2293,14 @@ export default function App() {
 
   async function manageSubscription() {
     try {
+      const { data: { session } } = await supabase.auth.getSession()
       const res = await fetch("https://etf-api-production-093e.up.railway.app/customer-portal", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({email: user?.email})
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(session?.access_token ? {"Authorization": "Bearer " + session.access_token} : {})
+        },
+        body: JSON.stringify({email: user?.email, return_url: window.location.origin})
       })
       const data = await res.json()
       if (data.url) window.location.href = data.url
